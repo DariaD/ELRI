@@ -19,11 +19,31 @@
     }
 }
 
-@media screen and (max-width: 1414px) {
-    #jsddm li a i {
-        display: none;
+@media screen and (max-width: 999px) {
+    #jsddmdiv {
+        margin-top: 0px;
+    }
+    /* styles for the new header language selector*/
+   	#lang_selector {
+		margin-left: 20px;
+		display: inline;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+    #jsddm {
+        display: flex;
     }
 }
+/* styles for the new header language selector*/
+#lang_selector a:hover{
+	cursor: pointer;
+	color: #058dbe !important;
+	text-decoration: none;
+	text-shadow: none !important;
+}
+
+
 
 body {
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;
