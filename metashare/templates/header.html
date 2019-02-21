@@ -7,20 +7,19 @@
 			{% get_current_language as LANGUAGE_CODE  %}
 			{% if LANGUAGE_CODE == "en-ie" or LANGUAGE_CODE == "ga-ie"%}
 				{% if LANGUAGE_CODE == "en-ie" %}
-				
-						<div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ; background: #cde8f2;">
-							<a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
-						</div>
-						<div id=ga_language title="{% trans 'Gaeilge' %}" style="float: left; padding: 10px 17px ;">
-							<a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
-						</div>
+                        <div id=ga_language title="{% trans 'Gaeilge' %}" style="float: left; padding: 10px 17px ;">
+                            <a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
+                        </div>
+                        <div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ; background: #cde8f2;">
+                            <a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
+                        </div>
 				{% endif %}
 				{% if LANGUAGE_CODE == "ga-ie"%}
-						<div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ;">
-							<a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
-						</div>
 						<div id=ga_language title="{% trans 'Gaeilge' %}" style="float: left; padding: 10px 17px ; background: #cde8f2;">
 							<a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
+						</div>
+						<div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ;">
+							<a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
 						</div>
 				{% endif %}
 				<script>
