@@ -7,21 +7,21 @@ import uuid
 import zipfile
 import re
 import pdb
-from unidecode import unidecode 
+from unidecode import unidecode
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 from haystack.query import SearchQuerySet
 from metashare.report_utils.report_utils import _is_processed, _is_not_processed_or_related, _get_country, \
-	_get_resource_mimetypes, _get_resource_linguality, _get_resource_lang_info, _get_resource_sizes, \
-	_get_resource_lang_sizes, _get_preferred_size, _get_resource_domain_info
+    _get_resource_mimetypes, _get_resource_linguality, _get_resource_lang_info, _get_resource_sizes, \
+    _get_resource_lang_sizes, _get_preferred_size, _get_resource_domain_info
 from metashare.repository.export_utils import xml_to_json
 from metashare.repository.templatetags.is_member import is_member
 from django.http import JsonResponse
 from collections import OrderedDict
 
 try:
-	import cStringIO as StringIO
+    import cStringIO as StringIO
 except ImportError:
-	import StringIO
+    import StringIO
 
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
@@ -53,30 +53,32 @@ from haystack.views import FacetedSearchView
 from metashare.accounts.models import UserProfile, Organization, OrganizationManagers
 from metashare.local_settings import CONTRIBUTIONS_ALERT_EMAILS, TMP, SUPPORTED_LANGUAGES, EMAIL_ADDRESSES
 from metashare.recommendations.recommendations import SessionResourcesTracker, \
-	get_download_recommendations, get_view_recommendations, \
-	get_more_from_same_creators_qs, get_more_from_same_projects_qs
+    get_download_recommendations, get_view_recommendations, \
+    get_more_from_same_creators_qs, get_more_from_same_projects_qs
 from metashare.repository import model_utils
 from metashare.repository.editor.resource_editor import has_edit_permission, _get_licences, _get_user_membership, MEMBER_TYPES, LICENCEINFOTYPE_URLS_LICENCE_CHOICES
 from metashare.repository.forms import LicenseSelectionForm, \
-	LicenseAgreementForm, DownloadContactForm, MORE_FROM_SAME_CREATORS, \
-	MORE_FROM_SAME_PROJECTS
+    LicenseAgreementForm, DownloadContactForm, MORE_FROM_SAME_CREATORS, \
+    MORE_FROM_SAME_PROJECTS
 from metashare.repository.models import resourceInfoType_model, identificationInfoType_model, \
-	communicationInfoType_model, organizationInfoType_model, personInfoType_model, corpusMediaTypeType_model, \
-	corpusTextInfoType_model, lingualityInfoType_model, languageInfoType_model, corpusInfoType_model, \
-	metadataInfoType_model, languageDescriptionTextInfoType_model, languageDescriptionMediaTypeType_model, \
-	languageDescriptionInfoType_model, lexicalConceptualResourceTextInfoType_model, \
-	lexicalConceptualResourceMediaTypeType_model, lexicalConceptualResourceInfoType_model, distributionInfoType_model, \
-	licenceInfoType_model, resourceCreationInfoType_model
+    communicationInfoType_model, organizationInfoType_model, personInfoType_model, corpusMediaTypeType_model, \
+    corpusTextInfoType_model, lingualityInfoType_model, languageInfoType_model, corpusInfoType_model, \
+    metadataInfoType_model, languageDescriptionTextInfoType_model, languageDescriptionMediaTypeType_model, \
+    languageDescriptionInfoType_model, lexicalConceptualResourceTextInfoType_model, \
+    lexicalConceptualResourceMediaTypeType_model, lexicalConceptualResourceInfoType_model, distributionInfoType_model, \
+    licenceInfoType_model, resourceCreationInfoType_model
 from metashare.repository.search_indexes import resourceInfoType_modelIndex, \
-	update_lr_index_entry
+    update_lr_index_entry
 from metashare.settings import LOG_HANDLER, STATIC_URL, DJANGO_URL, MAXIMUM_UPLOAD_SIZE, CONTRIBUTION_FORM_DATA, \
-	ROOT_PATH, LANGUAGE_CODE
+    ROOT_PATH, LANGUAGE_CODE
 from metashare.stats.model_utils import getLRStats, saveLRStats, \
-	saveQueryStats, VIEW_STAT, DOWNLOAD_STAT
+    saveQueryStats, VIEW_STAT, DOWNLOAD_STAT
 from metashare.storage.models import PUBLISHED, INGESTED
 from metashare.utils import prettify_camel_case_string
 
 MAXIMUM_READ_BLOCK_SIZE = 4096
+ALLOWED_EXTENSIONS = [".zip", ".pdf", ".doc", ".docx", ".tmx", ".txt", ".rtf",
+                            ".xls", ".xlsx", ".xml", ".sdltm", ".odt", ".tbx"]
 
 # Setup logging support.
 LOGGER = logging.getLogger(__name__)
@@ -84,40 +86,39 @@ LOGGER.addHandler(LOG_HANDLER)
 
 
 def _convert_to_template_tuples(element_tree):
-	"""
-	Converts the given ElementTree instance to template tuples.
+    """
+    Converts the given ElementTree instance to template tuples.
 
-	A template tuple contains:
-	- a two-tuple (component, values) for complex nodes, and
-	- a one-tuple ((key, value),) for simple tags.
+    A template tuple contains:
+    - a two-tuple (component, values) for complex nodes, and
+    - a one-tuple ((key, value),) for simple tags.
 
-	The length distinction allows for recursive rendering in the template.
-	See repository/detail.html and repository/detail_view.html for more information.
+    The length distinction allows for recursive rendering in the template.
+    See repository/detail.html and repository/detail_view.html for more information.
 
-	Rendering recursively inside the Django template system needs this trick:
-	- http://blog.elsdoerfer.name/2008/01/22/recursion-in-django-templates/
+    Rendering recursively inside the Django template system needs this trick:
+    - http://blog.elsdoerfer.name/2008/01/22/recursion-in-django-templates/
 
-	"""
-	# If we are dealing with a complex node containing children nodes, we have
-	# to first recursively collect the data values from the sub components.
-	if len(element_tree):
-		values = []
-		for child in element_tree:
-			values.append(_convert_to_template_tuples(child))
-		# use pretty print name of element instead of tag; requires that 
-		# element_tree is created using export_to_elementtree(pretty=True)
-		return (element_tree.attrib["pretty"], values)
+    """
+    # If we are dealing with a complex node containing children nodes, we have
+    # to first recursively collect the data values from the sub components.
+    if len(element_tree):
+        values = []
+        for child in element_tree:
+            values.append(_convert_to_template_tuples(child))
+        # use pretty print name of element instead of tag; requires that
+        # element_tree is created using export_to_elementtree(pretty=True)
+        return (element_tree.attrib["pretty"], values)
 
-	# Otherwise, we return a tuple containg (key, value, required), 
-	# i.e., (tag, text, <True,False>).
-	# The "required" element was added to the tree, for passing 
-	# information about whether a field is required or not, to correctly
-	# render the single resource view.
-	else:
-		# use pretty print name of element instead of tag; requires that 
-		# element_tree is created using export_to_elementtree(pretty=True)
-		return ((element_tree.attrib["pretty"], element_tree.text),)
-
+    # Otherwise, we return a tuple containg (key, value, required),
+    # i.e., (tag, text, <True,False>).
+    # The "required" element was added to the tree, for passing
+    # information about whether a field is required or not, to correctly
+    # render the single resource view.
+    else:
+        # use pretty print name of element instead of tag; requires that
+        # element_tree is created using export_to_elementtree(pretty=True)
+        return ((element_tree.attrib["pretty"], element_tree.text),)
 
 def download(request, object_id, **kwargs):
 	"""
@@ -163,7 +164,6 @@ def download(request, object_id, **kwargs):
 		if licence_choice and 'in_licence_agree_form' in request.POST:
 			la_form = LicenseAgreementForm(licence_choice, data=request.POST)
 			l_info, access_links, access = licences[licence_choice]
-			LOGGER.info(access_links)
 			if la_form.is_valid():
 				# before really providing the download, we have to make sure
 				# that the user hasn't tried to circumvent the permission system
@@ -264,8 +264,7 @@ def _provide_download(request, resource, access_links, bypass_stats):
 	else:
 		LOGGER.error("No download could be offered for resource #{0} with " \
 					 "storage object identifier #{1} although our code " \
-					 "considered it to be downloadable!".format(resource.id,
-																resource.storage_object.identifier))
+					 "considered it to be downloadable!".format(resource.id, resource.storage_object.identifier))
 
 	# no download could be provided
 	return render_to_response('repository/lr_not_downloadable.html',
@@ -274,139 +273,139 @@ def _provide_download(request, resource, access_links, bypass_stats):
 
 
 def _update_download_stats(resource, request):
-	"""
-	Updates all relevant statistics counters for a the given successful resource
-	download request.
-	"""
-	# maintain general download statistics
-	if saveLRStats(resource, DOWNLOAD_STAT, request):
-		# update download count in the search index, too
-		update_lr_index_entry(resource)
-	# update download tracker
-	tracker = SessionResourcesTracker.getTracker(request)
-	tracker.add_download(resource, datetime.datetime.now())
-	request.session['tracker'] = tracker
+    """
+    Updates all relevant statistics counters for a the given successful resource
+    download request.
+    """
+    # maintain general download statistics
+    if saveLRStats(resource, DOWNLOAD_STAT, request):
+        # update download count in the search index, too
+        update_lr_index_entry(resource)
+    # update download tracker
+    tracker = SessionResourcesTracker.getTracker(request)
+    tracker.add_download(resource, datetime.datetime.now())
+    request.session['tracker'] = tracker
 
 
 @login_required
 def download_contact(request, object_id):
-	"""
-	Renders the download contact view to request information regarding a resource
-	"""
-	resource = get_object_or_404(resourceInfoType_model,
-								 storage_object__identifier=object_id,
-								 storage_object__publication_status=PUBLISHED)
+    """
+    Renders the download contact view to request information regarding a resource
+    """
+    resource = get_object_or_404(resourceInfoType_model,
+                                 storage_object__identifier=object_id,
+                                 storage_object__publication_status=PUBLISHED)
 
-	default_message = "We are interested in using the above mentioned " \
-					  "resource. Please provide us with all the relevant information (e.g.," \
-					  " licensing provisions and restrictions, any fees required etc.) " \
-					  "which is necessary for concluding a deal for getting a license. We " \
-					  "are happy to provide any more information on our request and our " \
-					  "envisaged usage of your resource.\n\n" \
-					  "[Please include here any other request you may have regarding this " \
-					  "resource or change this message altogether]\n\n" \
-					  "Please kindly use the above mentioned e-mail address for any " \
-					  "further communication."
+    default_message = "We are interested in using the above mentioned " \
+                      "resource. Please provide us with all the relevant information (e.g.," \
+                      " licensing provisions and restrictions, any fees required etc.) " \
+                      "which is necessary for concluding a deal for getting a license. We " \
+                      "are happy to provide any more information on our request and our " \
+                      "envisaged usage of your resource.\n\n" \
+                      "[Please include here any other request you may have regarding this " \
+                      "resource or change this message altogether]\n\n" \
+                      "Please kindly use the above mentioned e-mail address for any " \
+                      "further communication."
 
-	# Find out the relevant resource contact emails and names
-	resource_emails = []
-	resource_contacts = []
-	for person in resource.contactPerson.all():
-		resource_emails.append(person.communicationInfo.email[0])
-		if person.givenName:
-			_name = u'{} '.format(person.get_default_givenName())
-		else:
-			_name = u''
-		resource_contacts.append(_name + person.get_default_surname())
+    # Find out the relevant resource contact emails and names
+    resource_emails = []
+    resource_contacts = []
+    for person in resource.contactPerson.all():
+        resource_emails.append(person.communicationInfo.email[0])
+        if person.givenName:
+            _name = u'{} '.format(person.get_default_givenName())
+        else:
+            _name = u''
+        resource_contacts.append(_name + person.get_default_surname())
 
-	# Check if the edit form has been submitted.
-	if request.method == "POST":
-		# If so, bind the creation form to HTTP POST values.
-		form = DownloadContactForm(initial={'userEmail': request.user.email,
-											'message': default_message},
-								   data=request.POST)
-		# Check if the form has validated successfully.
-		if form.is_valid():
-			message = form.cleaned_data['message']
-			user_email = form.cleaned_data['userEmail']
+    # Check if the edit form has been submitted.
+    if request.method == "POST":
+        # If so, bind the creation form to HTTP POST values.
+        form = DownloadContactForm(initial={'userEmail': request.user.email,
+                                            'message': default_message},
+                                   data=request.POST)
+        # Check if the form has validated successfully.
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            user_email = form.cleaned_data['userEmail']
 
-			# Render notification email template with correct values.
-			data = {'message': message, 'resource': resource,
-					'resourceContactName': resource_contacts, 'user': request.user,
-					'user_email': user_email, 'node_url': DJANGO_URL}
-			try:
-				# Send out email to the resource contacts
-				send_mail('Request for information regarding a resource',
-						  render_to_string('repository/' \
-										   'resource_download_information.email', data),
-						  user_email, resource_emails, fail_silently=False)
-			except:  # SMTPException:
-				# If the email could not be sent successfully, tell the user
-				# about it.
-				messages.error(request,
-							   _("There was an error sending out the request email."))
-			else:
-				messages.success(request, _('You have successfully ' \
-											'sent a message to the resource contact person.'))
+            # Render notification email template with correct values.
+            data = {'message': message, 'resource': resource,
+                    'resourceContactName': resource_contacts, 'user': request.user,
+                    'user_email': user_email, 'node_url': DJANGO_URL}
+            try:
+                # Send out email to the resource contacts
+                send_mail('Request for information regarding a resource',
+                          render_to_string('repository/' \
+                                           'resource_download_information.email', data),
+                          user_email, resource_emails, fail_silently=False)
+            except:  # SMTPException:
+                # If the email could not be sent successfully, tell the user
+                # about it.
+                messages.error(request,
+                               _("There was an error sending out the request email."))
+            else:
+                messages.success(request, _('You have successfully ' \
+                                            'sent a message to the resource contact person.'))
 
-			# Redirect the user to the resource page.
-			return redirect(resource.get_absolute_url())
+            # Redirect the user to the resource page.
+            return redirect(resource.get_absolute_url())
 
-	# Otherwise, render a new DownloadContactForm instance
-	else:
-		form = DownloadContactForm(initial={'userEmail': request.user.email,
-											'message': default_message})
+    # Otherwise, render a new DownloadContactForm instance
+    else:
+        form = DownloadContactForm(initial={'userEmail': request.user.email,
+                                            'message': default_message})
 
-	dictionary = {'username': request.user,
-				  'resource': resource,
-				  'resourceContactName': resource_contacts,
-				  'resourceContactEmail': resource_emails,
-				  'form': form}
-	return render_to_response('repository/download_contact_form.html',
-							  dictionary, context_instance=RequestContext(request))
+    dictionary = {'username': request.user,
+                  'resource': resource,
+                  'resourceContactName': resource_contacts,
+                  'resourceContactEmail': resource_emails,
+                  'form': form}
+    return render_to_response('repository/download_contact_form.html',
+                              dictionary, context_instance=RequestContext(request))
 
 
 def has_view_permission(request, res_obj):
-	"""
-	Returns `True` if the given request has permission to view the description
-	of the current resource, `False` otherwise.
-	A resource can be viewed by a user if either:
-	- the user is a superuser
-	- the user is among the owners of the resource, or is a Reviewer, and the
-	  resource is either INGESTED or PUBLISHED
-	- the user is in a group the resource has been shared with, and the resource
-	  is PUBLISHED.
-	"""
-	user = request.user
-	if (
-		user.is_superuser
-		or
-		(
-		 (user in res_obj.owners.all()
-		  or
-		  user.groups.filter(name='reviewers').exists()
-		 )
-		 and
-		 res_obj.storage_object.publication_status in (INGESTED, PUBLISHED)
-		)
-		or
-		(
-		 user.groups.filter(name__in=
-			res_obj.groups.values_list("name", flat=True)).exists()
-		 and
-		 res_obj.storage_object.publication_status == PUBLISHED
-		)
-	   ):
-		return True
-	return False
+    """
+    Returns `True` if the given request has permission to view the description
+    of the current resource, `False` otherwise.
+    A resource can be viewed by a user if either:
+    - the user is a superuser
+    - the user is among the owners of the resource, or is a Reviewer, and the
+      resource is either INGESTED or PUBLISHED
+    - the user is in a group the resource has been shared with, and the resource
+      is PUBLISHED.
+    """
+    user = request.user
+    if (
+        user.is_superuser
+        or
+        (
+         (user in res_obj.owners.all()
+          or
+          user.groups.filter(name='reviewers').exists()
+         )
+         and
+         res_obj.storage_object.publication_status in (INGESTED, PUBLISHED)
+        )
+        or
+        (
+         user.groups.filter(name__in=
+            res_obj.groups.values_list("name", flat=True)).exists()
+         and
+         res_obj.storage_object.publication_status == PUBLISHED
+        )
+       ):
+        return True
+    return False
 
 def view(request, resource_name=None, object_id=None):
 	"""
 	Render browse or detail view for the repository application.
 	"""
-	translation.activate(LANGUAGE_CODE)
-	request.session['django_language'] = LANGUAGE_CODE
-	request.LANGUAGE_CODE = LANGUAGE_CODE
+	#translation.activate(LANGUAGE_CODE)
+	#request.session['django_language'] = LANGUAGE_CODE
+	#request.LANGUAGE_CODE = LANGUAGE_CODE
 	
 	# only published resources may be viewed. Ingested LRs can be viewed only
 	# by EC members and technical reviewers
@@ -667,359 +666,357 @@ def view(request, resource_name=None, object_id=None):
 	# Render and return template with the defined context.
 	ctx = RequestContext(request)
 	# context['processing_info'] = json.loads(json.dumps(dict_xml).replace("@", "").replace("#", ""))
-	return render_to_response(template,
-							  context, context_instance=ctx)
+	return render_to_response(template, context, context_instance=ctx)
 
 
 def tuple2dict(_tuple):
-	'''
-	Recursively converts a tuple into a dictionary for ease of use 
-	in templates.
-	'''
-	_dict = {}
-	count_dict = {}
-	for item in _tuple:
-		if isinstance(item, tuple) or isinstance(item, list):
-			if isinstance(item[0], basestring):
-				# Replace spaces by underscores for component names.
-				# Handle strings as unicode to avoid "UnicodeEncodeError: 'ascii' codec can't encode character " errors
-				if item[0].find(" "):
-					_key = u''.join(item[0]).encode('utf-8').replace(" ", "_").replace("/", "_")
-					
-				else:
-					_key = u''.join(item[0]) #str(item[0])
-				if _key in _dict:
-					# If a repeatable component is found, a customized 
-					# dictionary is added, since no duplicate key names
-					# are allowed. We keep a dictionary with counts and
-					# add a new entry in the original dictionary in the 
-					# form <component>_<no_of_occurences>
-					if not _key in count_dict:
-						count_dict[_key] = 1
-					else:
-						count_dict[_key] += 1
-					new_key = "_".join([_key, str(count_dict[_key])])
-					_dict[new_key] = tuple2dict(item[1])
-				else:
-					_dict[_key] = tuple2dict(item[1])
-			else:
-				if isinstance(item[0], tuple):
-					# Replace spaces by underscores for element names.
-					
-					if item[0][0][:].find(" "):
-						#LOGGER.info(u''.join(item[0][0]).encode('utf-8'))
-						_key=u''.join(item[0][0]).encode('utf-8').replace(" ", "_").replace('(', "").replace(")", "").replace("/", "_").replace("-", "_")
-					else:
-						_key = u''.join(item[0][0]).encode('utf-8')
+    '''
+    Recursively converts a tuple into a dictionary for ease of use
+    in templates.
+    '''
+    _dict = {}
+    count_dict = {}
+    for item in _tuple:
+        if isinstance(item, tuple) or isinstance(item, list):
+            if isinstance(item[0], basestring):
+                # Replace spaces by underscores for component names.
+                # Handle strings as unicode to avoid "UnicodeEncodeError: 'ascii' codec can't encode character " errors
+                if item[0].find(" "):
+                    _key = u''.join(item[0]).encode('utf-8').replace(" ", "_").replace("/", "_")
 
-					# If the item is a date, convert it to real datetime
-					if _key.find("_date") != -1:
-						new_item = datetime.datetime.strptime(item[0][1], "%Y-%m-%d")
-					else:
-						new_item = item[0][1]
-					# If a repeatable element is found, the old value is
-					# concatenated with the new one, adding a space in between.
-					if _key in _dict:
-						_dict[_key] = ", ".join([_dict[_key], new_item])
-					else:
-						_dict[_key] = new_item
-	return _dict
+                else:
+                    _key = u''.join(item[0]) #str(item[0])
+                if _key in _dict:
+                    # If a repeatable component is found, a customized
+                    # dictionary is added, since no duplicate key names
+                    # are allowed. We keep a dictionary with counts and
+                    # add a new entry in the original dictionary in the
+                    # form <component>_<no_of_occurences>
+                    if not _key in count_dict:
+                        count_dict[_key] = 1
+                    else:
+                        count_dict[_key] += 1
+                    new_key = "_".join([_key, str(count_dict[_key])])
+                    _dict[new_key] = tuple2dict(item[1])
+                else:
+                    _dict[_key] = tuple2dict(item[1])
+            else:
+                if isinstance(item[0], tuple):
+                    # Replace spaces by underscores for element names.
+
+                    if item[0][0][:].find(" "):
+                        #LOGGER.info(u''.join(item[0][0]).encode('utf-8'))
+                        _key=u''.join(item[0][0]).encode('utf-8').replace(" ", "_").replace('(', "").replace(")", "").replace("/", "_").replace("-", "_")
+                    else:
+                        _key = u''.join(item[0][0]).encode('utf-8')
+
+                    # If the item is a date, convert it to real datetime
+                    if _key.find("_date") != -1:
+                        new_item = datetime.datetime.strptime(item[0][1], "%Y-%m-%d")
+                    else:
+                        new_item = item[0][1]
+                    # If a repeatable element is found, the old value is
+                    # concatenated with the new one, adding a space in between.
+                    if _key in _dict:
+                        _dict[_key] = ", ".join([_dict[_key], new_item])
+                    else:
+                        _dict[_key] = new_item
+    return _dict
 
 
 def _format_recommendations(recommended_resources):
-	'''
-	Returns the given resource recommendations list formatted as a list of
-	dictionaries with the two keys "name" and "url" (for use in the single
-	resource view).
-	
-	The number of returned recommendations is restricted to at most 4.
-	'''
-	result = []
-	for res in recommended_resources[:4]:
-		res_item = {}
-		res_item['name'] = res.__unicode__()
-		res_item['url'] = res.get_absolute_url()
-		result.append(res_item)
-	return result
+    '''
+    Returns the given resource recommendations list formatted as a list of
+    dictionaries with the two keys "name" and "url" (for use in the single
+    resource view).
+
+    The number of returned recommendations is restricted to at most 4.
+    '''
+    result = []
+    for res in recommended_resources[:4]:
+        res_item = {}
+        res_item['name'] = res.__unicode__()
+        res_item['url'] = res.get_absolute_url()
+        result.append(res_item)
+    return result
 
 
 class MetashareFacetedSearchView(FacetedSearchView):
-	"""
-	A modified `FacetedSearchView` which makes sure that only such results will
-	be returned that are accessible by the current user.
-	"""
+    """
+    A modified `FacetedSearchView` which makes sure that only such results will
+    be returned that are accessible by the current user.
+    """
 
-	def get_results(self):
-		sqs = super(MetashareFacetedSearchView, self).get_results()
-		if not is_member(self.request.user, 'reviewers') \
-				and not self.request.user.is_superuser:
-			resource_names = []
-			for res in resourceInfoType_model.objects.all():
-				#get resource id
-				id_res = res.storage_object.id
-				res_groups=res.groups.values_list("name", flat=True)
-				
-				if self.request.user.groups.filter(	
-					name__in=res.groups.values_list("name", flat=True)).exists():
-					resname=res.identificationInfo.get_default_resourceName()
-					##get resource Name
-					resourceName=unidecode(resname)
-					##keep alphanumeric characters only
-					resourceName=re.sub('[\W_]', '', resourceName)
-					##lowercase
-					resourceName=resourceName.lower()
-					##append resource name to the list,
-					#concatenate it to its id to resolve the conflicts that 
-					#  can arise from resources sharing the same name but with different group sharing policy
-					resource_names.append(resourceName+str(id_res))
-			if resource_names:
-				sqs = sqs.filter(publicationStatusFilter__exact='published',
-								 resourceNameSort__in=resource_names)
-			else:
-				sqs = sqs.none()
+    def get_results(self):
+        sqs = super(MetashareFacetedSearchView, self).get_results()
+        if not is_member(self.request.user, 'reviewers') \
+                and not self.request.user.is_superuser:
+            resource_names = []
+            for res in resourceInfoType_model.objects.all():
+                #get resource id
+                id_res = res.storage_object.id
+                res_groups=res.groups.values_list("name", flat=True)
 
-		# Sort the results (on only one sorting value)
-		if 'sort' in self.request.GET:
-			sort_list = self.request.GET.getlist('sort')
+                if self.request.user.groups.filter(
+                    name__in=res.groups.values_list("name", flat=True)).exists():
+                    resname=res.identificationInfo.get_default_resourceName()
+                    ##get resource Name
+                    resourceName=unidecode(resname)
+                    ##keep alphanumeric characters only
+                    resourceName=re.sub('[\W_]', '', resourceName)
+                    ##lowercase
+                    resourceName=resourceName.lower()
+                    ##append resource name to the list,
+                    #concatenate it to its id to resolve the conflicts that
+                    #  can arise from resources sharing the same name but with different group sharing policy
+                    resource_names.append(resourceName+str(id_res))
+            if resource_names:
+                sqs = sqs.filter(publicationStatusFilter__exact='published',
+                                 resourceNameSort__in=resource_names)
+            else:
+                sqs = sqs.none()
 
-			if sort_list[0] == 'resourcename_asc':
-				sqs = sqs.order_by('resourceNameSort_exact')
-			elif sort_list[0] == 'resourcename_desc':
-				sqs = sqs.order_by('-resourceNameSort_exact')
-			elif sort_list[0] == 'resourcetype_asc':
-				sqs = sqs.order_by('resourceTypeSort_exact')
-			elif sort_list[0] == 'resourcetype_desc':
-				sqs = sqs.order_by('-resourceTypeSort_exact')
-			elif sort_list[0] == 'mediatype_asc':
-				sqs = sqs.order_by('mediaTypeSort_exact')
-			elif sort_list[0] == 'mediatype_desc':
-				sqs = sqs.order_by('-mediaTypeSort_exact')
-			elif sort_list[0] == 'languagename_asc':
-				sqs = sqs.order_by('languageNameSort_exact')
-			elif sort_list[0] == 'languagename_desc':
-				sqs = sqs.order_by('-languageNameSort_exact')
-			elif sort_list[0] == 'dl_count_desc':
-				sqs = sqs.order_by('-dl_count', 'resourceNameSort_exact')
-			elif sort_list[0] == 'view_count_desc':
-				sqs = sqs.order_by('-view_count', 'resourceNameSort_exact')
-			else:
-				sqs = sqs.order_by('resourceNameSort_exact')
-		else:
-			sqs = sqs.order_by('resourceNameSort_exact')
+        # Sort the results (on only one sorting value)
+        if 'sort' in self.request.GET:
+            sort_list = self.request.GET.getlist('sort')
 
-		# collect statistics about the query
-		starttime = datetime.datetime.now()
-		results_count = sqs.count()
+            if sort_list[0] == 'resourcename_asc':
+                sqs = sqs.order_by('resourceNameSort_exact')
+            elif sort_list[0] == 'resourcename_desc':
+                sqs = sqs.order_by('-resourceNameSort_exact')
+            elif sort_list[0] == 'resourcetype_asc':
+                sqs = sqs.order_by('resourceTypeSort_exact')
+            elif sort_list[0] == 'resourcetype_desc':
+                sqs = sqs.order_by('-resourceTypeSort_exact')
+            elif sort_list[0] == 'mediatype_asc':
+                sqs = sqs.order_by('mediaTypeSort_exact')
+            elif sort_list[0] == 'mediatype_desc':
+                sqs = sqs.order_by('-mediaTypeSort_exact')
+            elif sort_list[0] == 'languagename_asc':
+                sqs = sqs.order_by('languageNameSort_exact')
+            elif sort_list[0] == 'languagename_desc':
+                sqs = sqs.order_by('-languageNameSort_exact')
+            elif sort_list[0] == 'dl_count_desc':
+                sqs = sqs.order_by('-dl_count', 'resourceNameSort_exact')
+            elif sort_list[0] == 'view_count_desc':
+                sqs = sqs.order_by('-view_count', 'resourceNameSort_exact')
+            else:
+                sqs = sqs.order_by('resourceNameSort_exact')
+        else:
+            sqs = sqs.order_by('resourceNameSort_exact')
 
-		if self.query:
-			saveQueryStats(self.query, \
-						   str(sorted(self.request.GET.getlist("selected_facets"))), \
-						   results_count, \
-						   (datetime.datetime.now() - starttime).microseconds, self.request)
-		return sqs
+        # collect statistics about the query
+        starttime = datetime.datetime.now()
+        results_count = sqs.count()
 
-	def _get_selected_facets(self):
-		"""
-		Returns the selected facets from the current GET request as a more
-		structured Python dictionary.
-		"""
-		result = {}
-		for facet in self.request.GET.getlist("selected_facets"):
-			if ":" in facet:
-				field, value = facet.split(":", 1)
-				if value:
-					if field in result:
-						result[field].append(value)
-					else:
-						result[field] = [value]
-		return result
+        if self.query:
+            saveQueryStats(self.query, \
+                           str(sorted(self.request.GET.getlist("selected_facets"))), \
+                           results_count, \
+                           (datetime.datetime.now() - starttime).microseconds, self.request)
+        return sqs
 
-	def _create_filters_structure(self, facet_fields):
-		"""
-		Creates a data structure encapsulating most of the logic which is
-		required for rendering the filters/facets of the META-SHARE search.
-		
-		Takes the raw facet 'fields' dictionary which is (indirectly) returned
-		by the `facet_counts()` method of a `SearchQuerySet`.
-		"""
-		import re
+    def _get_selected_facets(self):
+        """
+        Returns the selected facets from the current GET request as a more
+        structured Python dictionary.
+        """
+        result = {}
+        for facet in self.request.GET.getlist("selected_facets"):
+            if ":" in facet:
+                field, value = facet.split(":", 1)
+                if value:
+                    if field in result:
+                        result[field].append(value)
+                    else:
+                        result[field] = [value]
+        return result
 
-		result = []
-		# pylint: disable-msg=E1101
-		filter_labels = [(name, field.label, field.facet_id, field.parent_id)
-						 for name, field
-						 in resourceInfoType_modelIndex.fields.iteritems()
-						 if name.endswith("Filter")]
-		filter_labels.sort(key=lambda f: f[2])
-		sel_facets = self._get_selected_facets()
-		# Step (1): if there are any selected facets, then add these first:
-		if sel_facets:
-			# add all top level facets (sorted by their facet IDs):
-			for name, label, facet_id, _dummy in \
-					[f for f in filter_labels if f[3] == 0]:
-				name_exact = '{0}_exact'.format(name)
-				# only add selected facets in step (1)
-				if name_exact in sel_facets:
-					items = facet_fields.get(name)
-					if items:
-						removable = []
-						addable = []
-						# only items with a count > 0 are shown
-						for item in [i for i in items if i[1] > 0]:
-							subfacets = [f for f in filter_labels if (f[3] == \
-																	  facet_id and item[0] in f[0])]
-							subfacets_exactname_list = []
-							subfacets_exactname_list.extend( \
-								[u'{0}_exact'.format(subfacet[0]) \
-								 for subfacet in subfacets])
-							subresults = []
-							for facet in subfacets:
-								subresults = self.show_subfilter( \
-									facet, sel_facets, facet_fields, subresults)
-							if item[0] in sel_facets[name_exact]:
-								if item[0] != "":
-									lab_item = " ".join(re.findall( \
-										'[A-Z\_]*[^A-Z]*', \
-										item[0][0].capitalize() + item[0][1:]))[:-1]
-									removable.append({'label': lab_item,
-													  'count': item[1], 'targets':
-														  [u'{0}:{1}'.format(name, value)
-														   for name, values in
-														   sel_facets.iteritems() for value in
-														   values if (name != name_exact
-																	  or value != item[0]) and name \
-														   not in subfacets_exactname_list], \
-													  'subresults': subresults})
-							else:
-								targets = [u'{0}:{1}'.format(name, value)
-										   for name, values in
-										   sel_facets.iteritems()
-										   for value in values]
-								targets.append(u'{0}:{1}'.format(name_exact,
-																 item[0]))
-								if item[0] != "":
-									lab_item = " ".join(re.findall( \
-										'[A-Z\_]*[^A-Z]*', \
-										item[0][0].capitalize() + item[0][1:]))[:-1]
-									addable.append({'label': lab_item,
-													'count': item[1],
-													'targets': targets,
-													'subresults': subresults})
+    def _create_filters_structure(self, facet_fields):
+        """
+        Creates a data structure encapsulating most of the logic which is
+        required for rendering the filters/facets of the META-SHARE search.
 
-						result.append({'label': label, 'removable': removable,
-									   'addable': addable})
+        Takes the raw facet 'fields' dictionary which is (indirectly) returned
+        by the `facet_counts()` method of a `SearchQuerySet`.
+        """
+        import re
 
-						# Step (2): add all top level facets without selected facet items at the
-		# end (sorted by their facet IDs):
-		for name, label, facet_id, _dummy in \
-				[f for f in filter_labels if f[3] == 0]:
-			name_exact = '{0}_exact'.format(name)
-			# only add facets without selected items in step (2)
-			if not name_exact in sel_facets:
-				items = facet_fields.get(name)
-				if items:
-					addable = []
-					# only items with a count > 0 are shown
-					for item in [i for i in items if i[1] > 0]:
-						targets = [u'{0}:{1}'.format(name, value)
-								   for name, values in sel_facets.iteritems()
-								   for value in values]
-						targets.append(u'{0}:{1}'.format(name_exact, item[0]))
+        result = []
+        # pylint: disable-msg=E1101
+        filter_labels = [(name, field.label, field.facet_id, field.parent_id)
+                         for name, field
+                         in resourceInfoType_modelIndex.fields.iteritems()
+                         if name.endswith("Filter")]
+        filter_labels.sort(key=lambda f: f[2])
+        sel_facets = self._get_selected_facets()
+        # Step (1): if there are any selected facets, then add these first:
+        if sel_facets:
+            # add all top level facets (sorted by their facet IDs):
+            for name, label, facet_id, _dummy in \
+                    [f for f in filter_labels if f[3] == 0]:
+                name_exact = '{0}_exact'.format(name)
+                # only add selected facets in step (1)
+                if name_exact in sel_facets:
+                    items = facet_fields.get(name)
+                    if items:
+                        removable = []
+                        addable = []
+                        # only items with a count > 0 are shown
+                        for item in [i for i in items if i[1] > 0]:
+                            subfacets = [f for f in filter_labels if (f[3] == \
+                                                                      facet_id and item[0] in f[0])]
+                            subfacets_exactname_list = []
+                            subfacets_exactname_list.extend( \
+                                [u'{0}_exact'.format(subfacet[0]) \
+                                 for subfacet in subfacets])
+                            subresults = []
+                            for facet in subfacets:
+                                subresults = self.show_subfilter( \
+                                    facet, sel_facets, facet_fields, subresults)
+                            if item[0] in sel_facets[name_exact]:
+                                if item[0] != "":
+                                    lab_item = " ".join(re.findall( \
+                                        '[A-Z\_]*[^A-Z]*', \
+                                        item[0][0].capitalize() + item[0][1:]))[:-1]
+                                    removable.append({'label': lab_item,
+                                                      'count': item[1], 'targets':
+                                                          [u'{0}:{1}'.format(name, value)
+                                                           for name, values in
+                                                           sel_facets.iteritems() for value in
+                                                           values if (name != name_exact
+                                                                      or value != item[0]) and name \
+                                                           not in subfacets_exactname_list], \
+                                                      'subresults': subresults})
+                            else:
+                                targets = [u'{0}:{1}'.format(name, value)
+                                           for name, values in
+                                           sel_facets.iteritems()
+                                           for value in values]
+                                targets.append(u'{0}:{1}'.format(name_exact,
+                                                                 item[0]))
+                                if item[0] != "":
+                                    lab_item = " ".join(re.findall( \
+                                        '[A-Z\_]*[^A-Z]*', \
+                                        item[0][0].capitalize() + item[0][1:]))[:-1]
+                                    addable.append({'label': lab_item,
+                                                    'count': item[1],
+                                                    'targets': targets,
+                                                    'subresults': subresults})
 
-						if item[0] != "":
-							lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
-														   item[0][0].capitalize() + item[0][1:]))[:-1]
-							addable.append({'label': lab_item, 'count': item[1],
-											'targets': targets})
-					subresults = [f for f in filter_labels if f[3] == facet_id]
-					result.append({'label': label, 'removable': [],
-								   'addable': addable, 'subresults': subresults})
+                        result.append({'label': label, 'removable': removable,
+                                       'addable': addable})
 
-		return result
+                        # Step (2): add all top level facets without selected facet items at the
+        # end (sorted by their facet IDs):
+        for name, label, facet_id, _dummy in \
+                [f for f in filter_labels if f[3] == 0]:
+            name_exact = '{0}_exact'.format(name)
+            # only add facets without selected items in step (2)
+            if not name_exact in sel_facets:
+                items = facet_fields.get(name)
+                if items:
+                    addable = []
+                    # only items with a count > 0 are shown
+                    for item in [i for i in items if i[1] > 0]:
+                        targets = [u'{0}:{1}'.format(name, value)
+                                   for name, values in sel_facets.iteritems()
+                                   for value in values]
+                        targets.append(u'{0}:{1}'.format(name_exact, item[0]))
 
-	def extra_context(self):
-		extra = super(MetashareFacetedSearchView, self).extra_context()
-		# add a data structure encapsulating most of the logic which is required
-		# for rendering the filters/facets
-		if 'fields' in extra['facets']:
-			extra['filters'] = self._create_filters_structure(
-				extra['facets']['fields'])
-		else:
-			# in case of forced empty search results, the fields entry is not set;
-			# this can happen with recommendations when using the
-			# get_more_from_same_... methods
-			extra['filters'] = []
-		return extra
+                        if item[0] != "":
+                            lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
+                                                           item[0][0].capitalize() + item[0][1:]))[:-1]
+                            addable.append({'label': lab_item, 'count': item[1],
+                                            'targets': targets})
+                    subresults = [f for f in filter_labels if f[3] == facet_id]
+                    result.append({'label': label, 'removable': [],
+                                   'addable': addable, 'subresults': subresults})
 
-	def show_subfilter(self, facet, sel_facets, facet_fields, results):
-		"""
-		Creates a second level for faceting. 
-		Sub filters are included after the parent filters.
-		"""
-		name = facet[0]
-		label = facet[1]
+        return result
 
-		name_exact = '{0}_exact'.format(name)
+    def extra_context(self):
+        extra = super(MetashareFacetedSearchView, self).extra_context()
+        # add a data structure encapsulating most of the logic which is required
+        # for rendering the filters/facets
+        if 'fields' in extra['facets']:
+            extra['filters'] = self._create_filters_structure(
+                extra['facets']['fields'])
+        else:
+            # in case of forced empty search results, the fields entry is not set;
+            # this can happen with recommendations when using the
+            # get_more_from_same_... methods
+            extra['filters'] = []
+        return extra
 
-		if name_exact in sel_facets:
-			items = facet_fields.get(name)
-			if items:
-				removable = []
-				addable = []
-				# only items with a count > 0 are shown
-				for item in [i for i in items if i[1] > 0]:
-					if item[0] in sel_facets[name_exact]:
-						if item[0] != "":
-							lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
-														   item[0][0].capitalize() + item[0][1:]))[:-1]
-							removable.append({'label': lab_item,
-											  'count': item[1], 'targets':
-												  [u'{0}:{1}'.format(name, value)
-												   for name, values in
-												   sel_facets.iteritems() for value in
-												   values if name != name_exact
-												   or value != item[0]]})
-					else:
-						targets = [u'{0}:{1}'.format(name, value)
-								   for name, values in
-								   sel_facets.iteritems()
-								   for value in values]
-						targets.append(u'{0}:{1}'.format(name_exact,
-														 item[0]))
-						if item[0] != "":
-							lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
-														   item[0][0].capitalize() + item[0][1:]))[:-1]
-							addable.append({'label': lab_item,
-											'count': item[1],
-											'targets': targets})
-				if (addable + removable):
-					results.append({'label': label, 'removable': removable,
-									'addable': addable})
-		else:
-			items = facet_fields.get(name)
-			if items:
-				addable = []
-				# only items with a count > 0 are shown
-				for item in [i for i in items if i[1] > 0]:
-					targets = [u'{0}:{1}'.format(name, value)
-							   for name, values in sel_facets.iteritems()
-							   for value in values]
-					targets.append(u'{0}:{1}'.format(name_exact, item[0]))
-					if item[0] != "":
-						lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
-													   item[0][0].capitalize() + item[0][1:]))[:-1]
-						addable.append({'label': lab_item, 'count': item[1],
-										'targets': targets})
-				if addable:
-					results.append({'label': label, 'removable': [],
-									'addable': addable})
+    def show_subfilter(self, facet, sel_facets, facet_fields, results):
+        """
+        Creates a second level for faceting.
+        Sub filters are included after the parent filters.
+        """
+        name = facet[0]
+        label = facet[1]
 
-		return results
+        name_exact = '{0}_exact'.format(name)
+
+        if name_exact in sel_facets:
+            items = facet_fields.get(name)
+            if items:
+                removable = []
+                addable = []
+                # only items with a count > 0 are shown
+                for item in [i for i in items if i[1] > 0]:
+                    if item[0] in sel_facets[name_exact]:
+                        if item[0] != "":
+                            lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
+                                                           item[0][0].capitalize() + item[0][1:]))[:-1]
+                            removable.append({'label': lab_item,
+                                              'count': item[1], 'targets':
+                                                  [u'{0}:{1}'.format(name, value)
+                                                   for name, values in
+                                                   sel_facets.iteritems() for value in
+                                                   values if name != name_exact
+                                                   or value != item[0]]})
+                    else:
+                        targets = [u'{0}:{1}'.format(name, value)
+                                   for name, values in
+                                   sel_facets.iteritems()
+                                   for value in values]
+                        targets.append(u'{0}:{1}'.format(name_exact,
+                                                         item[0]))
+                        if item[0] != "":
+                            lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
+                                                           item[0][0].capitalize() + item[0][1:]))[:-1]
+                            addable.append({'label': lab_item,
+                                            'count': item[1],
+                                            'targets': targets})
+                if (addable + removable):
+                    results.append({'label': label, 'removable': removable,
+                                    'addable': addable})
+        else:
+            items = facet_fields.get(name)
+            if items:
+                addable = []
+                # only items with a count > 0 are shown
+                for item in [i for i in items if i[1] > 0]:
+                    targets = [u'{0}:{1}'.format(name, value)
+                               for name, values in sel_facets.iteritems()
+                               for value in values]
+                    targets.append(u'{0}:{1}'.format(name_exact, item[0]))
+                    if item[0] != "":
+                        lab_item = " ".join(re.findall('[A-Z\_]*[^A-Z]*',
+                                                       item[0][0].capitalize() + item[0][1:]))[:-1]
+                        addable.append({'label': lab_item, 'count': item[1],
+                                        'targets': targets})
+                if addable:
+                    results.append({'label': label, 'removable': [],
+                                    'addable': addable})
+
+        return results
 
 
 @login_required
 def contribute(request):
-		
 	if request.method == "POST":
 		uid = str(uuid.uuid4())
 		profile = UserProfile.objects.get(user=request.user)
@@ -1057,78 +1054,97 @@ def contribute(request):
 					ret_list.update(l.split(delimiter))
 				ret_list=sorted(ret_list)
 			return ret_list
-		
-		if 'languages[]' in request.POST:
-			data['resourceInfo']['languages'] = decode_csv_to_list(request.POST.getlist('languages[]'))
-			#LOGGER.info(data['resourceInfo']['languages'])
 
-		if 'domains[]' in request.POST:
-			data['resourceInfo']['appropriatenessForDSI'] = request.POST.getlist('domains[]')
+	def files_extensions_are_valid(files):
+		""" Return True if all filenames extensions of files are allowed.
+		"""
+		return all(filename_extension_is_valid(f.name) for f in files)
 
+        def filename_extension_is_valid(filename):
+		""" Return True if filename extension is allowed.
+		"""
+		return filename_ext(filename) in ALLOWED_EXTENSIONS
+
+        def filename_ext(filename):
+		""" Return filename extension.
+		"""
+		if isinstance(filename, basestring):
+			return os.path.splitext(filename)[-1]
+		if issubclass(filename, File) or isinstance(filename, file):
+			return os.path.splitext(filename.name)[-1]
+		raise TypeError("%s argument is not a basetring format, type `file` or subclass of \
+                `django.core.files.base.File`." % filename)
+
+	if 'languages[]' in request.POST:
+		data['resourceInfo']['languages'] = decode_csv_to_list(request.POST.getlist('languages[]'))
+		#LOGGER.info(data['resourceInfo']['languages'])
+
+	if 'domains[]' in request.POST:
+		data['resourceInfo']['appropriatenessForDSI'] = request.POST.getlist('domains[]')
 		unprocessed_dir = os.path.sep.join((CONTRIBUTION_FORM_DATA,
 											"unprocessed"))
-		if 'groups[]' in request.POST:
-			data['resourceInfo']['groups'] = request.POST.getlist('groups[]')
+	if 'groups[]' in request.POST:
+		data['resourceInfo']['groups'] = request.POST.getlist('groups[]')
 
-		filename = '{}_{}'.format(profile.country, uid)
-		response = {}
+	filename = '{}_{}'.format(profile.country, uid)
+	response = {}
 
-		accepted_extensions = [".zip", ".pdf", ".doc", ".docx", ".tmx", ".txt", ".rtf",
-							   ".xls", ".xlsx", ".xml", ".sdltm", ".odt", ".tbx"]
-		acceptable_re = "(.*)({0})$".format(
-			"|".join("({0})".format(ext) for ext in accepted_extensions))
-		file_objects = request.FILES.getlist('filebutton')
-		getext = lambda file_object: os.path.splitext(file_object.name)[-1]
-		if (sum(fobj.size for fobj in file_objects) <= MAXIMUM_UPLOAD_SIZE and
-			all(getext(fobj) in accepted_extensions for fobj in file_objects)):
-			try:
-				if not os.path.isdir(unprocessed_dir):
-					os.makedirs(unprocessed_dir)
-			except:
-				raise OSError, "Could not write to CONTRIBUTION_FORM_DATA path"
+	file_objects = request.FILES.getlist('filebutton')
+	if not files_extensions_are_valid(file_objects):
+		response['status'] = "failed"
+		response['message'] = _("""
+			Only files of type DOC(X), ODT, PDF, TMX, SDLTM, XML, 
+			TBX , XLS(X), TXT and ZIP files are allowed.
+			The zip files can only contain files of the
+			specified types. Please consider removing the files
+			that do not belong to one of these types.""")
+		return HttpResponse(json.dumps(response), content_type="application/json")
 
-			licence_file_object = request.FILES.get('licenceFile')
-			if licence_file_object:
-				# a licence file has been uploaded
-				licence_filename = filename + "_licence.pdf"
-				licence_filepath = os.path.sep.join((unprocessed_dir,
-													 licence_filename))
-				with open(licence_filepath, 'wb+') as licence_destination:
-					for chunk in licence_file_object.chunks():
-						licence_destination.write(chunk)
-			out_filenames = []
-			for i, file_object in enumerate(file_objects):
-				out_filename = "{}_{}".format(filename, str(i)) + getext(file_object)
-				ofile_path = os.path.sep.join((unprocessed_dir, out_filename))
-				with open(ofile_path, 'wb+') as destination:
-					for chunk in file_object.chunks():
-						destination.write(chunk)
-				out_filenames.append(out_filename)
-				if ofile_path.endswith(".zip"):
-					zfile = zipfile.ZipFile(ofile_path)
-					if (not zipfile.is_zipfile(ofile_path) or
-						zfile.testzip() is not None):
+	if sum(fobj.size for fobj in file_objects) <= MAXIMUM_UPLOAD_SIZE:
+		try:
+			if not os.path.isdir(unprocessed_dir):
+				os.makedirs(unprocessed_dir)
+		except:
+			raise OSError, "Could not write to CONTRIBUTION_FORM_DATA path"
+		licence_file_object = request.FILES.get('licenceFile')
+		if licence_file_object:
+			# a licence file has been uploaded
+			licence_filename = filename + "_licence.pdf"
+			licence_filepath = os.path.sep.join((unprocessed_dir, licence_filename))
+			with open(licence_filepath, 'wb+') as licence_destination:
+				for chunk in licence_file_object.chunks():
+					licence_destination.write(chunk)
+		out_filenames = []
+		for i, file_object in enumerate(file_objects):
+			out_filename = "{}_{}".format(filename, str(i)) + filename_ext(file_object.name)
+			ofile_path = os.path.sep.join((unprocessed_dir, out_filename))
+			with open(ofile_path, 'wb+') as destination:
+				for chunk in file_object.chunks():
+					destination.write(chunk)
+			out_filenames.append(out_filename)
+			if ofile_path.endswith(".zip"):
+				zfile = zipfile.ZipFile(ofile_path)
+				if (not zipfile.is_zipfile(ofile_path) or zfile.testzip() is not None):
+					os.remove(ofile_path)
+					response['status'] = "failed"
+					response['message'] = "Your request could not be completed. " \
+							      "The file you tried to upload is corrupted or it is not a valid '.zip' file."
+				if any(not (re.match(acceptable_re, fn) or fn.endswith(os.path.sep))
+					for fn in zfile.namelist()):
+					# the archive contains at least an entry which neither has
+					# an accepted extension, nor is a directory:
 						os.remove(ofile_path)
 						response['status'] = "failed"
-						response['message'] = "Your request could not be completed. " \
-											  "The file you tried to upload is corrupted or it is not a valid '.zip' file."
-					if any(not (re.match(acceptable_re, fn) or
-								fn.endswith(os.path.sep))
-						   for fn in zfile.namelist()):
-						# the archive contains at least an entry which neither has
-						# an accepted extension, nor is a directory:
-						os.remove(ofile_path)
-						response['status'] = "failed"
-						response['message'] = \
-							"Only files of type DOC(X), ODT, PDF, TMX, SDLTM, XML, "\
-							"TBX , XLS(X), TXT and ZIP files are allowed. "\
-							"The zip files can only contain files of the "\
-							"specified types. Please consider removing the files"\
-							"that do not belong to one of these types."
+						response['message'] = _("""
+							Only files of type DOC(X), ODT, PDF, TMX, SDLTM, XML,
+							TBX , XLS(X), TXT and ZIP files are allowed.
+							The zip files can only contain files of the
+							specified types. Please consider removing the files
+							that do not belong to one of these types.""")
 
 					if response.get('status') == "failed":
 						return HttpResponse(json.dumps(response),
-											content_type="text/plain")
+											content_type="application/json")
 
 			xml_filename = filename + ".xml"
 			data['administration']['dataset'] = {"uploaded_files": out_filenames}
@@ -1157,7 +1173,7 @@ def contribute(request):
 			#LOGGER.info(groups_name)
 			#send an email to the reviewers related to the groups where the resource is published
 			#get the emails of those users that are reviewers
-			reviewers = [u.email for u in User.objects.filter(groups__name__in=['reviewers'])] 
+			reviewers = [u.email for u in User.objects.filter(groups__name__in=['reviewers'])]
 			group_reviewers = [u.email for u in User.objects.filter(groups__id__in=groups_name, email__in=reviewers)]
 			## DEBUG
 			#LOGGER.info(group_reviewers+su_emails)
@@ -1171,281 +1187,282 @@ def contribute(request):
 							 "alert recipients.")
 
 			response['status'] = "succeded"
-			response['message'] = "Thank you for sharing! Your data have been successfully submitted. " \
-								  "You can now go on and contribute more data."
-			return HttpResponse(json.dumps(response), content_type="text/plain")
+			response['message'] = _("""
+				Thank you for sharing! Your data have been successfully submitted.
+				You can now go on and contribute more data.""")
+			return HttpResponse(json.dumps(response), content_type="application/json")
 		else:
 			response['status'] = "failed"
-			response['message'] = "The file you are trying to upload " \
-								  "exceeds the size limit. If the file(s) you would like to contribute exceed(s) {:.10} MB please contact us to provide an SFTP link for direct download or consider uploading smaller files.".format(
-				float(MAXIMUM_UPLOAD_SIZE) / (1024 * 1024))
-			return HttpResponse(json.dumps(response), content_type="text/plain")
-										  
+			response['message'] = _("""
+				The file you are trying to upload exceeds the size limit. If the file(s) you
+				would like to contribute exceed(s) {:.10} MB please contact us to provide an SFTP link for direct
+				download or consider uploading smaller files.""".format(float(MAXIMUM_UPLOAD_SIZE) / (1024 * 1024)))
+			return HttpResponse(json.dumps(response), content_type="application/json")
+
 	# In ELRI, LR contributions can only be shared within the groups to which a user belongs.
 	languages=SUPPORTED_LANGUAGES
 	
 	return render_to_response('repository/editor/contributions/contribute.html', \
 							  {'groups':Organization.objects.values_list("name","id").filter(id__in = request.user.groups.values_list("id")), 'languages':languages},
 							  context_instance=RequestContext(request))
-	
+
 
 @staff_member_required
 def get_data(request, filename):
-	dl_path = "{}/unprocessed/{}".format(CONTRIBUTION_FORM_DATA, filename)
-	if dl_path:
-		try:
-			def dl_stream_generator():
-				with open(dl_path, 'rb') as _local_data:
-					_chunk = _local_data.read(4096)
-					while _chunk:
-						yield _chunk
-						_chunk = _local_data.read(4096)
+    dl_path = "{}/unprocessed/{}".format(CONTRIBUTION_FORM_DATA, filename)
+    if dl_path:
+        try:
+            def dl_stream_generator():
+                with open(dl_path, 'rb') as _local_data:
+                    _chunk = _local_data.read(4096)
+                    while _chunk:
+                        yield _chunk
+                        _chunk = _local_data.read(4096)
 
-			# build HTTP response with a guessed mime type; the response
-			# content is a stream of the download file
-			filemimetype = guess_type(dl_path)[0] or "application/octet-stream"
-			response = HttpResponse(dl_stream_generator(),
-									content_type=filemimetype)
-			response['Content-Length'] = getsize(dl_path)
-			response['Content-Disposition'] = 'attachment; filename={0}' \
-				.format(split(dl_path)[1])
-			# LOGGER.info("Offering a local editor download of resource #{0}." \
-			#             .format(object_id))
-			return response
-		except:
-			pass
+            # build HTTP response with a guessed mime type; the response
+            # content is a stream of the download file
+            filemimetype = guess_type(dl_path)[0] or "application/octet-stream"
+            response = HttpResponse(dl_stream_generator(),
+                                    content_type=filemimetype)
+            response['Content-Length'] = getsize(dl_path)
+            response['Content-Disposition'] = 'attachment; filename={0}' \
+                .format(split(dl_path)[1])
+            # LOGGER.info("Offering a local editor download of resource #{0}." \
+            #             .format(object_id))
+            return response
+        except:
+            pass
 
 def create_description(xml_file, type, base, user):
-	# base = '{}/unprocessed'.format(WEB_FORM_STORAGE)
-	doc = etree.parse('{}/{}'.format(base, xml_file))
-	info = {
-		"title": ''.join(doc.xpath("//resourceTitle//text()")),
-		"description": ''.join(doc.xpath("//shortDescription//text()")),
-		"languages": doc.xpath("//languages/item/text()"),
-		"domains": doc.xpath("//appropriatenessForDSI/item/text()"),
-		"licence": ''.join(doc.xpath("//licence//text()")),
-		"groups": doc.xpath("//groups/item/text()"),
-		"userInfo": {
-			"firstname": ''.join(doc.xpath("//userInfo/first_name/text()")),
-			"lastname": ''.join(doc.xpath("//userInfo/last_name/text()")),
-			"country": ''.join(doc.xpath("//userInfo/country/text()")),
-			"phoneNumber": ''.join(doc.xpath("//userInfo/phoneNumber/text()")),
-			"email": ''.join(doc.xpath("//userInfo/email/text()")),
-			"user": ''.join(doc.xpath("//userInfo/user/text()")),
-			"institution": ''.join(doc.xpath("//userInfo/institution/text()")),
+    # base = '{}/unprocessed'.format(WEB_FORM_STORAGE)
+    doc = etree.parse('{}/{}'.format(base, xml_file))
+    info = {
+        "title": ''.join(doc.xpath("//resourceTitle//text()")),
+        "description": ''.join(doc.xpath("//shortDescription//text()")),
+        "languages": doc.xpath("//languages/item/text()"),
+        "domains": doc.xpath("//appropriatenessForDSI/item/text()"),
+        "licence": ''.join(doc.xpath("//licence//text()")),
+        "groups": doc.xpath("//groups/item/text()"),
+        "userInfo": {
+            "firstname": ''.join(doc.xpath("//userInfo/first_name/text()")),
+            "lastname": ''.join(doc.xpath("//userInfo/last_name/text()")),
+            "country": ''.join(doc.xpath("//userInfo/country/text()")),
+            "phoneNumber": ''.join(doc.xpath("//userInfo/phoneNumber/text()")),
+            "email": ''.join(doc.xpath("//userInfo/email/text()")),
+            "user": ''.join(doc.xpath("//userInfo/user/text()")),
+            "institution": ''.join(doc.xpath("//userInfo/institution/text()")),
 
-		},
-		"resource_file": ''.join(doc.xpath("//resource/administration/resource_file/text()")),
-		"dataset": doc.xpath("//resource/administration/dataset/uploaded_files/item/text()")
-	}
-	# Create a new Identification object
-	identification = identificationInfoType_model.objects.create( \
-		resourceName={'en': info['title'].encode('utf-8')},
-		description={'en': info['description'].encode('utf-8')},
-		appropriatenessForDSI=info['domains'])
-	resource_creation = resourceCreationInfoType_model.objects.create(
-		createdUsingELRCServices=False
-	)
+        },
+        "resource_file": ''.join(doc.xpath("//resource/administration/resource_file/text()")),
+        "dataset": doc.xpath("//resource/administration/dataset/uploaded_files/item/text()")
+    }
+    # Create a new Identification object
+    identification = identificationInfoType_model.objects.create( \
+        resourceName={'en': info['title'].encode('utf-8')},
+        description={'en': info['description'].encode('utf-8')},
+        appropriatenessForDSI=info['domains'])
+    resource_creation = resourceCreationInfoType_model.objects.create(
+        createdUsingELRCServices=False
+    )
 
-	# CONTACT PERSON:
+    # CONTACT PERSON:
 
-	# COMMUNICATION
-	email = info["userInfo"]["email"]
-	if not communicationInfoType_model.objects.filter \
-				(email=[email]).exists():
-		communication = communicationInfoType_model.objects.create \
-			(email=[email], country=info["userInfo"]["country"],
-			 telephoneNumber=[info["userInfo"]["phoneNumber"]])
-	else:
-		communication = communicationInfoType_model.objects.filter \
-							(email=[email])[:1][0]
-	# ORGANIZATION
-	if not organizationInfoType_model.objects.filter \
-				(organizationName={'en': info["userInfo"]["institution"]},
-				 communicationInfo=communication).exists():
-		organization = organizationInfoType_model.objects.create \
-			(organizationName={'en': info["userInfo"]["institution"]},
-			 communicationInfo=communicationInfoType_model.objects.create \
-				 (email=[email], country=info["userInfo"]["country"], \
-				  telephoneNumber=[info["userInfo"]["phoneNumber"]]))
+    # COMMUNICATION
+    email = info["userInfo"]["email"]
+    if not communicationInfoType_model.objects.filter \
+                (email=[email]).exists():
+        communication = communicationInfoType_model.objects.create \
+            (email=[email], country=info["userInfo"]["country"],
+             telephoneNumber=[info["userInfo"]["phoneNumber"]])
+    else:
+        communication = communicationInfoType_model.objects.filter \
+                            (email=[email])[:1][0]
+    # ORGANIZATION
+    if not organizationInfoType_model.objects.filter \
+                (organizationName={'en': info["userInfo"]["institution"]},
+                 communicationInfo=communication).exists():
+        organization = organizationInfoType_model.objects.create \
+            (organizationName={'en': info["userInfo"]["institution"]},
+             communicationInfo=communicationInfoType_model.objects.create \
+                 (email=[email], country=info["userInfo"]["country"], \
+                  telephoneNumber=[info["userInfo"]["phoneNumber"]]))
 
-	else:
-		organization = organizationInfoType_model.objects.filter \
-			(organizationName={'en': info["userInfo"]["institution"]},
-			 communicationInfo=communication)[0]
+    else:
+        organization = organizationInfoType_model.objects.filter \
+            (organizationName={'en': info["userInfo"]["institution"]},
+             communicationInfo=communication)[0]
 
-	# PERSON
-	if not personInfoType_model.objects.filter \
-				(surname={'en': info["userInfo"]["lastname"]},
-				 givenName={'en': info["userInfo"]["firstname"]},
-				 ).exists():
-		cperson = personInfoType_model.objects.create \
-			(surname={'en': info["userInfo"]["lastname"]},
-			 givenName={'en': info["userInfo"]["firstname"]},
-			 communicationInfo= \
-				 communicationInfoType_model.objects.create \
-					 (email=[email], country=info["userInfo"]["country"], \
-					  telephoneNumber=[info["userInfo"]["phoneNumber"]]))
-		cperson.affiliation.add(organization)
+    # PERSON
+    if not personInfoType_model.objects.filter \
+                (surname={'en': info["userInfo"]["lastname"]},
+                 givenName={'en': info["userInfo"]["firstname"]},
+                 ).exists():
+        cperson = personInfoType_model.objects.create \
+            (surname={'en': info["userInfo"]["lastname"]},
+             givenName={'en': info["userInfo"]["firstname"]},
+             communicationInfo= \
+                 communicationInfoType_model.objects.create \
+                     (email=[email], country=info["userInfo"]["country"], \
+                      telephoneNumber=[info["userInfo"]["phoneNumber"]]))
+        cperson.affiliation.add(organization)
 
-	else:
-		cperson = personInfoType_model.objects.filter \
-			(surname={'en': info["userInfo"]["lastname"]},
-			 givenName={'en': info["userInfo"]["firstname"]},
-			 )[0]
+    else:
+        cperson = personInfoType_model.objects.filter \
+            (surname={'en': info["userInfo"]["lastname"]},
+             givenName={'en': info["userInfo"]["firstname"]},
+             )[0]
 
-	resource = None
-	
-	# Handle different resource type structures
-	if type == 'corpus':
-		corpus_media_type = corpusMediaTypeType_model.objects.create()
+    resource = None
 
-		corpus_text = corpusTextInfoType_model.objects.create(mediaType='text',
-															  back_to_corpusmediatypetype_model_id=corpus_media_type.id, \
-															  lingualityInfo=lingualityInfoType_model.objects.create())
+    # Handle different resource type structures
+    if type == 'corpus':
+        corpus_media_type = corpusMediaTypeType_model.objects.create()
 
-		# create language Infos
-		if info['languages']:
-			for lang in info['languages']:
-				languageInfoType_model.objects.create(languageName=lang, \
-													  back_to_corpustextinfotype_model=corpus_text)
-		if len(info['languages']) == 1:
-			corpus_text.lingualityInfo.lingualityType = u'monolingual'
-			corpus_text.lingualityInfo.save()
-		elif len(info['languages']) == 2:
-			corpus_text.lingualityInfo.lingualityType = u'bilingual'
-			corpus_text.lingualityInfo.save()
-		elif len(info['languages']) > 2:
-			corpus_text.lingualityInfo.lingualityType = u'multilingual'
-			corpus_text.lingualityInfo.save()
+        corpus_text = corpusTextInfoType_model.objects.create(mediaType='text',
+                                                              back_to_corpusmediatypetype_model_id=corpus_media_type.id, \
+                                                              lingualityInfo=lingualityInfoType_model.objects.create())
 
-		corpus_info = corpusInfoType_model.objects.create(corpusMediaType=corpus_media_type)
+        # create language Infos
+        if info['languages']:
+            for lang in info['languages']:
+                languageInfoType_model.objects.create(languageName=lang, \
+                                                      back_to_corpustextinfotype_model=corpus_text)
+        if len(info['languages']) == 1:
+            corpus_text.lingualityInfo.lingualityType = u'monolingual'
+            corpus_text.lingualityInfo.save()
+        elif len(info['languages']) == 2:
+            corpus_text.lingualityInfo.lingualityType = u'bilingual'
+            corpus_text.lingualityInfo.save()
+        elif len(info['languages']) > 2:
+            corpus_text.lingualityInfo.lingualityType = u'multilingual'
+            corpus_text.lingualityInfo.save()
 
-		resource = resourceInfoType_model.objects.create(identificationInfo=identification,
-														 resourceComponentType=corpus_info,
-														 metadataInfo=metadataInfoType_model.objects.create \
-															 (metadataCreationDate=datetime.date.today(),
-															  metadataLastDateUpdated=datetime.date.today()),
-														 resourceCreationInfo=resource_creation)
+        corpus_info = corpusInfoType_model.objects.create(corpusMediaType=corpus_media_type)
 
-	elif type == 'langdesc':
-		langdesc_text = languageDescriptionTextInfoType_model.objects.create(mediaType='text',
-																			 lingualityInfo=lingualityInfoType_model.objects.create())
+        resource = resourceInfoType_model.objects.create(identificationInfo=identification,
+                                                         resourceComponentType=corpus_info,
+                                                         metadataInfo=metadataInfoType_model.objects.create \
+                                                             (metadataCreationDate=datetime.date.today(),
+                                                              metadataLastDateUpdated=datetime.date.today()),
+                                                         resourceCreationInfo=resource_creation)
 
-		language_description_media_type = languageDescriptionMediaTypeType_model.objects.create(
-			languageDescriptionTextInfo=langdesc_text)
+    elif type == 'langdesc':
+        langdesc_text = languageDescriptionTextInfoType_model.objects.create(mediaType='text',
+                                                                             lingualityInfo=lingualityInfoType_model.objects.create())
 
-		# create language Infos
-		if info['languages']:
-			for lang in info['languages']:
-				languageInfoType_model.objects.create(languageName=lang, \
-													  back_to_languagedescriptiontextinfotype_model=langdesc_text)
+        language_description_media_type = languageDescriptionMediaTypeType_model.objects.create(
+            languageDescriptionTextInfo=langdesc_text)
 
-		if len(info['languages']) == 1:
-			langdesc_text.lingualityInfo.lingualityType = u'monolingual'
-			langdesc_text.lingualityInfo.save()
-		elif len(info['languages']) == 2:
-			langdesc_text.lingualityInfo.lingualityType = u'bilingual'
-			langdesc_text.lingualityInfo.save()
-		elif len(info['languages']) > 2:
-			langdesc_text.lingualityInfo.lingualityType = u'multilingual'
-			langdesc_text.lingualityInfo.save()
+        # create language Infos
+        if info['languages']:
+            for lang in info['languages']:
+                languageInfoType_model.objects.create(languageName=lang, \
+                                                      back_to_languagedescriptiontextinfotype_model=langdesc_text)
 
-		langdesc_info = languageDescriptionInfoType_model.objects.create(
-			languageDescriptionMediaType=language_description_media_type)
+        if len(info['languages']) == 1:
+            langdesc_text.lingualityInfo.lingualityType = u'monolingual'
+            langdesc_text.lingualityInfo.save()
+        elif len(info['languages']) == 2:
+            langdesc_text.lingualityInfo.lingualityType = u'bilingual'
+            langdesc_text.lingualityInfo.save()
+        elif len(info['languages']) > 2:
+            langdesc_text.lingualityInfo.lingualityType = u'multilingual'
+            langdesc_text.lingualityInfo.save()
 
-		resource = resourceInfoType_model.objects.create(identificationInfo=identification,
-														 resourceComponentType=langdesc_info,
-														 metadataInfo=metadataInfoType_model.objects.create \
-															 (metadataCreationDate=datetime.date.today(),
-															  metadataLastDateUpdated=datetime.date.today()))
+        langdesc_info = languageDescriptionInfoType_model.objects.create(
+            languageDescriptionMediaType=language_description_media_type)
 
-	elif type == 'lexicon':
-		lexicalConceptual_text = lexicalConceptualResourceTextInfoType_model.objects.create(mediaType='text',
-																							lingualityInfo=lingualityInfoType_model.objects.create())
-		lexicon_media_type = lexicalConceptualResourceMediaTypeType_model.objects.create(
-			lexicalConceptualResourceTextInfo=lexicalConceptual_text)
+        resource = resourceInfoType_model.objects.create(identificationInfo=identification,
+                                                         resourceComponentType=langdesc_info,
+                                                         metadataInfo=metadataInfoType_model.objects.create \
+                                                             (metadataCreationDate=datetime.date.today(),
+                                                              metadataLastDateUpdated=datetime.date.today()))
 
-		if info['languages']:
-			for lang in info['languages']:
-				languageInfoType_model.objects.create(languageName=lang, \
-													  back_to_lexicalconceptualresourcetextinfotype_model=lexicalConceptual_text)
+    elif type == 'lexicon':
+        lexicalConceptual_text = lexicalConceptualResourceTextInfoType_model.objects.create(mediaType='text',
+                                                                                            lingualityInfo=lingualityInfoType_model.objects.create())
+        lexicon_media_type = lexicalConceptualResourceMediaTypeType_model.objects.create(
+            lexicalConceptualResourceTextInfo=lexicalConceptual_text)
 
-		if len(info['languages']) == 1:
-			lexicalConceptual_text.lingualityInfo.lingualityType = u'monolingual'
-			lexicalConceptual_text.lingualityInfo.save()
-		elif len(info['languages']) == 2:
-			lexicalConceptual_text.lingualityInfo.lingualityType = u'bilingual'
-			lexicalConceptual_text.lingualityInfo.save()
-		elif len(info['languages']) > 2:
-			lexicalConceptual_text.lingualityInfo.lingualityType = u'multilingual'
-			lexicalConceptual_text.lingualityInfo.save()
+        if info['languages']:
+            for lang in info['languages']:
+                languageInfoType_model.objects.create(languageName=lang, \
+                                                      back_to_lexicalconceptualresourcetextinfotype_model=lexicalConceptual_text)
 
-		lexicon_info = lexicalConceptualResourceInfoType_model.objects.create(
-			lexicalConceptualResourceMediaType=lexicon_media_type)
+        if len(info['languages']) == 1:
+            lexicalConceptual_text.lingualityInfo.lingualityType = u'monolingual'
+            lexicalConceptual_text.lingualityInfo.save()
+        elif len(info['languages']) == 2:
+            lexicalConceptual_text.lingualityInfo.lingualityType = u'bilingual'
+            lexicalConceptual_text.lingualityInfo.save()
+        elif len(info['languages']) > 2:
+            lexicalConceptual_text.lingualityInfo.lingualityType = u'multilingual'
+            lexicalConceptual_text.lingualityInfo.save()
 
-		resource = resourceInfoType_model.objects.create(identificationInfo=identification,
-														 resourceComponentType=lexicon_info,
-														 metadataInfo=metadataInfoType_model.objects.create \
-															 (metadataCreationDate=datetime.date.today(),
-															  metadataLastDateUpdated=datetime.date.today()))
-	# create distributionInfo object
-	distribution = distributionInfoType_model.objects.create(
-		availability=u"underReview",
-		PSI=False)
-	licence_obj, _ = licenceInfoType_model.objects.get_or_create(
-		licence=info['licence'])
-	distribution.licenceInfo.add(licence_obj)
-	resource.distributioninfotype_model_set.add(distribution)
-	#LOGGER.info(len(resource.distributioninfotype_model_set.all()))
-	resource.save()
+        lexicon_info = lexicalConceptualResourceInfoType_model.objects.create(
+            lexicalConceptualResourceMediaType=lexicon_media_type)
 
-	# also add the designated maintainer, based on the country of the country of the donor
-	resource.owners.add(user.id)
-	resource.groups.add(*(int(g) for g in info["groups"]))
-	# finally move the dataset to the respective storage folder
-	data_destination = resource.storage_object._storage_folder()
-	try:
-		if not os.path.isdir(data_destination):
-			os.makedirs(data_destination)
-	except:
-		raise OSError, "STORAGE_PATH and LOCK_DIR must exist and be writable!"
+        resource = resourceInfoType_model.objects.create(identificationInfo=identification,
+                                                         resourceComponentType=lexicon_info,
+                                                         metadataInfo=metadataInfoType_model.objects.create \
+                                                             (metadataCreationDate=datetime.date.today(),
+                                                              metadataLastDateUpdated=datetime.date.today()))
+    # create distributionInfo object
+    distribution = distributionInfoType_model.objects.create(
+        availability=u"underReview",
+        PSI=False)
+    licence_obj, _ = licenceInfoType_model.objects.get_or_create(
+        licence=info['licence'])
+    distribution.licenceInfo.add(licence_obj)
+    resource.distributioninfotype_model_set.add(distribution)
+    #LOGGER.info(len(resource.distributioninfotype_model_set.all()))
+    resource.save()
 
-	# finally, move the dataset to the respective storage folder
-	if info['dataset']:
-		destination_zpath = os.path.join(data_destination, "archive.zip")
-		for source_fname in info['dataset']:
-			source_fpath = os.path.join(base, source_fname)
-			if source_fpath.endswith(".zip") and len(info['dataset']) == 1:
-				# if the user uploaded one single zip file, then move it to
-				# archive.zip as such
-				shutil.move(source_fpath, destination_zpath)
-			else:
-				# create archive.zip in the target directory and put the
-				# source_fname contents inside.
-				# Then, remove source_fname.
-				with zipfile.ZipFile(destination_zpath, "a") as zf:
-					zf.write(source_fpath, arcname=source_fname)
-					os.remove(source_fpath)
-		resource.storage_object.compute_checksum()
-		resource.storage_object.save()
-		resource.storage_object.update_storage()
+    # also add the designated maintainer, based on the country of the country of the donor
+    resource.owners.add(user.id)
+    resource.groups.add(*(int(g) for g in info["groups"]))
+    # finally move the dataset to the respective storage folder
+    data_destination = resource.storage_object._storage_folder()
+    try:
+        if not os.path.isdir(data_destination):
+            os.makedirs(data_destination)
+    except:
+        raise OSError, "STORAGE_PATH and LOCK_DIR must exist and be writable!"
 
-	# move the processed xml file to the web_form/processed folder
-	xml_source = os.path.join(base, xml_file)
-	processed_file = "{}_{}.xml".format(xml_file.split('_')[0], resource.id)
-	xml_destination = os.path.join(CONTRIBUTION_FORM_DATA, "processed",
-								   processed_file)
-	shutil.move(xml_source, xml_destination)
+    # finally, move the dataset to the respective storage folder
+    if info['dataset']:
+        destination_zpath = os.path.join(data_destination, "archive.zip")
+        for source_fname in info['dataset']:
+            source_fpath = os.path.join(base, source_fname)
+            if source_fpath.endswith(".zip") and len(info['dataset']) == 1:
+                # if the user uploaded one single zip file, then move it to
+                # archive.zip as such
+                shutil.move(source_fpath, destination_zpath)
+            else:
+                # create archive.zip in the target directory and put the
+                # source_fname contents inside.
+                # Then, remove source_fname.
+                with zipfile.ZipFile(destination_zpath, "a") as zf:
+                    zf.write(source_fpath, arcname=source_fname)
+                    os.remove(source_fpath)
+        resource.storage_object.compute_checksum()
+        resource.storage_object.save()
+        resource.storage_object.update_storage()
 
-	return (resource, cperson, info['userInfo']['country'])
+    # move the processed xml file to the web_form/processed folder
+    xml_source = os.path.join(base, xml_file)
+    processed_file = "{}_{}.xml".format(xml_file.split('_')[0], resource.id)
+    xml_destination = os.path.join(CONTRIBUTION_FORM_DATA, "processed",
+                                   processed_file)
+    shutil.move(xml_source, xml_destination)
+
+    return (resource, cperson, info['userInfo']['country'])
 
 
 status = {"p": "PUBLISHED", "g": "INGESTED", "i": "INTERNAL"}
 
-
 def repo_report(request):
-	'''
+'''
 	Returns all resources in the repository as an excel file with
 	predefined data to include.
 	Get from url the 'email_to' variable
@@ -1467,8 +1484,6 @@ def repo_report(request):
 		date_format = workbook.add_format({'num_format': 'yyyy, mmmm d'})
 		title = "ELRI_OVERVIEW_{}".format(
 			datetime.datetime.now().strftime("%Y-%m-%d"))
-#		title = "ELRC-SHARE_OVERVIEW_{}".format(
-#			datetime.datetime.now().strftime("%Y-%m-%d"))
 		worksheet = workbook.add_worksheet(name=title)
 
 		worksheet.write('A1', 'Resource ID', heading)
@@ -1701,10 +1716,10 @@ def repo_report(request):
 
 @login_required
 def report_extended(request):
-	from metashare.repository_reports.extended_report import extended_report
-	data = extended_report()
-	response = HttpResponse(data['output'].read(),
-								content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-	response['Content-Disposition'] = "attachment; filename={}.xlsx".format(data['title'])
+    from metashare.repository_reports.extended_report import extended_report
+    data = extended_report()
+    response = HttpResponse(data['output'].read(),
+                                content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    response['Content-Disposition'] = "attachment; filename={}.xlsx".format(data['title'])
 
-	return response
+    return response
