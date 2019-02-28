@@ -7,7 +7,7 @@ FROM python:2.7.15-stretch
 
 #ARG RELEASE="trunk"
 ARG RELEASE="tags/R2.5"
-#ARG RELEASE="branches/tempR25"
+#ARG RELEASE="branches/DCU"
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
     SOLR_HOST="solr" \

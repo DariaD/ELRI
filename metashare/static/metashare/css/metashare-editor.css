@@ -23,6 +23,11 @@
     #jsddmdiv {
         margin-top: 0px;
     }
+    /* styles for the new header language selector*/
+   	#lang_selector {
+		margin-left: 20px;
+		display: inline;
+	}
 }
 
 @media screen and (min-width: 1000px) {
@@ -30,6 +35,15 @@
         display: flex;
     }
 }
+/* styles for the new header language selector*/
+#lang_selector a:hover{
+	cursor: pointer;
+	color: #058dbe !important;
+	text-decoration: none;
+	text-shadow: none !important;
+}
+
+
 
 body {
     font-family: "Helvetica Neue", "Helvetica", Arial, sans-serif;

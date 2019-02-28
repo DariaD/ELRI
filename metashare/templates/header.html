@@ -1,11 +1,50 @@
 {% load static from staticfiles %}
 {% load is_member i18n %}
 {% spaceless %}
+
     <div id="header">
-        <a href="http://www.elri-project.eu/" title="European Language Resource Infrastructure"
-           target="_blank"><img style="float:right; margin: 10px 20px 0 0"
-                                src="{{ STATIC_URL }}metashare/images/elri-logo-title-small.png"/></a>
-        <div id="jsddmdiv" class="jsddm">
+
+      <div id=lang_selector style=" position: relative;">
+			{% get_current_language as LANGUAGE_CODE  %}
+			{% if LANGUAGE_CODE == "en-ie" or LANGUAGE_CODE == "ga-ie"%}
+				{% if LANGUAGE_CODE == "en-ie" %}
+                        <div id=ga_language title="{% trans 'Gaeilge' %}" style="float: left; padding: 10px 17px ;">
+                            <a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
+                        </div>
+                        <div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ; background: #cde8f2;">
+                            <a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
+                        </div>
+				{% endif %}
+				{% if LANGUAGE_CODE == "ga-ie"%}
+						<div id=ga_language title="{% trans 'Gaeilge' %}" style="float: left; padding: 10px 17px ; background: #cde8f2;">
+							<a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
+						</div>
+						<div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ;">
+							<a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
+						</div>
+				{% endif %}
+				<script>
+					function toGaeilge() {
+						var urlStr = document.URL;
+						if (urlStr.includes("/en-ie/")) {
+							window.location.href = urlStr.replace("/en-ie/", "/ga-ie/");
+						}
+					}
+					function toEnglish() {
+						var urlStr = document.URL;
+						if (urlStr.includes("/ga-ie/")) {
+							window.location.href = urlStr.replace("/ga-ie/", "/en-ie/");
+						}
+					}
+				</script>
+			{% endif %}
+			</div>
+			<a href="http://www.elri-project.eu/" title="European Language Resource Infrastructure"
+			target="_blank"><img style="float:right; margin: 10px 20px 0 0"
+									src="{{ STATIC_URL }}metashare/images/elri-logo-title-small.png"/></a>
+			
+    
+        <div  id="jsddmdiv" class="jsddm">
             {# drop-down menu created with http://javascript-array.com/scripts/jquery_simple_drop_down_menu/ #}
             <ul id="jsddm">
                 <li title="{% trans 'Home' %}"><a href="{% url 'frontpage' %}" %}>
@@ -159,7 +198,13 @@
                     <li><a href="{% url 'login' %}">
                         <i class="fa fa-sign-in menu_fontawesome" aria-hidden="true"></i> {% trans 'Login' %}</a></li>
                 {% endif %}
+
+
             </ul>
         </div>
     </div>
+
+
+
+
 {% endspaceless %}
