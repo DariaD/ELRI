@@ -81,13 +81,13 @@ class RegistrationRequestForm(Form):
                                    label=_(mark_safe(u"Organization name")))
     organization_address = forms.CharField(
             UserProfile._meta.get_field('affiliation_address').max_length,
-            label=_(mark_safe(u"Organization address")))
+            label=_(mark_safe(u"Organization address")), required=False)
     organization_phone_number = forms.CharField(
             UserProfile._meta.get_field('affiliation_phone_number').max_length,
-            label=_(mark_safe(u"Organization phone number")))
+            label=_(mark_safe(u"Organization phone number")), required=False)
 
     position = forms.CharField(UserProfile._meta.get_field('position').max_length,
-                               label=_(mark_safe(u"Position in the organization")))
+                               label=_(mark_safe(u"Position in the organization")), required=False)
                                
     #Removing user phone number for now: user email and organisation phone number should be sufficient
     #phone_number = forms.CharField(UserProfile._meta.get_field('phone_number').max_length,
