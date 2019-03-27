@@ -3,19 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-08 09:52+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2019-03-27 13:52+0100\n"
+"PO-Revision-Date: 2019-03-27 13:59+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_IE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: templates/accounts/activation_email.html:3
 #: templates/accounts/confirmation_email.html:2
@@ -87,17 +87,18 @@ msgstr ""
 msgid ""
 "Add a user to the following organization%(selected_organizations|pluralize)s:"
 msgstr ""
+"Add a user to the following organisation%(selected_organizations|pluralize)s:"
 
 #: templates/accounts/add_user_profile_to_organization.html:12
 #: templates/accounts/remove_user_profile_from_organization.html:12
 #, python-format
 msgid "Organization%(selected_organizations|pluralize)s"
-msgstr ""
+msgstr "Organisation%(selected_organizations|pluralize)s"
 
 #: templates/accounts/add_user_profile_to_organization.html:14
 #: templates/accounts/remove_user_profile_from_organization.html:12
 msgid "Organization Managers"
-msgstr ""
+msgstr "Organisation Managers"
 
 #: templates/accounts/add_user_profile_to_organization_managers.html:8
 #, python-format
@@ -105,11 +106,13 @@ msgid ""
 "Add a user to the following organization manager group"
 "%(selected_organizationmanagers|pluralize)s:"
 msgstr ""
+"Add a user to the following organisation manager group"
+"%(selected_organizationmanagers|pluralize)s:"
 
 #: templates/accounts/add_user_profile_to_organization_managers.html:12
 #, python-format
 msgid "Organization Manager%(selected_organizationmanagers|pluralize)s"
-msgstr ""
+msgstr "Organisation Manager%(selected_organizationmanagers|pluralize)s"
 
 #: templates/accounts/apply_for_edelivery.html:18
 msgid "Apply for ELRI eDelivery membership"
@@ -128,8 +131,8 @@ msgid "Public Certificate (.crt, .cert, .cer)"
 msgstr ""
 
 #: templates/accounts/change_password.html:3
-msgid "Change Your Password &ndash; ELRC-SHARE"
-msgstr ""
+msgid "Change Your Password &ndash; ELRI"
+msgstr "Change Your Password &ndash; ELRI"
 
 #: templates/accounts/change_password.html:6
 #, python-format
@@ -167,6 +170,9 @@ msgid ""
 "\"%(shortname)s\" at [1]. You can confirm that registration request and "
 "create your account by clicking the following link:"
 msgstr ""
+"We have received a registration request for a new ELRI user account "
+"“%(shortname)s” at [1]. You can confirm that registration request and create "
+"your account by clicking the following link:"
 
 #: templates/accounts/confirmation_email.html:8
 msgid ""
@@ -227,9 +233,13 @@ msgstr ""
 msgid "The ELRI Team"
 msgstr ""
 
+#: templates/accounts/create_account.html:8
+msgid "Please fill in all fields to create your account."
+msgstr ""
+
 #: templates/accounts/create_account.html:14
 #: templates/accounts/create_account.html:15
-#: templates/accounts/create_account.html:35
+#: templates/accounts/create_account.html:37
 msgid "Create Account"
 msgstr ""
 
@@ -249,7 +259,7 @@ msgstr ""
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:9
 #: templates/accounts/delete_organization_application_selected_confirmation.html:9
 msgid "Turn down multiple objects"
-msgstr ""
+msgstr "Decline multiple objects"
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:16
 #: templates/accounts/delete_organization_application_selected_confirmation.html:16
@@ -259,6 +269,9 @@ msgid ""
 "objects, but your account doesn't have permission to turn down the following "
 "types of objects:"
 msgstr ""
+"Declining the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn’t have permission to decline the following "
+"types of objects:"
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:24
 #: templates/accounts/delete_organization_application_selected_confirmation.html:24
@@ -267,6 +280,8 @@ msgid ""
 "Turning down the selected %(objects_name)s would require deleting the "
 "following protected related objects:"
 msgstr ""
+"Declining the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:32
 #: templates/accounts/delete_organization_application_selected_confirmation.html:32
@@ -275,19 +290,21 @@ msgid ""
 "Are you sure you want to turn down the selected %(objects_name)s? All of the "
 "following objects and their related items will be turned down:"
 msgstr ""
+"Are you sure you want to decline the selected %(objects_name)s? All of the "
+"following objects and their related items will be declined:"
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:43
 #: templates/accounts/delete_organization_application_selected_confirmation.html:43
 msgid "Yes, I"
-msgstr ""
+msgstr "Yes, I am sure"
 
 #: templates/accounts/edit_profile.html:8
 msgid "First name"
-msgstr ""
+msgstr "Name"
 
 #: templates/accounts/edit_profile.html:11
 msgid "Last name"
-msgstr ""
+msgstr "Surname"
 
 #: templates/accounts/edit_profile.html:14
 msgid "Email"
@@ -314,6 +331,8 @@ msgid ""
 "Displays all the editor groups you belong in. Editor groups that are applied "
 "by default to your resources, are shown in italic."
 msgstr ""
+"Displays all the editor groups you belong in. Editor groups that are applied "
+"by default to your resources, are shown in italics."
 
 #: templates/accounts/edit_profile.html:34
 #, python-format
@@ -335,11 +354,12 @@ msgstr ""
 #, python-format
 msgid "Organization Manager Group%(organization_managers_member_of|pluralize)s"
 msgstr ""
+"Organisation Manager Group%(organization_managers_member_of|pluralize)s"
 
 #: templates/accounts/edit_profile.html:66
 #, python-format
 msgid "Organization%(organizations_member_of|pluralize)s"
-msgstr ""
+msgstr "Organisation%(organizations_member_of|pluralize)s"
 
 #: templates/accounts/edit_profile.html:71
 #, python-format
@@ -348,6 +368,9 @@ msgid ""
 "%(organizations_applied_for|pluralize)s: "
 "%(organizations_applied_for|join:\", \")s"
 msgstr ""
+"You already applied for a membership of the following organisation"
+"%(organizations_applied_for|pluralize)s: "
+"%(organizations_applied_for|join:\", \")s"
 
 #: templates/accounts/edit_profile.html:74
 msgid "Edit Profile"
@@ -380,6 +403,8 @@ msgid ""
 "The application to the editor group \"%(editor_group)s\"\n"
 "has been turned down by a manager of the group."
 msgstr ""
+"The application to the editor group “%(editor_group)s”\n"
+"has been declined by a manager of the group."
 
 #: templates/accounts/notification_editor_group_managers_application_email.html:2
 msgid "Dear editor group manager,"
@@ -400,6 +425,9 @@ msgid ""
 "the administration section:\n"
 "- %(confirmation_url)s"
 msgstr ""
+"You can confirm or decline that application by going to the following page "
+"in the administration section:\n"
+"- %(confirmation_url)s"
 
 #: templates/accounts/notification_editor_group_managers_application_email.html:10
 #: templates/accounts/notification_organization_managers_application_email.html:10
@@ -412,6 +440,8 @@ msgid ""
 "The application to the organization \"%(organization)s\"\n"
 "has been accepted by a manager of the organization."
 msgstr ""
+"The application to the organisation “%(organization)s”\n"
+"has been accepted by a manager of the organisation."
 
 #: templates/accounts/notification_organization_application_turned_down_email.html:4
 #, python-format
@@ -419,10 +449,12 @@ msgid ""
 "The application to the organization \"%(organization)s\"\n"
 "has been turned down by a manager of the organization."
 msgstr ""
+"The application to the organisation “%(organization)s”\n"
+"has been turned down by a manager of the organisation."
 
 #: templates/accounts/notification_organization_managers_application_email.html:2
 msgid "Dear organization manager,"
-msgstr ""
+msgstr "Dear organisation manager,"
 
 #: templates/accounts/notification_organization_managers_application_email.html:4
 #, python-format
@@ -430,14 +462,16 @@ msgid ""
 "We have received an application to your organization \"%(organization)s\"\n"
 "from the ELRI user account \"%(shortname)s\"."
 msgstr ""
+"We have received an application to your organisation “%(organization)s”\n"
+"from the ELRI user account “%(shortname)s”."
 
 #: templates/accounts/organization_application.html:6
 msgid "Please give at least one organization."
-msgstr ""
+msgstr "Please give at least one organisation."
 
 #: templates/accounts/organization_application.html:11
 msgid "Apply for organization membership"
-msgstr ""
+msgstr "Apply for organisation membership"
 
 #: templates/accounts/reactivation_email.html:4
 #, python-format
@@ -465,11 +499,11 @@ msgstr ""
 
 #: templates/accounts/registration_email.html:4
 msgid "- First name: "
-msgstr ""
+msgstr "- Name: "
 
 #: templates/accounts/registration_email.html:6
 msgid "- Last name: "
-msgstr ""
+msgstr "- Surname: "
 
 #: templates/accounts/registration_email.html:8
 msgid "- E-mail: "
@@ -529,6 +563,8 @@ msgid ""
 "Remove a user from the following organization"
 "%(selected_organizations|pluralize)s:"
 msgstr ""
+"Remove a user from the following organisation"
+"%(selected_organizations|pluralize)s:"
 
 #: templates/accounts/remove_user_profile_from_organization_managers.html:8
 #, python-format
@@ -536,11 +572,13 @@ msgid ""
 "Remove a user from the following organization manager group"
 "%(selected_organizationmanagers|pluralize)s:"
 msgstr ""
+"Remove a user from the following organisation manager group"
+"%(selected_organizationmanagers|pluralize)s:"
 
 #: templates/accounts/remove_user_profile_from_organization_managers.html:12
 #, python-format
 msgid "Organization Manager Group%(selected_organizationmanagers|pluralize)s"
-msgstr ""
+msgstr "Organisation Manager Group%(selected_organizationmanagers|pluralize)s"
 
 #: templates/accounts/reset_account.html:5
 #: templates/accounts/reset_account.html:12
