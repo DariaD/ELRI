@@ -16,8 +16,9 @@ ENV ELRI_HOSTNAME="dev" \
     ELRI_DOMAINNAME="elri-nrs.eu" \
     ELRI_NODES=test-node1:8000 \
     ELRI_CERT="server.crt" \
-    ELRI_KEY="server.key"
-
+    ELRI_KEY="server.key" \
+    ELRI_AVAILABLE_LANGUAGES=en-ie
+    
 COPY --from=base /tmp/dockerize /usr/local/bin/
 COPY --from=ssl-container /tmp/server.crt /etc/ssl/certs/server.crt
 COPY --from=ssl-container /tmp/server.key /etc/ssl/private/server.key
