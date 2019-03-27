@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-27 16:49+0100\n"
-"PO-Revision-Date: 2019-03-27 17:47+0100\n"
+"PO-Revision-Date: 2019-03-27 18:02+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -65,9 +65,9 @@ msgid ""
 "\"This site uses cookies to enhance your user experience. By clicking any "
 "link on this page you are giving your consent for us to set cookies.\" "
 msgstr ""
-"“Baineann an suíomh gréasáin seo úsáid as fianáin chun eispéireas an "
+"\"Baineann an suíomh gréasáin seo úsáid as fianáin chun eispéireas an "
 "úsáideora a fheabhsú. Má chliceálann tú ar aon nasc ar an leathnach seo, "
-"beidh tú ag tabhairt do thola dúinn fianáin a chur i bhfeidhm.” "
+"beidh tú ag tabhairt do thola dúinn fianáin a chur i bhfeidhm.\""
 
 #: templates/base.html:55 templates/base.html.py:58
 msgid "\"OK\""
@@ -75,7 +75,7 @@ msgstr ""
 
 #: templates/base.html:57
 msgid "\"Learn more\""
-msgstr "“Léigh níos mó faoi”"
+msgstr "\"Léigh níos mó faoi\""
 
 #: templates/breadcrumbs.html:3 templates/header.html:50
 #: templates/header.html.py:51
