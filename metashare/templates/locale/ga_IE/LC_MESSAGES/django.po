@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-27 16:49+0100\n"
-"PO-Revision-Date: 2019-03-27 18:02+0100\n"
+"PO-Revision-Date: 2019-03-27 18:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -1184,7 +1184,7 @@ msgstr ""
 
 #: templates/legal.html:106
 msgid "<b>Appendix A. Notice and Take Down policy</b>"
-msgstr "<b>Aguisín A. Polasaí maidir le Fógra agus Tógáil Síos</b>"
+msgstr "<b>Foscríbhinn A. </b> <br> <b>Fógra agus beartas Bainte Anuas </b>"
 
 #: templates/legal.html:107
 msgid ""
@@ -1297,7 +1297,23 @@ msgstr ""
 
 #: templates/legal.html:128
 msgid "Appendix B"
-msgstr "Aguisín B"
+msgstr ""
+"<h3><b>Foscríbhinn B.</b><br><b>Fógra Cosanta Sonraí</b></h3>\n"
+"<p>Le linn duit ábhar a chur isteach ar Sheirbhísí BATE agus an céanna a "
+"úsáid, comhaontaíonn Tú go bhféadfaidh BATE aon sonraí pearsanta a úsáid ar "
+"Leat iad a sholáthraíonn Tú trí ábhar a thabhairt nó trí fhoirmeacha "
+"leictreonacha a chomhlánú. Tá meas iomlán ag BATE ar Do phríobháideacht agus "
+"iarann sé Do shonraí pearsanta a chosaint:</p>\n"
+"<ul>\n"
+"<li>Ní dhéanfaidh BATE D’fhaisnéis a bhailiú agus a úsáid ach amháin chun a "
+"chuid seirbhísí a riaradh, a thacú, a fheabhsú agus d’fhonn aiseolas a fháil "
+"orthu.</li>\n"
+"<li>Féadfaidh BATE teagmháil a dhéanamh Ort freisin d’fhonn aiseolas a fháil "
+"ar sheirbhísí agus ar aon fheabhsuithe a d’fhéadfadh sé a dhéanamh</li>\n"
+"<li>Ní nochtfaidh BATE Do shonraí pearsanta d’aon eagraíocht eile.</li>\n"
+"<li>Féadfaidh Tú rochtain a fháil agus do shonraí pearsanta a mhodhnú tríd "
+"an tSeirbhís Clárúcháin.</li>\n"
+"</ul>"
 
 #: templates/login.html:9
 msgid "User Authentication"
