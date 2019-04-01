@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-28 13:16+0100\n"
-"PO-Revision-Date: 2019-03-28 13:47+0100\n"
+"POT-Creation-Date: 2019-04-01 16:06+0200\n"
+"PO-Revision-Date: 2019-04-01 16:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -178,9 +178,9 @@ msgid ""
 "\"%(shortname)s\" at [1]. You can confirm that registration request and "
 "create your account by clicking the following link:"
 msgstr ""
-"Fuaireamar iarratas clárúcháin do chuntas úsáideora nua ELRI “%(shortname)s” "
-"ag [1]. Is féidír leat an t-iarratas sin a dheimhniú agus do chuntas féin a "
-"chruthú trí cliceáil ar an nasc seo a leanas:"
+"Fuaireamar iarratas clárúcháin do chuntas úsáideora nua ELRI \"%(shortname)s"
+"\" ag [1]. Is féidír leat an t-iarratas sin a dheimhniú agus do chuntas féin "
+"a chruthú trí cliceáil ar an nasc seo a leanas:"
 
 #: templates/accounts/confirmation_email.html:8
 msgid ""
@@ -272,7 +272,7 @@ msgid ""
 "I accept the <a target=\"_blank\" href=\"%(elri_tos)s\">ELRI Terms of "
 "Service</a>."
 msgstr ""
-"Glacaim leis na <a target=“_blank” href=“%(elri_tos)s”>Téarmaí Seirbhíse "
+"Glacaim leis na <a target=\"_blank\" href=\"%(elri_tos)s\">Téarmaí Seirbhíse "
 "ELRI </a>."
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6
@@ -429,7 +429,7 @@ msgid ""
 "has been accepted by a manager of the group."
 msgstr ""
 "Glacadh leis an iarratas páirt a ghlacadh sa ghrúpa\n"
-"eagarthóirí “%(editor_group)s” ag bainisteoir an ghrúpa."
+"eagarthóirí \"%(editor_group)s\" ag bainisteoir an ghrúpa."
 
 #: templates/accounts/notification_editor_group_application_turned_down_email.html:4
 #, python-format
@@ -438,7 +438,7 @@ msgid ""
 "has been turned down by a manager of the group."
 msgstr ""
 "Diúladh an t-iarratas páirt a ghlacadh sa ghrúpa\n"
-"eagarthóirí “%(editor_group)s” ag bainisteoir an ghrúpa."
+"eagarthóirí \"%(editor_group)s\" ag bainisteoir an ghrúpa."
 
 #: templates/accounts/notification_editor_group_managers_application_email.html:2
 msgid "Dear editor group manager,"
@@ -450,8 +450,8 @@ msgid ""
 "We have received an application to your editor group \"%(editor_group)s\"\n"
 "from the ELRI user account \"%(shortname)s\"."
 msgstr ""
-"Fuaireamar iarratas do do ghrúpa eagarthóirí “%(editor_group)s”\n"
-"ón gcuntas úsáideora ELRI “%(shortname)s”."
+"Fuaireamar iarratas do do ghrúpa eagarthóirí \"%(editor_group)s\"\n"
+"ón gcuntas úsáideora ELRI \"%(shortname)s\"."
 
 #: templates/accounts/notification_editor_group_managers_application_email.html:7
 #: templates/accounts/notification_organization_managers_application_email.html:7
@@ -477,7 +477,7 @@ msgid ""
 "has been accepted by a manager of the organization."
 msgstr ""
 "Glacadh leis an iarratas páirt a ghlacadh san eagraíocht\n"
-"“%(organization)s ag bainisteoir na heagraíochta."
+"\"%(organization)s\" ag bainisteoir na heagraíochta."
 
 #: templates/accounts/notification_organization_application_turned_down_email.html:4
 #, python-format
@@ -486,7 +486,7 @@ msgid ""
 "has been turned down by a manager of the organization."
 msgstr ""
 "Diúladh an t-iarratas páirt a ghlacadh san eagraíocht\n"
-"“%(organization)s ag bainisteoir na heagraíochta."
+"\"%(organization)s\" ag bainisteoir na heagraíochta."
 
 #: templates/accounts/notification_organization_managers_application_email.html:2
 msgid "Dear organization manager,"
@@ -498,8 +498,8 @@ msgid ""
 "We have received an application to your organization \"%(organization)s\"\n"
 "from the ELRI user account \"%(shortname)s\"."
 msgstr ""
-"Fuaireamar iarratas do d’eagraíocht “%(organization)s”\n"
-"ón gcuntas úsáideora ELRI “%(shortname)s”."
+"Fuaireamar iarratas do d’eagraíocht \"%(organization)s\"\n"
+"ón gcuntas úsáideora ELRI \"%(shortname)s\"."
 
 #: templates/accounts/organization_application.html:6
 msgid "Please give at least one organization."
@@ -512,12 +512,12 @@ msgstr "Déan iarratas ar bhallraíocht in eagraíocht"
 #: templates/accounts/reactivation_email.html:4
 #, python-format
 msgid "We have now reset your ELRI user account \"%(shortname)s\"."
-msgstr "Rinneamar athshocrú ar do chuntas úsáideora ELRI “%(shortname)s”."
+msgstr "Rinneamar athshocrú ar do chuntas úsáideora ELRI \"%(shortname)s\"."
 
 #: templates/accounts/reactivation_email.html:5
 #, python-format
 msgid "Your password is \"%(random_password)s\"."
-msgstr "Is é do phasfhocal “%(random_password)s”."
+msgstr "Is é do phasfhocal \"%(random_password)s\"."
 
 #: templates/accounts/reactivation_email.html:6
 msgid ""
@@ -645,7 +645,7 @@ msgid ""
 "- %(confirmation_url)s"
 msgstr ""
 "Fuaireamar iarratas chun do phasfhocal do do chuntas úsáidteora \n"
-"ELRI “%(shortname)s” a athshocrú. Is féidir leat an t-iarratas seo a \n"
+"ELRI \"%(shortname)s\" a athshocrú. Is féidir leat an t-iarratas seo a \n"
 "dheimniú agus do phasfhoca a athshocrú trí chliceáil ar an nasc seo a "
 "leanas:\n"
 " - %(confirmation_url)s"
@@ -665,6 +665,13 @@ msgstr "Go raibh maith agat as ELRI a úsáid! "
 #: templates/accounts/update_default_editor_group.html:25
 msgid "Update"
 msgstr "Uasdátaigh"
+
+#~ msgid ""
+#~ "I accept the <a target=\"_blank\" href=\"%(elri_tos_url)s\">ELRI Terms of "
+#~ "Service</a>."
+#~ msgstr ""
+#~ "Glacaim leis na <a target=“_blank” href=“%(elri_tos_url)s”>Téarmaí "
+#~ "Seirbhíse ELRI </a>."
 
 #~ msgid ""
 #~ "With this form you can send messages to the node maintainers, for "

@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-03-27 13:52+0100\n"
-"PO-Revision-Date: 2019-03-20 11:41+0000\n"
+"PO-Revision-Date: 2019-04-01 16:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: accounts/admin.py:82
 msgid "Editor groups"
@@ -141,7 +141,8 @@ msgid ""
 "You have successfully turned down \"%(user)s\" from the editor group "
 "\"%(group)s\"."
 msgstr ""
-"You have successfully declined “%(user)s” from the editor group “%(group)s”."
+"You have successfully declined \"%(user)s\" from the editor group \"%(group)s"
+"\"."
 
 #: accounts/admin.py:423 accounts/admin.py:883
 #, python-format
@@ -251,8 +252,8 @@ msgid ""
 "You have successfully accepted \"%(user)s\" as member of the organization "
 "\"%(group)s\"."
 msgstr ""
-"You have successfully accepted “%(user)s” as member of the organisation "
-"“%(group)s”."
+"You have successfully accepted \"%(user)s\" as member of the organisation "
+"\"%(group)s\"."
 
 #: accounts/admin.py:804
 msgid "Accept selected organization applications"
@@ -264,8 +265,8 @@ msgid ""
 "You have turned down the application of \"%(user)s\" for membership in the "
 "organization \"%(group)s\"."
 msgstr ""
-"You have rejected the application of “%(user)s” for membership in the "
-"organisation “%(group)s”."
+"You have rejected the application of \"%(user)s\" for membership in the "
+"organisation \"%(group)s\"."
 
 #: accounts/admin.py:916
 msgid "Turn down selected organization applications"
@@ -586,7 +587,7 @@ msgstr ""
 #, python-format
 msgid "An older application of yours for editor group \"%s\" is still pending."
 msgstr ""
-"An existing application you made for editor group “%s” is still pending."
+"An existing application you made for editor group \"%s\" is still pending."
 
 #: accounts/views.py:332
 msgid "New editor membership request"
@@ -639,7 +640,7 @@ msgstr ""
 #, python-format
 msgid "An older application of yours for organization \"%s\" is still pending."
 msgstr ""
-"An existing application you made for organisation “%s” is still pending."
+"An existing application you made for organisation \"%s\" is still pending."
 
 #: accounts/views.py:486
 msgid "New organization membership request"
@@ -656,7 +657,7 @@ msgstr ""
 #: accounts/views.py:496
 #, python-format
 msgid "You have successfully applied for organization \"%s\"."
-msgstr "You have successfully applied for organisation “%s”."
+msgstr "You have successfully applied for organisation \"%s\"."
 
 #: accounts/views.py:507
 msgid ""
