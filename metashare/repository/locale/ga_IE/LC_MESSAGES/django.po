@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-01 16:06+0200\n"
-"PO-Revision-Date: 2019-03-12 14:36+0000\n"
+"PO-Revision-Date: 2019-04-01 17:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: repository/fields.py:38
 msgid "This value must be either True or False."
@@ -1522,111 +1522,114 @@ msgstr "Sonraíonn fearann feidhmchláir na hacmainne nó na huirlise/seirbhíse
 
 #: repository/search_indexes.py:103
 msgid "Language"
-msgstr "Teanga"
+msgstr "Teanga / Language"
 
 #: repository/search_indexes.py:106
 msgid "Resource Type"
-msgstr "Cineál Acmhainne"
+msgstr "Cineál Acmhainne / Resource Type"
 
 #: repository/search_indexes.py:109
 msgid "Media Type"
-msgstr "Cineál Meáin"
+msgstr "Cineál Meáin / Media Type"
 
 #: repository/search_indexes.py:115
 msgid "Licence"
-msgstr "Ceadúnas"
+msgstr "Ceadúnas / Licence"
 
 #: repository/search_indexes.py:118
 msgid "Conditions of Use"
-msgstr "Coinníollacha Úsáide"
+msgstr "Coinníollacha Úsáide / Conditions of Use"
 
 #: repository/search_indexes.py:121
 msgid "Validated"
-msgstr "Bailíochtaithe"
+msgstr "Bailíochtaithe / Validated"
 
 #: repository/search_indexes.py:124
 msgid "Use Is NLP Specific"
-msgstr "Sonraithe do Ríomhchlárú Néaraitheangeolaíoch"
+msgstr "Sonraithe do Ríomhchlárú Néaraitheangeolaíoch / Use is NLP Specific"
 
 #: repository/search_indexes.py:127
 msgid "Linguality Type"
-msgstr "Cineál Teangachais"
+msgstr "Cineál Teangachais / Linguality Type"
 
 #: repository/search_indexes.py:130
 msgid "Multilinguality Type"
-msgstr "Cineál Breisteangachais"
+msgstr "Cineál Breisteangachais / Multilinguality Type"
 
 #: repository/search_indexes.py:133
 msgid "Modality Type"
-msgstr "Cineál Módúlachta"
+msgstr "Cineál Módúlachta / Modality Type"
 
 #: repository/search_indexes.py:136
 msgid "Data Format"
-msgstr "Formáid Sonraí"
+msgstr "Formáid Sonraí / Data Format"
 
 #: repository/search_indexes.py:142
 msgid "Domain"
-msgstr "Fearann"
+msgstr "Fearann / Domain"
 
 #: repository/search_indexes.py:145 repository/search_indexes.py:182
 msgid "Annotation Type"
-msgstr "Cineál Anótáilte"
+msgstr "Cineál Anótáilte / Annotation Type"
 
 #: repository/search_indexes.py:148
 msgid "Language Description Type"
-msgstr "Cineál Tuairisce Teanga"
+msgstr "Cineál Tuairisce Teanga / Language Description Type"
 
 #: repository/search_indexes.py:151 repository/search_indexes.py:160
 msgid "Encoding Level"
-msgstr "Leibhéal Ionchódaithe"
+msgstr "Leibhéal Ionchódaithe / Encoding Level"
 
 #: repository/search_indexes.py:154
 msgid "Grammatical Phenomena Coverage"
-msgstr "Clúdach Feiniméan Gramadaí"
+msgstr "Clúdach Feiniméan Gramadaí / Grammatical Phenomena Coverage"
 
 #: repository/search_indexes.py:157
 msgid "Lexical/Conceptual Resource Type"
-msgstr "Cineál Acmhainne Foclóireachta/Coincheapúla"
+msgstr ""
+"Cineál Acmhainne Foclóireachta/Coincheapúla / Lexical/Conceptual Resource "
+"Type"
 
 #: repository/search_indexes.py:163
 msgid "Linguistic Information"
-msgstr "Eolas Teangeolaíoch"
+msgstr "Eolas Teangeolaíoch / Linguistic Information"
 
 #: repository/search_indexes.py:167
 msgid "Tool/Service Type"
-msgstr "Cineál Uirlise/Seirbhíse"
+msgstr "Cineál Uirlise/Seirbhíse / Tool/Service Type"
 
 #: repository/search_indexes.py:170
 msgid "Tool/Service Subtype"
-msgstr "Fochineál Uirlise/Seirbhíse"
+msgstr "Fochineál Uirlise/Seirbhíse / Tool/Service Subtype"
 
 #: repository/search_indexes.py:173
 msgid "Language Dependent"
-msgstr "Spleách ar Theanga"
+msgstr "Spleách ar Theanga / Language Dependent"
 
 #: repository/search_indexes.py:176
 msgid "InputInfo/OutputInfo Resource Type"
-msgstr "Cineál Acmhainne EolasIsteach/EolasAmach"
+msgstr ""
+"Cineál Acmhainne EolasIsteach/EolasAmach / InputInfo/OutputInfo Resource Type"
 
 #: repository/search_indexes.py:179
 msgid "InputInfo/OutputInfo Media Type"
-msgstr "Cineál Meáin EolasIsteach/EolasAmach"
+msgstr "Cineál Meáin EolasIsteach/EolasAmach / InputInfo/OutputInfo Media Type"
 
 #: repository/search_indexes.py:191
 msgid "Appropriateness For DSI"
-msgstr "Oiriúnacht do DSI"
+msgstr "Oiriúnacht do DSI / Appropriateness For DSI"
 
 #: repository/search_indexes.py:195
 msgid "Publication Status"
-msgstr "Stádas Foilsithe"
+msgstr "Stádas Foilsithe / Publication Status"
 
 #: repository/search_indexes.py:200
 msgid "Text Genre"
-msgstr "Seánra Téacs"
+msgstr "Seánra Téacs / Text Genre"
 
 #: repository/search_indexes.py:203
 msgid "Text Type"
-msgstr "Cineál Téacs"
+msgstr "Cineál Téacs / Text Type"
 
 #: repository/validators.py:38
 msgid ""

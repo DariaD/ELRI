@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-01 16:06+0200\n"
-"PO-Revision-Date: 2019-04-01 16:20+0200\n"
+"PO-Revision-Date: 2019-04-01 17:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -71,7 +71,7 @@ msgstr ""
 
 #: templates/base.html:55 templates/base.html.py:58
 msgid "\"OK\""
-msgstr ""
+msgstr "\"Tuigim\""
 
 #: templates/base.html:57
 msgid "\"Learn more\""
@@ -2658,11 +2658,11 @@ msgstr "Stádas na hacmhainne:"
 
 #: templates/repository/resource_view/distribution.html:17
 msgid "Availability Start date:"
-msgstr ""
+msgstr "Ar fáil ó:"
 
 #: templates/repository/resource_view/distribution.html:25
 msgid "Availability End Date:"
-msgstr ""
+msgstr "Ar fáil go dtí:"
 
 #: templates/repository/resource_view/distribution.html:41
 msgid "Distribution Details"

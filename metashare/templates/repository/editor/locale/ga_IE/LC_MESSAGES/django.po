@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-01 16:06+0200\n"
-"PO-Revision-Date: 2019-03-27 18:01+0100\n"
+"PO-Revision-Date: 2019-04-01 17:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -33,7 +33,7 @@ msgstr ""
 #: templates/repository/editor/contributions/contribute.html:62
 #: templates/repository/editor/contributions/contribute.html:65
 msgid "\"OK\""
-msgstr ""
+msgstr "\"Tuigim\""
 
 #: templates/repository/editor/contributions/contribute.html:64
 msgid "\"Learn more\""

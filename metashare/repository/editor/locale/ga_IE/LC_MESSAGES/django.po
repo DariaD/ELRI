@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-01 16:06+0200\n"
-"PO-Revision-Date: 2019-03-27 15:57+0100\n"
+"PO-Revision-Date: 2019-04-01 17:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -335,7 +335,7 @@ msgstr "\t Cúngú úsáide: "
 
 #: repository/editor/resource_editor.py:815
 msgid "Attribution text: "
-msgstr ""
+msgstr "Breis eolais:"
 
 #: repository/editor/resource_editor.py:818
 msgid "IPR Holder: "
