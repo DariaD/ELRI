@@ -31,39 +31,23 @@ def switch_lang_code(path, language):
     else:
         parts[0] = "/" + language
         activate(language)
-    LOGGER.info(parts)
     activate(language)
     
     # Return the full new path
     return '/'.join(parts)
 
-# [app]/templatetags/i18n_switcher.py
- 
 from django import template
 from django.template.defaultfilters import stringfilter
  
-#register = template.Library()
- 
-#@register.filter
-#@stringfilter
 def switch_i18n_prefix(path, language):
     """takes in a string path"""
     return switch_lang_code(path, language)
  
-#@register.filter
-def switch_i18n(request):#, language):
-    """takes in a request object and gets the path from it"""
-    #switch_lang_code(request.get_full_path(), language)
-    LOGGER.info(request.POST)
+def switch_i18n(request):
+    """takes in a request object and gets the language and the path from it"""
     language=request.POST.get('language', request.GET.get('language'))
-    LOGGER.info(language)
-    #language=request.GET.get('language')
-    LOGGER.info(language)
     request.session['django_language']=language
     request.LANGUAGE_CODE = language
-    current_url=request.POST.get('path', request.GET.get('path'))#request.get_full_path() #POST.get('next')
+    current_url=request.POST.get('path', request.GET.get('path'))
     url=switch_lang_code(current_url, language)
-    LOGGER.info(url)
-    #response=render_to_response(url, context_instance=RequestContext(request))
-    #response.set_cookie('django_language',language)
-    return HttpResponseRedirect(url)#response #
+    return HttpResponseRedirect(url)
