@@ -35,6 +35,7 @@ COPY resources/env_secrets_expand.sh \
      resources/startup.sh \
      resources/create_super_user.sh \
      resources/gettext.patch \ 
+     resources/middleware.patch \ 
      resources/manage.py /elri/
 
 RUN svn export ${GIT_URL}/metashare /elri/metashare \
@@ -44,6 +45,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
     && mkdir -p /elri/metashare/unprocessed \
              /elri/metashare/processed \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
+    && patch -n /usr/local/lib/python2.7/site-packages/django/middleware/locale.py < /elri/middleware.patch \
     && pip install -r /elri/requirements.txt \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \

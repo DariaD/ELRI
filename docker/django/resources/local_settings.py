@@ -32,14 +32,14 @@ COUNTRY = filter(lambda country: country == environ['ELRI_COUNTRY'], iana.get_eu
 USE_I18N = True
 
 LANGUAGE_CODE = environ['ELRI_LANGUAGE'] # one of the LANGUAGES language codes
-
+LANGUAGE_COOKIE_NAME= "django_language"
 # Supported localisation languages
 ALL_LANGUAGES = (
     ('es-es', _('Spanish')),
     ('en-ie', _('English')),
     ('fr-fr', _('French')),
     ('ga-ie', _('Gaelic')),
-    ('pt-pt', _("Portuguese")),
+    ('pt-pt', _('Portuguese')),
 )
 #get preferred localized language(s)
 loc_langs= environ['ELRI_LOC_LANGUAGES']
