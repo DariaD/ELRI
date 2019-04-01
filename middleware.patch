@@ -1,11 +1,19 @@
-35a36,45
-> 	###########DCU PATCH#########
-> 	if hasattr(request, 'session'):
-> 		if not request.session.has_key('django_language'):
->  			request.session['django_language'] = settings.LANGUAGE_CODE #translation.get_language()
->  			translation.activate(settings.LANGUAGE_CODE)
-> 		else:
-> 			#sessions are not used
-> 			if not response.cookies.has_key(settings.LANGUAGE_COOKIE_NAME):
-> 				response.set_cookie(settings.LANGUAGE_COOKIE_NAME, translation.get_language())#settings.LANGUAGE_CODE)#translation.get_language())
-> 	###########DCU PATCH#########
+--- venv/lib/python2.7/site-packages/django/middleware/_locale.py	2019-03-28 18:09:55.229155532 +0100
++++ venv/lib/python2.7/site-packages/django/middleware/locale.py	2019-03-29 13:36:14.824242335 +0100
+@@ -33,6 +33,16 @@
+         request.LANGUAGE_CODE = translation.get_language()
+ 
+     def process_response(self, request, response):
++	###########DCU PATCH#########
++	if hasattr(request, 'session'):
++		if not request.session.has_key('django_language'):
++ 			request.session['django_language'] = settings.LANGUAGE_CODE #translation.get_language()
++ 			translation.activate(settings.LANGUAGE_CODE)
++		else:
++			#sessions are not used
++			if not response.cookies.has_key(settings.LANGUAGE_COOKIE_NAME):
++				response.set_cookie(settings.LANGUAGE_COOKIE_NAME, translation.get_language())#settings.LANGUAGE_CODE)#translation.get_language())
++	###########DCU PATCH#########
+         language = translation.get_language()
+         language_from_path = translation.get_language_from_path(request.path_info)
+         if (response.status_code == 404 and not language_from_path
