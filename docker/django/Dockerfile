@@ -45,8 +45,8 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
     && mkdir -p /elri/metashare/unprocessed \
              /elri/metashare/processed \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
-    && patch /usr/local/lib/python2.7/site-packages/django/middleware/locale.py < /elri/middleware.patch \
     && pip install -r /elri/requirements.txt \
+    && patch /usr/local/lib/python2.7/site-packages/django/middleware/locale.py < /elri/middleware.patch \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh
