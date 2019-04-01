@@ -77,7 +77,7 @@ class resourceInfoType_modelIndex(SearchIndex, indexes.Indexable):
     resourceTypeSort = CharField(indexed=True, faceted=True)
     mediaTypeSort = CharField(indexed=True, faceted=True)
     languageNameSort = CharField(indexed=True, faceted=True)
-
+    
     # list of filters
     #
     # filter fields are described using:

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-27 16:49+0100\n"
+"POT-Creation-Date: 2019-03-28 13:16+0100\n"
 "PO-Revision-Date: 2019-03-27 16:57+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -392,46 +392,6 @@ msgstr ""
 msgid "Reactivate selected eDelivery applications"
 msgstr "Athghníomhachtaigh iarratais eDelivery roghnaithe"
 
-#: accounts/forms.py:75
-msgid "Desired account name"
-msgstr "Cén t-ainm cuntais ba mhaith leat?"
-
-#: accounts/forms.py:77
-msgid "First name"
-msgstr "Céadainm"
-
-#: accounts/forms.py:79
-msgid "Last name"
-msgstr "Sloinne"
-
-#: accounts/forms.py:80
-msgid "E-mail"
-msgstr "Ríomhphost"
-
-#: accounts/forms.py:88
-msgid "Organization name"
-msgstr "Ainm eagraíochta"
-
-#: accounts/forms.py:91
-msgid "Organization address"
-msgstr "Seoladh eagraíochta"
-
-#: accounts/forms.py:95
-msgid "Organization phone number"
-msgstr "Uimhir ghutháin eagraíochta"
-
-#: accounts/forms.py:98
-msgid "Position in the organization"
-msgstr "Post san eagraíocht"
-
-#: accounts/forms.py:107
-msgid "Password"
-msgstr "Pasfhocal"
-
-#: accounts/forms.py:111
-msgid "Password confirmation"
-msgstr "Deimhniú pasfhocail"
-
 #: accounts/forms.py:137
 msgid "User account name already exists, please choose another one."
 msgstr "Ainm cuntas úsáideora in úsáid cheana, roghnaigh ceann eile."
@@ -784,6 +744,36 @@ msgstr ""
 #: accounts/views.py:657
 msgid "Apply for eDelivery membership"
 msgstr "Cuir isteach ar bhallraíocht in eDelivery"
+
+#~ msgid "Desired account name"
+#~ msgstr "Cén t-ainm cuntais ba mhaith leat?"
+
+#~ msgid "First name"
+#~ msgstr "Céadainm"
+
+#~ msgid "Last name"
+#~ msgstr "Sloinne"
+
+#~ msgid "E-mail"
+#~ msgstr "Ríomhphost"
+
+#~ msgid "Organization name"
+#~ msgstr "Ainm eagraíochta"
+
+#~ msgid "Organization address"
+#~ msgstr "Seoladh eagraíochta"
+
+#~ msgid "Organization phone number"
+#~ msgstr "Uimhir ghutháin eagraíochta"
+
+#~ msgid "Position in the organization"
+#~ msgstr "Post san eagraíocht"
+
+#~ msgid "Password"
+#~ msgstr "Pasfhocal"
+
+#~ msgid "Password confirmation"
+#~ msgstr "Deimhniú pasfhocail"
 
 #~ msgid "Phone number"
 #~ msgstr "Uimhir ghutháin"

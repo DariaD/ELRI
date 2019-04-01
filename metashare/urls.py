@@ -12,6 +12,7 @@ from metashare.settings import DJANGO_BASE, SITEMAP_URL
 urlpatterns = i18n_patterns('',
   url(r'^{0}$'.format(DJANGO_BASE),
     'metashare.views.frontpage', name='frontpage'),
+    url(r'^{0}switch_i18n/$'.format(DJANGO_BASE),'metashare.i18n_switcher.switch_i18n', name='switch_i18n'),
   url(r'^{0}info/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='elri-info.html'), name='info'),
   url(r'^{0}help/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='help.html'), name='help'),
   url(r'^{0}privacy/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='privacy.html'), name='privacy'),

@@ -3,16 +3,36 @@
 {% spaceless %}
 
     <div id="header">
-
+    <div id=lang_selector style=" position: relative;">
+			{% get_current_language as curr_lang %}
+			{% get_available_languages as LANGUAGES %}
+			{% for language in LANGUAGES %}
+				 <div id=language title="{{language.1}}" style="float: left; padding: 10px 17px ;{% if language.0 == curr_lang %}background: #cde8f2;{% endif %}">
+					<a href="/switch_i18n/?language={{language.0}}&path={{request.get_full_path}}"
+					class="{% if language.0 == curr_lang %}selected{% endif %}"
+					language="{{ language.0 }}" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">
+						{{ language.1 }}
+					</a>
+				</div >
+			{% endfor %}
+		
+	</div>	
+		
+<!--js language swith		
       <div id=lang_selector style=" position: relative;">
+     
 			{% get_current_language as LANGUAGE_CODE  %}
 			{% if LANGUAGE_CODE == "en-ie" or LANGUAGE_CODE == "ga-ie"%}
 				{% if LANGUAGE_CODE == "en-ie" %}
                         <div id=ga_language title="{% trans 'Gaeilge' %}" style="float: left; padding: 10px 17px ;">
-                            <a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
+                            <a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge 
+                            </a>
+
                         </div>
                         <div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ; background: #cde8f2;">
-                            <a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
+                            <a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English 
+                            </a>
+
                         </div>
 				{% endif %}
 				{% if LANGUAGE_CODE == "ga-ie"%}
@@ -20,7 +40,8 @@
 							<a onclick="toGaeilge()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">Gaeilge </a>
 						</div>
 						<div id=en_language title="{% trans 'English' %}" style="float: left; padding: 10px 17px ;">
-							<a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English </a>
+							<a onclick="toEnglish()" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">  English 
+							</a>
 						</div>
 				{% endif %}
 				<script>
@@ -38,7 +59,8 @@
 					}
 				</script>
 			{% endif %}
-			</div>
+			</div>-->
+			
 			<a href="http://www.elri-project.eu/" title="European Language Resource Infrastructure"
 			target="_blank"><img style="float:right; margin: 10px 20px 0 0"
 									src="{{ STATIC_URL }}metashare/images/elri-logo-title-small.png"/></a>
