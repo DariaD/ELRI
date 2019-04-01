@@ -1,0 +1,11 @@
+35a36,45
+> 	###########DCU PATCH#########
+> 	if hasattr(request, 'session'):
+> 		if not request.session.has_key('django_language'):
+>  			request.session['django_language'] = settings.LANGUAGE_CODE #translation.get_language()
+>  			translation.activate(settings.LANGUAGE_CODE)
+> 		else:
+> 			#sessions are not used
+> 			if not response.cookies.has_key(settings.LANGUAGE_COOKIE_NAME):
+> 				response.set_cookie(settings.LANGUAGE_COOKIE_NAME, translation.get_language())#settings.LANGUAGE_CODE)#translation.get_language())
+> 	###########DCU PATCH#########
