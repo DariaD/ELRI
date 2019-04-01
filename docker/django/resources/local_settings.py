@@ -36,9 +36,9 @@ LANGUAGE_COOKIE_NAME= "django_language"
 # Supported localisation languages
 ALL_LANGUAGES = (
     ('es-es', _('Spanish')),
-    ('en-ie', _('English')),
-    ('fr-fr', _('French')),
     ('ga-ie', _('Gaelic')),
+    ('fr-fr', _('French')),
+    ('en-ie', _('English')),
     ('pt-pt', _('Portuguese')),
 )
 #get preferred localized language(s)
