@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 10:22+0200\n"
-"PO-Revision-Date: 2019-04-02 10:15+0200\n"
+"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"PO-Revision-Date: 2019-04-02 15:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: accounts/admin.py:311 accounts/admin.py:779
 msgid "Application accepted"
-msgstr ""
+msgstr "Application accepted | Iarratas glactha "
 
 #: accounts/admin.py:318 accounts/admin.py:786
 msgid "There was an error sending out an application acceptance e-mail."
@@ -128,7 +128,7 @@ msgstr ""
 
 #: accounts/admin.py:370 accounts/admin.py:830
 msgid "Application turned down"
-msgstr "Application declined"
+msgstr "Application declined | Iarratas diúltaithe "
 
 #: accounts/admin.py:378 accounts/admin.py:838
 msgid ""
@@ -330,7 +330,7 @@ msgstr ""
 
 #: accounts/admin.py:1145 accounts/admin.py:1193
 msgid "ELRI eDelivery application"
-msgstr ""
+msgstr "ELRI eDelivery application | Iarratas eDelivery ELRI"
 
 #: accounts/admin.py:1157
 msgid "{} cannot be rejected. Only \"PENDING\" applications can be rejected"
@@ -526,7 +526,7 @@ msgstr ""
 #: accounts/views.py:91
 #, python-format
 msgid "[ELRI] Contact Form Request: %s"
-msgstr ""
+msgstr "[ELRI] Contact Form Request: | Iarratas ar Fhoirm Teagmhála [ELRI]: %s"
 
 #: accounts/views.py:98
 #, python-format
@@ -549,7 +549,7 @@ msgstr ""
 
 #: accounts/views.py:175
 msgid "New user registration"
-msgstr ""
+msgstr "New user registration | Clárúchán úsáideora nua"
 
 #: accounts/views.py:183
 msgid ""
@@ -593,7 +593,7 @@ msgstr ""
 
 #: accounts/views.py:332
 msgid "New editor membership request"
-msgstr ""
+msgstr "New editor membership request | Iarratas ar bhallríocht eagarthóra nua"
 
 #: accounts/views.py:339
 msgid ""
@@ -646,7 +646,9 @@ msgstr ""
 
 #: accounts/views.py:486
 msgid "New organization membership request"
-msgstr "New organisation membership request"
+msgstr ""
+"New organisation membership request | Iarratas ar bhallraíocht eagraíochta "
+"nua"
 
 #: accounts/views.py:493
 msgid ""
@@ -676,6 +678,8 @@ msgstr "Apply for organisation membership"
 #: accounts/views.py:550
 msgid "Please confirm your ELRI password reset request"
 msgstr ""
+"Please confirm your ELRI password reset request  | Deimhnigh d’iarratas ar "
+"athshocrú pasfhocail ELRI"
 
 #: accounts/views.py:561
 msgid ""

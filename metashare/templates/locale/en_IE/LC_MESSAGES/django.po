@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 10:22+0200\n"
-"PO-Revision-Date: 2019-04-02 10:24+0200\n"
+"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"PO-Revision-Date: 2019-04-02 14:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -1930,6 +1930,9 @@ msgstr ""
 #: templates/repository/ingested_resource_email.html:2
 msgid "There are new ingested resources to review "
 msgstr ""
+"There are new ingested resources to review \n"
+"________________________________\n"
+"Tá acmhainní nua ionghabhála le hathbhreithniú "
 
 #: templates/repository/legal_not_downloadable.html:4
 #: templates/repository/lr_not_downloadable.html:4
@@ -2148,29 +2151,48 @@ msgid ""
 msgstr ""
 
 #: templates/repository/resource_download_information_email.html:2
-msgid "Dear "
-msgstr ""
-
-#: templates/repository/resource_download_information_email.html:4
 #, python-format
 msgid ""
+"Dear %(resourceContactName|join:\", \")s,\n"
+"\n"
 "the ELRI user %(user.username)s (%(user.first_name)s %(user.last_name)s, "
 "%(user_email)s) requests information on the language resource "
 "“%(resource)s” ([1]). You can find the request below; please reply as soon "
-"as possible."
+"as possible.\n"
+"\n"
+"Best regards,\n"
+"ELRI Repository at [2]"
 msgstr ""
-
-#: templates/repository/resource_download_information_email.html:6
-msgid "Best regards,"
-msgstr ""
-
-#: templates/repository/resource_download_information_email.html:7
-msgid "ELRI Repository at [2]"
-msgstr ""
+"Dear %(resourceContactName|join:\", \")s,\n"
+"\n"
+"the ELRI user %(user.username)s (%(user.first_name)s %(user.last_name)s, "
+"%(user_email)s) requests information on the language resource "
+"“%(resource)s” ([1]). You can find the request below; please reply as soon "
+"as possible.\n"
+"\n"
+"Best regards,\n"
+"ELRI Repository at [2]\n"
+"\n"
+"_______________________________________\n"
+"\n"
+"\n"
+"%(resourceContactName|join:\", \")s,\n"
+"\n"
+"Iarrann an t-úsáideoir ELRI %(user.username)s (%(user.first_name)s "
+"%(user.last_name)s, %(user_email)s) eolas ar an acmhainn teanga "
+"\"%(resource)s\" ([1]). Tá an t-iarratas ar fháil thíos; tabhair freagra "
+"chomh luath agus is féidir, le do thoil.\n"
+"\n"
+"Beannacth,\n"
+"\n"
+"Stór ELRI ag [2]"
 
 #: templates/repository/resource_new_contributions_email.html:2
 msgid "There are new submitted contributed resources on ELRI "
-msgstr "New resources have been contributed to ELRI "
+msgstr ""
+"New resources have been contributed to ELRI \n"
+"_________________________________\n"
+"Tá acmhainní nua curtha ar ELRI "
 
 #: templates/repository/resource_view/annotation.html:10
 #: templates/repository/resource_view/input_output.html:74

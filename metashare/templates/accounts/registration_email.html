@@ -1,18 +1,18 @@
 {% load i18n %}
-{% blocktrans %}User {{ username }} provided the following registration information:{% endblocktrans %}
+{% blocktrans %}User {{ username }} provided the following registration information:
 
-{% blocktrans %}- First name: {% endblocktrans %} {{ firstname }}
+- First name:  {{ firstname }}
 
-{% blocktrans %}- Last name: {% endblocktrans %} {{ lastname }}
+- Last name:  {{ lastname }}
 
-{% blocktrans %}- E-mail: {% endblocktrans %} {{ email }}
+- E-mail:  {{ email }}
 
-{% blocktrans %}- Telephone number: {% endblocktrans %} {{ telephone }}
+- Telephone number:  {{ telephone }}
 
-{% blocktrans %}- Affiliation: {% endblocktrans %} {{ affiliation }}
+- Affiliation: {{ affiliation }}
 
-{% blocktrans %}- Position: {% endblocktrans %} {{ position }}
+- Position: {{ position }}
 
-{% blocktrans %}You can either confirm this user's account by clicking on the
+You can either confirm this user's account by clicking on the
 {{ confirmation_url }}, or review and activate the user's account from the
 back-office.{% endblocktrans %}

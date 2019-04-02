@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 10:20+0200\n"
-"PO-Revision-Date: 2019-04-02 11:07+0200\n"
+"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"PO-Revision-Date: 2019-04-02 16:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -221,7 +221,9 @@ msgstr "Níor éirigh leis an acmhainn a phróiseáil leis an toolchain tm2tmx."
 #: repository/editor/resource_editor.py:646
 #, python-format
 msgid "Error when processing resource %(rname)s"
-msgstr "Tharla earráid i rith próiseáil na hacmhainne %(rname)s"
+msgstr ""
+"Tharla earráid i rith próiseáil na hacmhainne %(rname)s | Error when "
+"processing resource %(rname)s"
 
 #: repository/editor/resource_editor.py:577
 #: repository/editor/resource_editor.py:588
@@ -237,7 +239,13 @@ msgid ""
 msgstr ""
 "Tharla earráid i rith próiseáil na hacmhainne %(rname)s. Seiceáil loga na "
 "hearráide atá ceangailte leis an acmhainn. Déan teagmháil le foireann "
-"tacaíochta SAN ELRI le haghaidh tuilleadh eolais ag %(email)s"
+"tacaíochta SAN ELRI le haghaidh tuilleadh eolais ag %(email)s\n"
+"\n"
+"_______________________________________\n"
+"\n"
+"An error occurred when processing the resource %(rname)s. Please check the "
+"error.log attached to the resource. Contact the ELRI NRS support team for "
+"more information at %(email)s"
 
 #: repository/editor/resource_editor.py:579
 #: repository/editor/resource_editor.py:590
@@ -286,7 +294,8 @@ msgstr ""
 
 #: repository/editor/resource_editor.py:696
 msgid "Resource(s) re-processed correctly."
-msgstr "Acmhainn(í) athphróiseáilte i gceart."
+msgstr ""
+"Acmhainn(í) athphróiseáilte i gceart. | Resource(s) re-processed correctly."
 
 #: repository/editor/resource_editor.py:699
 msgid "Resource(s) processed correctly."
@@ -369,11 +378,21 @@ msgstr ""
 #, python-format
 msgid "Successfully published %(ingested)s ingested resource."
 msgid_plural "Successfully published %(ingested)s ingested resources."
-msgstr[0] "%(ingested)s acmhainn ionghafa foilsithe."
-msgstr[1] "%(ingested)s acmhainn ionghafa foilsithe."
-msgstr[2] "%(ingested)s acmhainn ionghafa foilsithe."
-msgstr[3] "%(ingested)s acmhainn ionghafa foilsithe."
-msgstr[4] "%(ingested)s acmhainn ionghafa foilsithe."
+msgstr[0] ""
+"%(ingested)s acmhainn ionghafa foilsithe. | Successfully published "
+"%(ingested)s ingested resource."
+msgstr[1] ""
+"%(ingested)s acmhainn ionghafa foilsithe. | Successfully published "
+"%(ingested)s ingested resources."
+msgstr[2] ""
+"%(ingested)s acmhainn ionghafa foilsithe. | Successfully published "
+"%(ingested)s ingested resource."
+msgstr[3] ""
+"%(ingested)s acmhainn ionghafa foilsithe. | Successfully published "
+"%(ingested)s ingested resource."
+msgstr[4] ""
+"%(ingested)s acmhainn ionghafa foilsithe. | Successfully published "
+"%(ingested)s ingested resource."
 
 #: repository/editor/resource_editor.py:852
 msgid "Only ingested resources can be published."
@@ -388,11 +407,21 @@ msgstr ""
 #, python-format
 msgid "Successfully suspended %s published resource."
 msgid_plural "Successfully suspended %s published resources."
-msgstr[0] "%s acmhainn foilsithe curtha ar fionraí."
-msgstr[1] "%s acmhainn foilsithe curtha ar fionraí."
-msgstr[2] "%s acmhainn foilsithe curtha ar fionraí."
-msgstr[3] "%s acmhainn foilsithe curtha ar fionraí."
-msgstr[4] "%s acmhainn foilsithe curtha ar fionraí."
+msgstr[0] ""
+"%s acmhainn foilsithe curtha ar fionraí. | Successfully suspended  published "
+"resource."
+msgstr[1] ""
+"%s acmhainn foilsithe curtha ar fionraí. | Successfully suspended published "
+"resources."
+msgstr[2] ""
+"%s acmhainn foilsithe curtha ar fionraí.  | Successfully suspended published "
+"resources."
+msgstr[3] ""
+"%s acmhainn foilsithe curtha ar fionraí.  | Successfully suspended  "
+"published resources."
+msgstr[4] ""
+"%s acmhainn foilsithe curtha ar fionraí. | Successfully suspended published "
+"resources."
 
 #: repository/editor/resource_editor.py:875
 msgid "Only published resources can be suspended."
@@ -426,9 +455,11 @@ msgid ""
 "                        "
 msgstr ""
 "\n"
-"                        {} acmhainn inmheánach ionghafa  \n"
+"                        {} acmhainn inmheánach ionghafa  |  Successfully "
+"ingested {} internal resource(s). \n"
 "                        Gheobhaidh tú rphost nuair a bheas an acmhainn "
-"próiseáilte.\n"
+"próiseáilte. | You will be notified by email once the resource has been "
+"fully processed.\n"
 "                        "
 
 #: repository/editor/resource_editor.py:939
@@ -447,7 +478,7 @@ msgstr ""
 
 #: repository/editor/resource_editor.py:947
 msgid "Ingested Resource"
-msgstr "Acmhainn ionghafa"
+msgstr "Acmhainn ionghafa | Ingested Resource"
 
 #: repository/editor/resource_editor.py:952
 msgid ""

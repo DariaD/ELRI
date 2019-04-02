@@ -696,7 +696,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                 messages.info(request, _('Resource(s) re-processed correctly.'))
                 return processing_status
             elif processing_status and pre_status==INTERNAL:
-                messages.info(request, _('Resource(s) processed correctly.'))
+                messages.info(request, _('Resource(s) re-processed correctly.'))
                 return processing_status
             else:
                 messages.error(request,_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email."))

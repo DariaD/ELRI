@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 10:20+0200\n"
-"PO-Revision-Date: 2019-04-01 17:37+0200\n"
+"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"PO-Revision-Date: 2019-04-02 15:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -1672,7 +1672,9 @@ msgstr "Leasaigh an teimpléad don téacs admhála"
 
 #: repository/views.py:341
 msgid "Request for information regarding a resource"
-msgstr "Iarratas eolais maidir le hacmhainn"
+msgstr ""
+"Iarratas eolais maidir le hacmhainn | Request for information regarding a "
+"resource"
 
 #: repository/views.py:349
 msgid "There was an error sending out the request email."
@@ -1743,7 +1745,7 @@ msgstr ""
 
 #: repository/views.py:1192
 msgid "New submitted contributions"
-msgstr "Ábhar nua curtha ar fáil"
+msgstr "Ábhar nua curtha ar fáil | New submitted contributions"
 
 #: repository/views.py:1200
 msgid ""
