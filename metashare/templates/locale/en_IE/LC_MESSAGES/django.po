@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 18:00+0200\n"
-"PO-Revision-Date: 2019-04-01 16:19+0200\n"
+"POT-Creation-Date: 2019-04-02 10:22+0200\n"
+"PO-Revision-Date: 2019-04-02 10:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -2051,34 +2051,48 @@ msgid "Add Another Field"
 msgstr ""
 
 #: templates/repository/published_resource_email.html:3
-#: templates/repository/resource_download_information_email.html:2
-msgid "Dear "
-msgstr ""
-
-#: templates/repository/published_resource_email.html:5
 #, python-format
 msgid ""
+"Dear %(username)s %(usersurname)s,\n"
+"\n"
 "Your resource %(resourcename)s has been published on the ELRI National Relay "
 "Station. You can now log into our website %(nodeurl)s and download your "
-"prepared resource via the Browse page. "
-msgstr ""
-
-#: templates/repository/published_resource_email.html:7
-msgid ""
+"prepared resource via the Browse page. \n"
+"\n"
 "Thank you for using the ELRI services, do not hesitate to contact us for any "
-"enquiries."
+"enquiries.\n"
+"\n"
+"Best regards,\n"
+"\n"
+"The ELRI team "
 msgstr ""
-"Thank you for using the ELRI services. Do not hesitate to contact us for any "
-"enquiries."
-
-#: templates/repository/published_resource_email.html:9
-#: templates/repository/resource_download_information_email.html:6
-msgid "Best regards,"
-msgstr ""
-
-#: templates/repository/published_resource_email.html:11
-msgid "The ELRI team "
-msgstr ""
+"Dear %(username)s %(usersurname)s,\n"
+"\n"
+"Your resource %(resourcename)s has been published on the ELRI National Relay "
+"Station. You can now log into our website %(nodeurl)s and download your "
+"prepared resource via the Browse page. \n"
+"\n"
+"Thank you for using the ELRI services, do not hesitate to contact us for any "
+"enquiries.\n"
+"\n"
+"Best regards,\n"
+"\n"
+"The ELRI team \n"
+"\n"
+"___________________________________\n"
+"\n"
+"%(username)s %(usersurname)s,\n"
+"\n"
+"Tá d’acmhainn %(resourcename)s foilsithe ar an Stáisiún Relay Náisiúnta "
+"ELRI. Is féidir leat logáil isteach anois ar ár suíomh gréasáin %(nodeurl)s "
+"agus d'acmhainn ullmhaithe a íoslódáil ón leathanach Brabhsála. \n"
+"\n"
+"Go raibh maith agat as na seirbhísí ELRI a úsáid. Ná bíodh leisce ort "
+"teagmháil a dhéanamh linn má tá fiosruithe ar bith agat.\n"
+"\n"
+"Beannacht,\n"
+"\n"
+"An fhoireann ELRI"
 
 #: templates/repository/redirect.html:4 templates/repository/redirect.html:13
 msgid "Redirecting to Download Node"
@@ -2133,6 +2147,10 @@ msgid ""
 "internal errors. Trying again later might solve"
 msgstr ""
 
+#: templates/repository/resource_download_information_email.html:2
+msgid "Dear "
+msgstr ""
+
 #: templates/repository/resource_download_information_email.html:4
 #, python-format
 msgid ""
@@ -2140,6 +2158,10 @@ msgid ""
 "%(user_email)s) requests information on the language resource "
 "“%(resource)s” ([1]). You can find the request below; please reply as soon "
 "as possible."
+msgstr ""
+
+#: templates/repository/resource_download_information_email.html:6
+msgid "Best regards,"
 msgstr ""
 
 #: templates/repository/resource_download_information_email.html:7
@@ -3327,6 +3349,13 @@ msgstr ""
 #: templates/stats/usagestats.html:283
 msgid "never used"
 msgstr ""
+
+#~ msgid ""
+#~ "Thank you for using the ELRI services, do not hesitate to contact us for "
+#~ "any enquiries."
+#~ msgstr ""
+#~ "Thank you for using the ELRI services. Do not hesitate to contact us for "
+#~ "any enquiries."
 
 #~ msgid "\"OK, I aggree \""
 #~ msgstr "“OK, I agree “"

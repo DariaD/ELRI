@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 18:00+0200\n"
-"PO-Revision-Date: 2019-04-01 16:13+0200\n"
+"POT-Creation-Date: 2019-04-02 10:22+0200\n"
+"PO-Revision-Date: 2019-04-02 10:11+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -18,34 +18,35 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 
 #: templates/accounts/activation_email.html:3
-#: templates/accounts/confirmation_email.html:2
-#: templates/accounts/notification_editor_group_application_accepted_email.html:2
-#: templates/accounts/notification_editor_group_application_turned_down_email.html:2
-#: templates/accounts/notification_organization_application_accepted_email.html:2
-#: templates/accounts/notification_organization_application_turned_down_email.html:2
-#: templates/accounts/reactivation_email.html:2
-msgid "Dear "
-msgstr ""
-
-#: templates/accounts/activation_email.html:5
 #, python-format
 msgid ""
+"Dear %(firstname)s %(lastname)s,\n"
+"\n"
 "We have activated your ELRI user account \"%(shortname)s\", welcome to ELRI! "
-"You can now access our services by logging into our website %(nodeurl)s."
+"You can now access our services by logging into our website %(nodeurl)s.\n"
+"\n"
+"Best regards,\n"
+"\n"
+"The ELRI team"
 msgstr ""
-
-#: templates/accounts/activation_email.html:7
-#: templates/accounts/contact_maintainers_email.html:12
-#: templates/accounts/notification_editor_group_application_accepted_email.html:7
-#: templates/accounts/notification_editor_group_application_turned_down_email.html:7
-#: templates/accounts/notification_organization_application_accepted_email.html:7
-#: templates/accounts/notification_organization_application_turned_down_email.html:7
-msgid "Best regards,"
-msgstr ""
-
-#: templates/accounts/activation_email.html:9
-msgid "The ELRI team"
-msgstr ""
+"Dear %(firstname)s %(lastname)s,\n"
+"\n"
+"We have activated your ELRI user account \"%(shortname)s\", welcome to ELRI! "
+"You can now access our services by logging into our website %(nodeurl)s.\n"
+"\n"
+"Best regards,\n"
+"\n"
+"The ELRI team\n"
+"____________________________\n"
+"\n"
+"%(firstname)s %(lastname)s,\n"
+"Táimid tar éis do chuntas úsáideora ELRI a ghníomhachtú \"%(shortname)s\", "
+"fáilte chuig ELRI! Logáil isteach ar ár suíomh gréasáin %(nodeurl)s chun "
+"rochtain a fháil ar ár seirbhísí.\n"
+"\n"
+"Beannacht,\n"
+"\n"
+"An Fhoireann ELRI"
 
 #: templates/accounts/add_user_profile_to_editor_group.html:13
 #: templates/accounts/remove_user_profile_from_editor_group.html:12
@@ -163,6 +164,15 @@ msgstr ""
 msgid "Go back to your profile"
 msgstr ""
 
+#: templates/accounts/confirmation_email.html:2
+#: templates/accounts/notification_editor_group_application_accepted_email.html:2
+#: templates/accounts/notification_editor_group_application_turned_down_email.html:2
+#: templates/accounts/notification_organization_application_accepted_email.html:2
+#: templates/accounts/notification_organization_application_turned_down_email.html:2
+#: templates/accounts/reactivation_email.html:2
+msgid "Dear "
+msgstr ""
+
 #: templates/accounts/confirmation_email.html:4
 #, python-format
 msgid ""
@@ -227,6 +237,14 @@ msgstr ""
 #: templates/accounts/contact_maintainers_email.html:10
 #, python-format
 msgid "Please try to answer this request soon by responding to %(user_email)s."
+msgstr ""
+
+#: templates/accounts/contact_maintainers_email.html:12
+#: templates/accounts/notification_editor_group_application_accepted_email.html:7
+#: templates/accounts/notification_editor_group_application_turned_down_email.html:7
+#: templates/accounts/notification_organization_application_accepted_email.html:7
+#: templates/accounts/notification_organization_application_turned_down_email.html:7
+msgid "Best regards,"
 msgstr ""
 
 #: templates/accounts/contact_maintainers_email.html:14

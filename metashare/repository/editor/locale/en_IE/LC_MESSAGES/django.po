@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 18:00+0200\n"
-"PO-Revision-Date: 2019-03-14 15:56+0000\n"
+"POT-Creation-Date: 2019-04-02 10:22+0200\n"
+"PO-Revision-Date: 2019-04-02 11:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: repository/editor/__init__.py:113
 msgid "Upload new resource description(s)"
@@ -277,7 +277,7 @@ msgstr ""
 
 #: repository/editor/resource_editor.py:712
 msgid "Re-process selected resources"
-msgstr ""
+msgstr "Re-process selected resources | Athphróiseáil acmhainní roghnaithe "
 
 #: repository/editor/resource_editor.py:807
 #, python-format
@@ -318,7 +318,7 @@ msgstr ""
 
 #: repository/editor/resource_editor.py:835
 msgid "Published Resource"
-msgstr ""
+msgstr "Published Resource | Acmhainn foilsithe "
 
 #: repository/editor/resource_editor.py:840
 msgid ""
@@ -342,6 +342,7 @@ msgstr ""
 #: repository/editor/resource_editor.py:858
 msgid "Publish selected ingested resources"
 msgstr ""
+" Publish selected ingested resources | Foilsigh acmhainní ionghafa roghnaithe"
 
 #: repository/editor/resource_editor.py:870
 #, python-format
@@ -357,6 +358,8 @@ msgstr ""
 #: repository/editor/resource_editor.py:881
 msgid "Suspend selected published resources"
 msgstr ""
+"Suspend selected published resources | Cuir acmhainní foilsithe roghnaithe "
+"ar fionraí "
 
 #: repository/editor/resource_editor.py:924
 #: repository/editor/resource_editor.py:928
@@ -404,6 +407,8 @@ msgstr ""
 #: repository/editor/resource_editor.py:962
 msgid "Ingest selected internal resources"
 msgstr ""
+"Ingest selected internal resources | Ionghabháil acmhainní inmheánacha "
+"roghnaithe"
 
 #: repository/editor/resource_editor.py:984
 #: repository/editor/resource_editor.py:1839
@@ -414,6 +419,8 @@ msgstr ""
 #: repository/editor/resource_editor.py:999
 msgid "Export selected resource descriptions to XML"
 msgstr ""
+"Export selected resource descriptions to XML | Easpórtáil cur síos acmhainní "
+"roghnaithe go dtí XML"
 
 #: repository/editor/resource_editor.py:1055
 msgid "Cancelled deleting the selected resources."
@@ -437,6 +444,8 @@ msgstr ""
 #: repository/editor/resource_editor.py:1101
 msgid "Mark selected resources as deleted"
 msgstr ""
+"Mark selected resources as deleted | Marcáil go bhfuil acmhainní roghnaithe "
+"scriosta"
 
 #: repository/editor/resource_editor.py:1111
 msgid "Cancelled adding editor groups."
@@ -461,6 +470,8 @@ msgstr ""
 #: repository/editor/resource_editor.py:1157
 msgid "Add editor groups to selected resources"
 msgstr ""
+"Add editor groups to selected resources | Cuir grúpaí eagarthóirí le "
+"hacmhainní roghnaithe"
 
 #: repository/editor/resource_editor.py:1190
 msgid "Cancelled removing editor groups."
@@ -477,6 +488,8 @@ msgstr ""
 #: repository/editor/resource_editor.py:1220
 msgid "Remove editor groups from selected resources"
 msgstr ""
+"Remove editor groups from selected resources | Bain grúpaí eagarthóirí ó "
+"acmhainní roghnaithe"
 
 #: repository/editor/resource_editor.py:1230
 msgid "Cancelled adding owners."
@@ -500,6 +513,7 @@ msgstr ""
 #: repository/editor/resource_editor.py:1271
 msgid "Add owners to selected resources"
 msgstr ""
+"Add owners to selected resources | Cuir úinéirí le hacmhainní roghnaithe"
 
 #: repository/editor/resource_editor.py:1283
 msgid "Cancelled removing owners."
@@ -516,6 +530,7 @@ msgstr ""
 #: repository/editor/resource_editor.py:1313
 msgid "Remove owners from selected resources"
 msgstr ""
+"Remove owners from selected resources | Bain úinéirí ó acmhainní roghnaithe"
 
 #: repository/editor/resource_editor.py:1401
 #: repository/editor/resource_editor.py:1495

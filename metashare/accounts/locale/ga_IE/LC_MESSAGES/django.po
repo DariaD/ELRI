@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 16:06+0200\n"
-"PO-Revision-Date: 2019-04-01 17:39+0200\n"
+"POT-Creation-Date: 2019-04-02 10:20+0200\n"
+"PO-Revision-Date: 2019-04-02 10:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -543,7 +543,9 @@ msgstr "Baile"
 
 #: accounts/views.py:57
 msgid "Your ELRI user account has been activated"
-msgstr "Tá do chuntas úsáideora ELRI gníomhachtaithe"
+msgstr ""
+"Tá do chuntas úsáideora ELRI gníomhachtaithe | Your ELRI user account has "
+"been activated"
 
 #: accounts/views.py:64
 msgid "We have activated user account for user {}."
