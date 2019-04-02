@@ -3,7 +3,7 @@ services:
   # Django app
   elri-node1:
     container_name: elri_app
-    image: elrinrs/nationalrelaystation:DCU_R3.2.1
+    image: elrinrs/nationalrelaystation:DCU_R3.2.2
 
     secrets:
       - db.secret
