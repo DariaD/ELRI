@@ -1561,7 +1561,7 @@ msgstr ""
 #: templates/repository/api/help.html:88
 #: templates/repository/licence_agreement.html:38
 msgid "Conditions of Use"
-msgstr ""
+msgstr "Conditions of Use / Coinníollacha Úsáide"
 
 #: templates/repository/api/help.html:91 templates/repository/api/help.html:120
 #: templates/repository/api/help.html:165
@@ -1708,7 +1708,7 @@ msgstr ""
 
 #: templates/repository/api/help.html:194
 msgid "Language"
-msgstr ""
+msgstr "Language / Teanga"
 
 #: templates/repository/api/help.html:201
 msgid ""
@@ -1756,7 +1756,7 @@ msgstr ""
 
 #: templates/repository/api/help.html:317
 msgid "Resource Type"
-msgstr ""
+msgstr "Resource Type / Cineál Acmhainne"
 
 #: templates/repository/api/help.html:332
 #: templates/repository/api/help.html:355
@@ -1765,11 +1765,11 @@ msgstr ""
 
 #: templates/repository/api/help.html:341
 msgid "Publication Status"
-msgstr ""
+msgstr "Publication Status / Stádas Foilsithe"
 
 #: templates/repository/api/help.html:364
 msgid "Text Genre"
-msgstr ""
+msgstr "Text Genre / Seánra Téacs"
 
 #: templates/repository/api/help.html:386
 msgid "Get all resources of fiction genre"
@@ -1777,7 +1777,7 @@ msgstr ""
 
 #: templates/repository/api/help.html:395
 msgid "Text Type"
-msgstr ""
+msgstr "Text Type / Cineál Téacs"
 
 #: templates/repository/api/help.html:424
 msgid "Get all resources that contain tweets"

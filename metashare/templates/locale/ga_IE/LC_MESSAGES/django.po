@@ -1781,7 +1781,7 @@ msgstr "Scagairí ar Fáil"
 #: templates/repository/api/help.html:88
 #: templates/repository/licence_agreement.html:38
 msgid "Conditions of Use"
-msgstr "Coinníollacha Úsáide"
+msgstr "Coinníollacha Úsáide / Conditions of Use"
 
 #: templates/repository/api/help.html:91 templates/repository/api/help.html:120
 #: templates/repository/api/help.html:165
@@ -1928,7 +1928,7 @@ msgstr "Faigh gach acmhainn atá oiriúnach d'úsáid in DSI Europeana"
 
 #: templates/repository/api/help.html:194
 msgid "Language"
-msgstr "Teanga"
+msgstr "Teanga / Language"
 
 #: templates/repository/api/help.html:201
 msgid ""
@@ -1983,7 +1983,7 @@ msgstr "Faigh gach acmhainn chomhthreomhar"
 
 #: templates/repository/api/help.html:317
 msgid "Resource Type"
-msgstr "Cineál Acmhainne"
+msgstr "Cineál Acmhainne / Resource Type"
 
 #: templates/repository/api/help.html:332
 #: templates/repository/api/help.html:355
@@ -1992,11 +1992,11 @@ msgstr "Faigh gach corpas"
 
 #: templates/repository/api/help.html:341
 msgid "Publication Status"
-msgstr "Stádas Foilsithe"
+msgstr "Stádas Foilsithe / Publication Status"
 
 #: templates/repository/api/help.html:364
 msgid "Text Genre"
-msgstr "Seánra Téacs"
+msgstr "Seánra Téacs / Text Genre"
 
 #: templates/repository/api/help.html:386
 msgid "Get all resources of fiction genre"
@@ -2004,7 +2004,7 @@ msgstr "Faigh gach acmhainn sa seánra ficsin"
 
 #: templates/repository/api/help.html:395
 msgid "Text Type"
-msgstr "Cineál Téacs"
+msgstr "Cineál Téacs / Text Type"
 
 #: templates/repository/api/help.html:424
 msgid "Get all resources that contain tweets"
