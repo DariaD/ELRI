@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"POT-Creation-Date: 2019-04-04 12:29+0200\n"
 "PO-Revision-Date: 2019-04-02 16:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -263,13 +263,10 @@ msgid "Only ingested or error resources can be re-processed."
 msgstr ""
 
 #: repository/editor/resource_editor.py:696
+#: repository/editor/resource_editor.py:699
 msgid "Resource(s) re-processed correctly."
 msgstr ""
 "Resource(s) re-processed correctly. | Acmhainn(í) athphróiseáilte i gceart."
-
-#: repository/editor/resource_editor.py:699
-msgid "Resource(s) processed correctly."
-msgstr ""
 
 #: repository/editor/resource_editor.py:702
 msgid ""

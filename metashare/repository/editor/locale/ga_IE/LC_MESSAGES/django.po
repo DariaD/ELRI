@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"POT-Creation-Date: 2019-04-04 12:29+0200\n"
 "PO-Revision-Date: 2019-04-02 16:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -293,13 +293,10 @@ msgstr ""
 "Ní féidir ach acmhainní ionghafa nó acmhainní le hearráidí a athphróiseáil."
 
 #: repository/editor/resource_editor.py:696
+#: repository/editor/resource_editor.py:699
 msgid "Resource(s) re-processed correctly."
 msgstr ""
 "Acmhainn(í) athphróiseáilte i gceart. | Resource(s) re-processed correctly."
-
-#: repository/editor/resource_editor.py:699
-msgid "Resource(s) processed correctly."
-msgstr "Acmhainn(í) próiseáilte i gceart."
 
 #: repository/editor/resource_editor.py:702
 msgid ""
@@ -682,6 +679,9 @@ msgstr ""
 #, python-format
 msgid "%s"
 msgstr "%s"
+
+#~ msgid "Resource(s) processed correctly."
+#~ msgstr "Acmhainn(í) próiseáilte i gceart."
 
 #~ msgid "Successfully ingested %(internal)s internal resource."
 #~ msgid_plural "Successfully ingested %(internal)s internal resources."

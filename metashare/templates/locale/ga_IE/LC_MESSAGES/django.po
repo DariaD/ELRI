@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-02 14:25+0200\n"
+"POT-Creation-Date: 2019-04-04 12:29+0200\n"
 "PO-Revision-Date: 2019-04-02 14:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -77,12 +77,12 @@ msgstr "\"Tuigim\""
 msgid "\"Learn more\""
 msgstr "\"Léigh níos mó faoi\""
 
-#: templates/breadcrumbs.html:3 templates/header.html:72
-#: templates/header.html.py:73
+#: templates/breadcrumbs.html:3 templates/header.html:79
+#: templates/header.html.py:80
 msgid "Home"
 msgstr "Baile"
 
-#: templates/elri-info.html:7 templates/header.html:156
+#: templates/elri-info.html:7 templates/header.html:163
 msgid "ELRI Services"
 msgstr "Seirbhísí ELRI"
 
@@ -136,7 +136,7 @@ msgstr ""
 "do na grúpaí lena mbaineann siad a bhrabhsáil agus a íoslódáil, de réir na "
 "dtéarmaí ceadúnaithe faoina gcuirtear na hacmhainní ar fáil."
 
-#: templates/elri-info.html:19 templates/header.html:157
+#: templates/elri-info.html:19 templates/header.html:164
 msgid "Managing Language Resources"
 msgstr "Acmhainní Teanga a Bhainistiú"
 
@@ -207,7 +207,7 @@ msgstr ""
 "bheith tugtha, beidh úsáideoirí ón ngrúpa údaraithe úsáideoirí ábalta an "
 "acmhainn réitithe a íoslódáil, de réir a coinníollacha ceadúnaithe."
 
-#: templates/elri-info.html:37 templates/header.html:158
+#: templates/elri-info.html:37 templates/header.html:165
 msgid "Licensing Language Resources"
 msgstr "Acmhainní Teanga a cheadúnú"
 
@@ -382,187 +382,187 @@ msgstr ""
 "                            <br><a href=\"/repository/contribute\">Cuir ar "
 "fáil</a> do chuid sonraí féin agus athghabháil acmhainní teanga réitithe."
 
-#: templates/header.html:27 templates/header.html.py:39
+#: templates/header.html:34 templates/header.html.py:46
 msgid "Gaeilge"
 msgstr ""
 
-#: templates/header.html:32 templates/header.html.py:42
+#: templates/header.html:39 templates/header.html.py:49
 msgid "English"
 msgstr ""
 
-#: templates/header.html:75
+#: templates/header.html:82
 msgid "Browse the resources of the ELRI catalogue"
 msgstr "Brabhsáil na hacmhainní don chatalóg ELRI"
 
-#: templates/header.html:77
+#: templates/header.html:84
 msgid "Browse"
 msgstr "Brabhsáil"
 
-#: templates/header.html:79
+#: templates/header.html:86
 msgid "Contribute"
 msgstr "Cuir Acmhainní ar Fáil"
 
-#: templates/header.html:82 templates/header.html.py:90
+#: templates/header.html:89 templates/header.html.py:97
 msgid "Create/edit resource metadata or upload resource data"
 msgstr ""
 "Cruthaigh/leasaigh meiteashonraí acmhainne nó uaslódáil sonraí acmhainne"
 
-#: templates/header.html:83
+#: templates/header.html:90
 msgid "Manage"
 msgstr "Bainistigh"
 
-#: templates/header.html:85
+#: templates/header.html:92
 msgid "Create/edit your own resource metadata or upload resource data"
 msgstr ""
 "Cruthaigh/leasaigh do mheiteashonraí acmhainne féin nó uaslódáil sonraí "
 "acmhainne"
 
-#: templates/header.html:87
+#: templates/header.html:94
 msgid "Manage your own resources"
 msgstr "Bainistigh d'acmhainní féin"
 
-#: templates/header.html:92
+#: templates/header.html:99
 msgid "Manage all resources"
 msgstr "Bainistigh gach acmhainn"
 
-#: templates/header.html:98 templates/header.html.py:99
+#: templates/header.html:105 templates/header.html.py:106
 msgid "Manage LRs by ELRC deliverables"
 msgstr "Bainistigh Acmhainní Teanga de réir tháirgí insoláthartha ELRC"
 
-#: templates/header.html:104
+#: templates/header.html:111
 msgid "Create/edit person object metadata"
 msgstr "Cruthaigh/leasaigh meiteashonraí duine oibiachta"
 
-#: templates/header.html:106
+#: templates/header.html:113
 msgid "Manage person objects"
 msgstr "Bainistigh duine oibiachtaí"
 
-#: templates/header.html:107
+#: templates/header.html:114
 msgid "Create/edit organization object metadata"
 msgstr "Cruthaigh/leasaigh meiteashonraí eagraíochta oibiachta"
 
-#: templates/header.html:109
+#: templates/header.html:116
 msgid "Manage organization objects"
 msgstr "Bainistigh eagraíocht oibiachtaí"
 
-#: templates/header.html:110
+#: templates/header.html:117
 msgid "Create/edit project object metadata"
 msgstr "Cruthaigh/leasaigh meiteashonraí tionscadail oibiachta"
 
-#: templates/header.html:112
+#: templates/header.html:119
 msgid "Manage project objects"
 msgstr "Bainistigh tionscadal oibiachtaí"
 
-#: templates/header.html:113
+#: templates/header.html:120
 msgid "Create/edit document/paper object metadata"
 msgstr "Cruthaigh/leasaigh meiteashonraí doiciméid/páipéir oibiachta"
 
-#: templates/header.html:115
+#: templates/header.html:122
 msgid "Manage document objects"
 msgstr "Bainistigh doiciméad oibiachtaí"
 
-#: templates/header.html:117
+#: templates/header.html:124
 msgid "Upload XML resource descriptions"
 msgstr "Uaslódáil tuairiscí acmhainne XML"
 
-#: templates/header.html:118
+#: templates/header.html:125
 msgid "Upload resource descriptions"
 msgstr "Uaslódáil tuairiscí acmhainne"
 
-#: templates/header.html:124
+#: templates/header.html:131
 msgid "Manage users and groups"
 msgstr "Bainistigh úsáideoirí agus grúpaí"
 
-#: templates/header.html:125
+#: templates/header.html:132
 msgid "Administration"
 msgstr "Riarachán"
 
-#: templates/header.html:149
+#: templates/header.html:156
 msgid "View various statistics for this META-SHARE Node"
 msgstr "Amharc ar staitisticí éagsúla don nód META-SHARE seo"
 
-#: templates/header.html:151
+#: templates/header.html:158
 msgid "Statistics"
 msgstr "Staitisticí"
 
-#: templates/header.html:154 templates/repository/resource_view/usage.html:3
+#: templates/header.html:161 templates/repository/resource_view/usage.html:3
 msgid "Usage"
 msgstr "Úsáid"
 
-#: templates/header.html:163
+#: templates/header.html:170
 msgid "Terms of Service"
 msgstr "Téarmaí Seirbhíse"
 
-#: templates/header.html:165
+#: templates/header.html:172
 msgid "Use of ELRI Services"
 msgstr "Úsáid Seirbhísí ELRI"
 
-#: templates/header.html:166
+#: templates/header.html:173
 msgid "Sharing of Language Resources"
 msgstr "Roinnt Acmhainní Teanga"
 
-#: templates/header.html:167
+#: templates/header.html:174
 msgid "Privacy"
 msgstr "Príobháideachas"
 
-#: templates/header.html:168
+#: templates/header.html:175
 msgid "Data Protection"
 msgstr "Cosaint Sonraí"
 
-#: templates/header.html:169
+#: templates/header.html:176
 msgid "Data Protection Statement"
 msgstr "Ráiteas Cosanta Sonraí"
 
-#: templates/header.html:170
+#: templates/header.html:177
 msgid "Notice and Takedown Policy"
 msgstr "Polasaí Fógartha agus Tógála Síos"
 
-#: templates/header.html:174 templates/header.html.py:175 templates/help.html:8
+#: templates/header.html:181 templates/header.html.py:182 templates/help.html:8
 msgid "Help"
 msgstr "Cabhair"
 
-#: templates/header.html:178
+#: templates/header.html:185
 msgid "Profile settings and actions"
 msgstr "Socruithe agus gníomhartha próifíle"
 
-#: templates/header.html:186
+#: templates/header.html:193
 msgid "View your recent actions"
 msgstr "Amharc ar do ghníomhartha deireanacha"
 
-#: templates/header.html:187
+#: templates/header.html:194
 msgid "View or edit your personal details"
 msgstr "Amharc ar nó leasaigh do shonraí pearsanta"
 
-#: templates/header.html:188
+#: templates/header.html:195
 msgid "Edit your profile"
 msgstr "Cuir do phróifíl in eagar"
 
-#: templates/header.html:189
+#: templates/header.html:196
 msgid "Change your password"
 msgstr "Athraigh do phasfhocal"
 
-#: templates/header.html:201
+#: templates/header.html:208
 msgid "Apply for eDelivery membership"
 msgstr "Cuir isteach ar bhallraíocht eDelivery"
 
-#: templates/header.html:201
+#: templates/header.html:208
 msgid "Apply for ELRC-SHARE eDelivery membership"
 msgstr "Cuir isteach ar bhallraíocht eDelivery ELRC-SHARE"
 
-#: templates/header.html:206 templates/header.html.py:207
+#: templates/header.html:213 templates/header.html.py:214
 #: templates/repository/api/help.html:31
 msgid "ELRC-SHARE RESTful API"
 msgstr "API ELRC-SHARE RESTful"
 
-#: templates/header.html:216
+#: templates/header.html:223
 msgid "Logout"
 msgstr "Logáil amach"
 
-#: templates/header.html:219
+#: templates/header.html:226
 msgid "Register"
 msgstr "Cláraigh"
 
-#: templates/header.html:221 templates/login.html:19
+#: templates/header.html:228 templates/login.html:19
 msgid "Login"
 msgstr "Logáil isteach"
 
