@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-04 13:42+0200\n"
-"PO-Revision-Date: 2019-04-04 18:01+0200\n"
+"PO-Revision-Date: 2019-04-08 14:19+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -58,7 +58,7 @@ msgstr ""
 
 #: templates/back.html:5
 msgid "ELRI National Relay Station"
-msgstr "Stáisiún Athsheachadta Náisiúnta ELRI"
+msgstr "Stáisiún Athsheachadta Náisiúnta na hÉireann ELRI"
 
 #: templates/base.html:54
 msgid ""
@@ -292,7 +292,7 @@ msgstr "Ceadúnais Sonraí Náisiúnta"
 
 #: templates/footer.html:7
 msgid "ELRI National Relay Station "
-msgstr "Stáisiún Athsheachadta Náisiúnta ELRI "
+msgstr "Stáisiún Athsheachadta Náisiúnta na hÉireann ELRI"
 
 #: templates/footer.html:8
 msgid ""
@@ -300,9 +300,11 @@ msgid ""
 "SHARE</a> and <a href=\"https://elrc-share.eu/\" target=\"_blank\">ELRC-"
 "SHARE</a>"
 msgstr ""
-"cumhachtaithe ag <a href=\"http://meta-share.org/\" target=\"_blank\">META-"
-"SHARE</a> agus <a href=\"https://elrc-share.eu/\" target=\"_blank\">ELRC-"
-"SHARE</a>"
+"Bainistithe ag <a href=\"https://www.adaptcentre.ie\">ADAPT</a> agus "
+"óstaithe in <a href=\"https://www.computing.dcu.ie/\">OCBÁC</a>\n"
+"<br>cumhachtaithe ag <a href=\"http://meta-share.org/\" target=\"_blank"
+"\">META-SHARE</a> agus <a href=\"https://elrc-share.eu/\" target=\"_blank"
+"\">ELRC-SHARE</a>"
 
 #: templates/footer.html:12
 msgid "Privacy Policy"
