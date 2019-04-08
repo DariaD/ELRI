@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-04 13:42+0200\n"
-"PO-Revision-Date: 2019-04-02 15:17+0200\n"
+"PO-Revision-Date: 2019-04-08 16:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -1396,8 +1396,8 @@ msgstr ""
 #: repository/views.py:341
 msgid "Request for information regarding a resource"
 msgstr ""
-"Request for information regarding a resource | Iarratas eolais maidir le "
-"hacmhainn"
+"Iarratas eolais maidir le hacmhainn | Request for information regarding a "
+"resource "
 
 #: repository/views.py:349
 msgid "There was an error sending out the request email."
@@ -1444,7 +1444,7 @@ msgstr ""
 
 #: repository/views.py:1192
 msgid "New submitted contributions"
-msgstr "New submitted contributions | Ábhar nua curtha ar fáil"
+msgstr "Ábhar nua curtha ar fáil | New submitted contributions "
 
 #: repository/views.py:1200
 msgid ""

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-04-04 13:42+0200\n"
-"PO-Revision-Date: 2019-04-04 13:46+0200\n"
+"PO-Revision-Date: 2019-04-08 15:48+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -98,7 +98,7 @@ msgstr ""
 
 #: accounts/admin.py:311 accounts/admin.py:779
 msgid "Application accepted"
-msgstr "Application accepted | Iarratas glactha "
+msgstr "Iarratas glactha  | Application accepted"
 
 #: accounts/admin.py:318 accounts/admin.py:786
 msgid "There was an error sending out an application acceptance e-mail."
@@ -128,7 +128,7 @@ msgstr ""
 
 #: accounts/admin.py:370 accounts/admin.py:830
 msgid "Application turned down"
-msgstr "Application declined | Iarratas diúltaithe "
+msgstr "Iarratas diúltaithe  | Application declined "
 
 #: accounts/admin.py:378 accounts/admin.py:838
 msgid ""
@@ -330,7 +330,7 @@ msgstr ""
 
 #: accounts/admin.py:1145 accounts/admin.py:1193
 msgid "ELRI eDelivery application"
-msgstr "ELRI eDelivery application | Iarratas eDelivery ELRI"
+msgstr "Iarratas eDelivery ELRI | ELRI eDelivery application "
 
 #: accounts/admin.py:1157
 msgid "{} cannot be rejected. Only \"PENDING\" applications can be rejected"
@@ -561,8 +561,8 @@ msgstr ""
 #: accounts/views.py:57
 msgid "Your ELRI user account has been activated"
 msgstr ""
-"Your ELRI user account has been activated | Tá do chuntas úsáideora ELRI "
-"gníomhachtaithe "
+"Tá do chuntas úsáideora ELRI gníomhachtaithe  | Your ELRI user account has "
+"been activated "
 
 #: accounts/views.py:64
 msgid "We have activated user account for user {}."
@@ -571,7 +571,8 @@ msgstr ""
 #: accounts/views.py:91
 #, python-format
 msgid "[ELRI] Contact Form Request: %s"
-msgstr "[ELRI] Contact Form Request: | Iarratas ar Fhoirm Teagmhála [ELRI]: %s"
+msgstr ""
+"Iarratas ar Fhoirm Teagmhála [ELRI]: | [ELRI] Contact Form Request:  %s"
 
 #: accounts/views.py:98
 #, python-format
@@ -594,7 +595,7 @@ msgstr ""
 
 #: accounts/views.py:175
 msgid "New user registration"
-msgstr "New user registration | Clárúchán úsáideora nua"
+msgstr "Clárúchán úsáideora nua | New user registration "
 
 #: accounts/views.py:183
 msgid ""
@@ -638,7 +639,8 @@ msgstr ""
 
 #: accounts/views.py:332
 msgid "New editor membership request"
-msgstr "New editor membership request | Iarratas ar bhallríocht eagarthóra nua"
+msgstr ""
+"Iarratas ar bhallríocht eagarthóra nua | New editor membership request "
 
 #: accounts/views.py:339
 msgid ""
@@ -692,8 +694,8 @@ msgstr ""
 #: accounts/views.py:486
 msgid "New organization membership request"
 msgstr ""
-"New organisation membership request | Iarratas ar bhallraíocht eagraíochta "
-"nua"
+"Iarratas ar bhallraíocht eagraíochta nua | New organisation membership "
+"request "
 
 #: accounts/views.py:493
 msgid ""
@@ -723,8 +725,8 @@ msgstr "Apply for organisation membership"
 #: accounts/views.py:550
 msgid "Please confirm your ELRI password reset request"
 msgstr ""
-"Please confirm your ELRI password reset request  | Deimhnigh d’iarratas ar "
-"athshocrú pasfhocail ELRI"
+"Deimhnigh d’iarratas ar athshocrú pasfhocail ELRI | Please confirm your ELRI "
+"password reset request  "
 
 #: accounts/views.py:561
 msgid ""
