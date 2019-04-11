@@ -27,7 +27,7 @@ from django.views.decorators.csrf import csrf_protect
 
 
 from metashare import settings
-from metashare.settings import STATIC_URL,LOG_HANDLER,ROOT_PATH, DJANGO_URL
+from metashare.settings import STATIC_URL,LOG_HANDLER,ROOT_PATH, DJANGO_URL, CONTRIBUTION_FORM_DATA
 
 from metashare.accounts.models import EditorGroup, EditorGroupManagers
 from metashare.repository.editor.editorutils import FilteredChangeList, AllChangeList
@@ -747,7 +747,10 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             access_links=STATIC_URL + 'metashare/licences/publicDomain.txt'
                         if l == 'openUnder-PSI':
                             access_links=STATIC_URL + 'metashare/licences/openUnderPSI.txt'
-                        
+                        if l == 'non-standard/Other_Licence/Terms' :
+                            #access_links=STATIC_URL + 'metashare/licences/openUnderPSI.txt'
+                            unprocessed_dir = "/unprocessed"
+                            access_links=unprocessed_dir+'/'+u'_'.join(resource_name[0].split())+'_licence.pdf'
                         #add access file to the lr.archive.zip file 
                         licence_path=ROOT_PATH+access_links
                         
