@@ -673,6 +673,30 @@ class ResourceModelAdmin(SchemaModelAdmin):
                     #if there are other files: add them as well
                     add_files2zip(resource_other_path,processed_zip)
                     
+                    #add licence file
+                    resource_info=obj.export_to_elementtree()
+                    resource_name=[u.find('resourceName').text for u in resource_info.iter('identificationInfo')]
+                    
+                    user_membership = _get_user_membership(request.user) 
+                    licences = _get_licences(obj,user_membership)
+                    access_links=''
+                    for l in licences:
+                        if l == 'publicDomain':
+                            access_links=STATIC_URL + 'metashare/licences/publicDomain.txt'
+                        elif l == 'openUnder-PSI':
+                            access_links=STATIC_URL + 'metashare/licences/openUnderPSI.txt'
+                        elif l == 'non-standard/Other_Licence/Terms' :
+                            unprocessed_dir = "/unprocessed"
+                            access_links=unprocessed_dir+'/'+u'_'.join(resource_name[0].split())+'_licence.pdf'
+                        else:
+                            access_links,attr=LICENCEINFOTYPE_URLS_LICENCE_CHOICES[l]  #(l)#, None)
+                            LOGGER.info(access_links)
+                    #add access file to the lr.archive.zip file 
+                    licence_path=ROOT_PATH+access_links
+                    path, filename = os.path.split(licence_path)
+                    processed_zip.write(licence_path,'license_'+filename)
+                    
+                    
                     #close zip file with processed resources
                     processed_zip.close()
                     #if pre_status == INGESTED or pre_status==ERROR :
@@ -737,10 +761,13 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             lic_restriction=lic.find('restrictionsOfUse').text
                         licences_name.append(lic_name)
                         licences_restriction.append(lic_restriction)
-                    user_membership = _get_user_membership(request.user)    
-                    licences = _get_licences(obj,user_membership)    
                     resource_path=obj.storage_object._storage_folder()
                     lr_archive_zip=zipfile.ZipFile(resource_path+'/archive.zip', mode='a')
+                    '''licence file is added after ingesting the resource
+                    user_membership = _get_user_membership(request.user)    
+                    licences = _get_licences(obj,user_membership)    
+                    
+                    
                     for l in licences_name:
                         l_info, access_links, access = licences[l]
                         if l == 'publicDomain':
@@ -756,7 +783,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                         
                         path, filename = os.path.split(licence_path)
                         lr_archive_zip.write(licence_path,'license_'+filename)
-                        
+                    '''    
                     #attribution text
                     attr_text=''
                     for at in resource_info.iter('attributionText'):
