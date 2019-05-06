@@ -690,8 +690,9 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             #unprocessed_dir = "/unprocessed"
                             access_links= STATIC_ROOT + '/metashare/licences/'+u'_'.join(resource_name[0].split())+'_licence.pdf'#openUnderPSI.txt'
                         else:
-                            access_links,attr=STATIC_ROOT+LICENCEINFOTYPE_URLS_LICENCE_CHOICES[l]  #(l)#, None)
-                            LOGGER.info(access_links)
+                            #LOGGER.info(LICENCEINFOTYPE_URLS_LICENCE_CHOICES[l])
+                            access_links,attr=LICENCEINFOTYPE_URLS_LICENCE_CHOICES[l]  
+                            access_links = STATIC_ROOT +'/'+access_links
                     #add access file to the lr.archive.zip file 
                     licence_path=access_links
                     path, filename = os.path.split(licence_path)
