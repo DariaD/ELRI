@@ -683,9 +683,9 @@ class ResourceModelAdmin(SchemaModelAdmin):
                     access_links=''
                     for l in licences:
                         if l == 'publicDomain':
-                            access_links=STATIC_ROOT + 'metashare/licences/publicDomain.txt'
+                            access_links=STATIC_ROOT + '/metashare/licences/publicDomain.txt'
                         elif l == 'openUnder-PSI':
-                            access_links=STATIC_ROOT + 'metashare/licences/openUnderPSI.txt'
+                            access_links=STATIC_ROOT + '/metashare/licences/openUnderPSI.txt'
                         elif l == 'non-standard/Other_Licence/Terms' :
                             #unprocessed_dir = "/unprocessed"
                             access_links= STATIC_ROOT + '/metashare/licences/'+u'_'.join(resource_name[0].split())+'_licence.pdf'#openUnderPSI.txt'
