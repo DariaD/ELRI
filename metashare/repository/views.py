@@ -182,6 +182,8 @@ def download(request, object_id, **kwargs):
                 if licence_choice == 'non-standard/Other_Licence/Terms':
                     res_name=resource.identificationInfo.get_default_resourceName()
                     _dict['licence_path']=STATIC_URL + 'metashare/licences/'+u'_'.join(res_name.split())+'_licence.pdf'
+                if licence_choice == 'publicDomain' or licence_choice == "openUnder-PSI":
+                    _dict['licence_path']=''
                 return render_to_response('repository/licence_agreement.html',
                                           _dict, context_instance=RequestContext(request))
         elif licence_choice and not licence_choice in licences:
@@ -203,7 +205,9 @@ def download(request, object_id, **kwargs):
                  'l_conditions': l_info.restrictionsOfUse}
         if licence_choice == 'non-standard/Other_Licence/Terms':
             res_name=resource.identificationInfo.get_default_resourceName()
-            _dict['licence_path']=STATIC_URL + 'metashare/licences/'+u'_'.join(res_name.split())+'_licence.pdf'        
+            _dict['licence_path']=STATIC_URL + 'metashare/licences/'+u'_'.join(res_name.split())+'_licence.pdf'     
+        if licence_choice == 'publicDomain' or licence_choice == "openUnder-PSI":
+            _dict['licence_path']=''    
         return render_to_response('repository/licence_agreement.html',
                                   _dict, context_instance=RequestContext(request))
     elif len(licences) > 1:
