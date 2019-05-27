@@ -4,7 +4,8 @@
 {% load i18n %}
 
 {% spaceless %}
-    <html lang="en">
+	{% get_current_language as LANGUAGE_CODE %}
+    <html lang="{{ LANGUAGE_CODE }}">
     <head>
         {% analytical_head_top %}
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -23,9 +24,9 @@
               media="screen">
         <link rel="stylesheet" href="{% static "metashare/css/screen.css" %}" type="text/css" media="screen">
         <link rel="stylesheet" href="{% static "metashare/css/typo.css" %}" type="text/css" media="screen">
-        <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
-        <script type="text/javascript" src="{% static "metashare/js/jquery-1.7.1.min.js" %}"></script>
-        <script type="text/javascript" src="{% static "metashare/js/metashare.js" %}"></script>
+        <script src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+        <script src="{% static "metashare/js/jquery-1.7.1.min.js" %}"></script>
+        <script src="{% static "metashare/js/metashare.js" %}"></script>
         <script src="https://use.fontawesome.com/92573ad434.js"></script>
 
         {% block links %}{% endblock %}{% analytical_head_bottom %}
@@ -82,7 +83,7 @@
         </div>
     </div>
     {% include "footer.html" %}
-    <script type="text/javascript">addFormHelper()</script>
+    <script>addFormHelper()</script>
     {% analytical_body_bottom %}
     </body>
     </html>
