@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-04 13:42+0200\n"
+"POT-Creation-Date: 2019-05-30 13:52+0200\n"
 "PO-Revision-Date: 2019-04-02 15:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1670,26 +1670,32 @@ msgstr "Ní ghlacann an réimse seo ach le luachanna uimhriúla (gan chamóga)"
 msgid "Please edit the attribution text template"
 msgstr "Leasaigh an teimpléad don téacs admhála"
 
-#: repository/views.py:341
+#: repository/validators.py:102
+#, fuzzy
+#| msgid "Not a valid emailAddress value."
+msgid "Enter a valid email address."
+msgstr "Luach seoladh ríomhphoist nach bhfuil bailí."
+
+#: repository/views.py:351
 msgid "Request for information regarding a resource"
 msgstr ""
 "Iarratas eolais maidir le hacmhainn | Request for information regarding a "
 "resource"
 
-#: repository/views.py:349
+#: repository/views.py:359
 msgid "There was an error sending out the request email."
 msgstr "Tharla earráid agus an ríomhphost iarratais á sheoladh amach."
 
-#: repository/views.py:351
+#: repository/views.py:361
 msgid "You have successfully sent a message to the resource contact person."
 msgstr ""
 "Tá tú tar éis teachtaireacht a sheoladh go dtí an teagmhálaí acmhainne."
 
-#: repository/views.py:1040
+#: repository/views.py:1050
 msgid "N/A"
 msgstr "N/B"
 
-#: repository/views.py:1101
+#: repository/views.py:1111
 msgid ""
 "\n"
 "                Only files of type DOC(X), ODT, RTF, PDF, TMX, SDLTM, XML,\n"
@@ -1708,7 +1714,7 @@ msgstr ""
 "gcomhaid ZIP agus\n"
 "                triall arís é le do thoil."
 
-#: repository/views.py:1140
+#: repository/views.py:1152
 msgid ""
 "\n"
 "                            Your request could not be completed.\"\n"
@@ -1722,7 +1728,7 @@ msgstr ""
 "truallaithe, nó\n"
 "                            ní comhad ZIP bailí é."
 
-#: repository/views.py:1149
+#: repository/views.py:1161
 msgid ""
 "\n"
 "                            Only files of type DOC(X), ODT, RTF, PDF, TMX, "
@@ -1743,11 +1749,11 @@ msgstr ""
 "cineáil seo ón gcomhaid ZIP, agus\n"
 "                            triall arís é le do thoil."
 
-#: repository/views.py:1192
+#: repository/views.py:1204
 msgid "New submitted contributions"
 msgstr "Ábhar nua curtha ar fáil | New submitted contributions"
 
-#: repository/views.py:1200
+#: repository/views.py:1212
 msgid ""
 "\n"
 "                Thank you for sharing, your data have been successfully "
@@ -1761,7 +1767,7 @@ msgstr ""
 "bhfoireann ELRI. Gheobhaidh tú rphost nuair a bheas an acmhainn réidh don "
 "íoslódáil."
 
-#: repository/views.py:1209
+#: repository/views.py:1221
 msgid ""
 "\n"
 "                The file you are trying to upload exceeds the size limit. If "

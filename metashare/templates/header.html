@@ -1,20 +1,20 @@
 {% load static from staticfiles %}
 {% load is_member i18n %}
 {% spaceless %}
-
+<a href="#main-content" lang="en">{% trans 'Go to the web page main content.' %}</a>
     <div id="header">
     <div id=lang_selector style=" position: relative;">
 			{% get_current_language as curr_lang %}
 			{% get_available_languages as LANGUAGES %}
 			
-				 <div id=language title="Gaeilge" style="float: left; padding: 10px 17px ;{% if 'ga-ie' == curr_lang %}background: #cde8f2;{% endif %}">
+				 <div id=language_ga title="Gaeilge" style="float: left; padding: 10px 17px ;{% if 'ga-ie' == curr_lang %}background: #cde8f2;{% endif %}">
 					<a href="/switch_i18n/?language=ga-ie&path={{request.get_full_path}}"
 					class="{% if 'ga-ie' == curr_lang %}selected{% endif %}"
 					language="ga-ie" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">
 						Gaeilge
 					</a>
 				</div >
-				 <div id=language title="English" style="float: left; padding: 10px 17px ;{% if 'en-ie' == curr_lang %}background: #cde8f2;{% endif %}">
+				 <div id=language_en title="English" style="float: left; padding: 10px 17px ;{% if 'en-ie' == curr_lang %}background: #cde8f2;{% endif %}">
 					<a href="/switch_i18n/?language=en-ie&path={{request.get_full_path}}"
 					class="{% if 'en-ie' == curr_lang %}selected{% endif %}"
 					language="en-ie" style="font: 12px Tahoma, Arial; text-decoration: none; color: #000 !important; font-weight: bold;">

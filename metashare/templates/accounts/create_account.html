@@ -11,8 +11,7 @@
 
 {% block content %}
 {% spaceless %}
-<!--<h2>{% blocktrans %}Create Account{% endblocktrans %}</h2>-->
-<h2>{% trans 'Create Account' %}</h2>
+<h1 style="font-size: 20pt; line-height:150%; margin: '20px 0px 20px 0px'; font-weight: normal; color:#111; display:block; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start:0px; margin-inline-end:0px;" id="main-content">{% trans 'Create Account' %}</h1>
 <div class="content_box">
   <form class="form_helper" method="post" action="{% url 'metashare.accounts.views.create' %}">
     {% csrf_token %}
@@ -29,7 +28,7 @@
             {% if field.html_name == "organization_address" or field.html_name == "organization_phone_number" or field.html_name == "position"  %}
                {{ field.label_tag }}  {{ field }}
             {% else %}
-                <span style='color:red;'>*</span> {{ field.label_tag }}  {{ field }}
+                <span style='color:red;' aria-label='Required Field'>*</span> {{ field.label_tag }}  {{ field }}
             {% endif %}
       {% endif %}
       <div>{# for spacing and for clearing the last float environments #}</div>

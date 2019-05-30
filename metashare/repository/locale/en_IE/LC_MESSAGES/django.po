@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-04 13:42+0200\n"
+"POT-Creation-Date: 2019-05-30 13:52+0200\n"
 "PO-Revision-Date: 2019-04-08 16:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1393,25 +1393,29 @@ msgstr ""
 msgid "Please edit the attribution text template"
 msgstr ""
 
-#: repository/views.py:341
+#: repository/validators.py:102
+msgid "Enter a valid email address."
+msgstr ""
+
+#: repository/views.py:351
 msgid "Request for information regarding a resource"
 msgstr ""
 "Iarratas eolais maidir le hacmhainn | Request for information regarding a "
 "resource "
 
-#: repository/views.py:349
+#: repository/views.py:359
 msgid "There was an error sending out the request email."
 msgstr ""
 
-#: repository/views.py:351
+#: repository/views.py:361
 msgid "You have successfully sent a message to the resource contact person."
 msgstr ""
 
-#: repository/views.py:1040
+#: repository/views.py:1050
 msgid "N/A"
 msgstr ""
 
-#: repository/views.py:1101
+#: repository/views.py:1111
 msgid ""
 "\n"
 "                Only files of type DOC(X), ODT, RTF, PDF, TMX, SDLTM, XML,\n"
@@ -1421,7 +1425,7 @@ msgid ""
 "                that do not belong to one of these types."
 msgstr ""
 
-#: repository/views.py:1140
+#: repository/views.py:1152
 msgid ""
 "\n"
 "                            Your request could not be completed.\"\n"
@@ -1430,7 +1434,7 @@ msgid ""
 "                            not a valid '.zip' file."
 msgstr ""
 
-#: repository/views.py:1149
+#: repository/views.py:1161
 msgid ""
 "\n"
 "                            Only files of type DOC(X), ODT, RTF, PDF, TMX, "
@@ -1442,11 +1446,11 @@ msgid ""
 "                            that do not belong to one of these types."
 msgstr ""
 
-#: repository/views.py:1192
+#: repository/views.py:1204
 msgid "New submitted contributions"
 msgstr "Ábhar nua curtha ar fáil | New submitted contributions "
 
-#: repository/views.py:1200
+#: repository/views.py:1212
 msgid ""
 "\n"
 "                Thank you for sharing, your data have been successfully "
@@ -1460,7 +1464,7 @@ msgstr ""
 "the ELRI team. You will be notified by email when the resulting resource is "
 "available for download."
 
-#: repository/views.py:1209
+#: repository/views.py:1221
 msgid ""
 "\n"
 "                The file you are trying to upload exceeds the size limit. If "
