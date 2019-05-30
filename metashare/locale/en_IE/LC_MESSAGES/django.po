@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 13:52+0200\n"
+"POT-Creation-Date: 2019-05-30 16:59+0200\n"
 "PO-Revision-Date: 2019-05-30 13:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -34,12 +34,8 @@ msgid ""
 msgstr ""
 "An error occurred while trying to send a notification email to the reviewers."
 
-#: local_settings.py:42
-msgid "Gaelic"
-msgstr ""
-
-#: local_settings.py:44
-msgid "English"
+#: local_settings.py:43
+msgid "Spanish"
 msgstr ""
 
 #: storage/models.py:113
