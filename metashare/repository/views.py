@@ -1435,7 +1435,7 @@ def create_description(xml_file, type, base, user):
                                                              (metadataCreationDate=datetime.date.today(),
                                                               metadataLastDateUpdated=datetime.date.today()))
     # create distributionInfo object
-    distribution = distributionInfoType_model.objects.create(
+    '''distribution = distributionInfoType_model.objects.create(
         availability=u"underReview",
         PSI=False)
     licence_obj, _ = licenceInfoType_model.objects.get_or_create(
@@ -1443,7 +1443,26 @@ def create_description(xml_file, type, base, user):
     distribution.licenceInfo.add(licence_obj)
     resource.distributioninfotype_model_set.add(distribution)
     #LOGGER.info(len(resource.distributioninfotype_model_set.all()))
+    resource.save()'''
+    
+    # create distributionInfo object
+    availability = u"underReview"
+    psi = False
+    licence = u"underReview"
+    if info['licence']:
+        #by default: our availability is always underReview
+        #availability = u'available'
+        licence = info['licence']
+        if info['licence'] == u'openUnder-PSI':
+            psi = True
+    distribution = distributionInfoType_model.objects.create(
+        availability=availability,
+        PSI=psi)
+    licence_obj = licenceInfoType_model.objects.create(licence=licence)
+    distribution.licenceInfo.add(licence_obj)
+    resource.distributioninfotype_model_set.add(distribution)
     resource.save()
+
 
     # also add the designated maintainer, based on the country of the country of the donor
     resource.owners.add(user.id)
