@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:58+0200\n"
-"PO-Revision-Date: 2019-04-04 17:53+0200\n"
+"POT-Creation-Date: 2019-06-06 13:53+0200\n"
+"PO-Revision-Date: 2019-06-06 14:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -293,7 +293,7 @@ msgstr ""
 
 #: templates/accounts/create_account.html:8
 msgid "Please fill in all fields to create your account."
-msgstr "Líon gach réimse chun do chuntas a chruthú."
+msgstr "Earráid: Líon gach réimse chun do chuntas a chruthú."
 
 #: templates/accounts/create_account.html:14
 #: templates/accounts/create_account.html:36
@@ -309,6 +309,10 @@ msgid ""
 msgstr ""
 "Glacaim leis na <a target=\"_blank\" href=\"%(elri_tos)s\">Téarmaí Seirbhíse "
 "ELRI </a>."
+
+#: templates/accounts/create_account.html:31
+msgid "Required Field"
+msgstr "Tá an réimse seo de dhíth."
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6
 #: templates/accounts/delete_organization_application_selected_confirmation.html:6

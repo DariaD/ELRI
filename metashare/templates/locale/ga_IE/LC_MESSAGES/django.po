@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:58+0200\n"
-"PO-Revision-Date: 2019-05-30 14:25+0200\n"
+"POT-Creation-Date: 2019-06-06 13:53+0200\n"
+"PO-Revision-Date: 2019-06-06 13:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -65,12 +65,16 @@ msgid ""
 "ELRI National Relay Station: a repository to store, search and retrieve "
 "Language Resources."
 msgstr ""
+"Stáisiún Athsheachadta Náisiúnta ELRI: stór chun Acmhainní Teanga a stóráil, "
+"a chuardach agus a aisghabháil."
 
 #: templates/base.html:16
 msgid ""
 "ELRI, National Relay Station, language resources, translation memories, "
 "Connecting Europe Facility "
 msgstr ""
+"Stáisiún Athsheachadta Náisiúnta, acmhainní teanga, cuimhní aistriúcháin, an "
+"tSaoráid um Chónascadh na hEorpa"
 
 #: templates/base.html:55
 msgid ""
@@ -91,7 +95,7 @@ msgstr "\"Léigh níos mó faoi\""
 
 #: templates/base.html:69
 msgid "Go to the web page main content."
-msgstr ""
+msgstr "Téigh go dtí príomh-inneachar an leathanaigh ghréasáin."
 
 #: templates/breadcrumbs.html:3 templates/header.html:79
 #: templates/header.html.py:80
@@ -170,40 +174,28 @@ msgstr ""
 "seo, ba chóir d'úsáideoirí an nós imeachta a leanas a leanúint:"
 
 #: templates/elri-info.html:23
-#, fuzzy
-#| msgid ""
-#| "New users should first register <a href=\"../accounts/create/\">here</a>. "
-#| "Once your account credentials have been validated, you can log in and "
-#| "either search (via the Browse Resources menu) or contribute ((via the "
-#| "Contribute Resources menu) language resources."
 msgid ""
 "New users should first <a href=\"../accounts/create/\">register</a>. Once "
 "your account credentials have been validated, you can log in and either "
 "search (via the Browse Resources menu) or contribute ((via the Contribute "
 "Resources menu) language resources."
 msgstr ""
-"Ba chóir d'úsáideoirí nua clárú <a href=\"../accounts/create/\">anseo</a> ar "
-"dtús. Nuair atá dintiúir do chuntais deimhnithe, is féidir leat logáil "
-"isteach agus cuardach (tríd an roghchlár Brabhsáil Acmhainní) nó acmhainní "
-"teanga a chur ar fáil (tríd an roghchlár Cuir Acmhainní ar Fáil)."
+"Ba chóir d'úsáideoirí nua <a href=\"../accounts/create/\">register</a> ar "
+"dtús. Nuair atá faisnéis aitheantais do chuntais bailíochtaithe is féidir "
+"leat logáil isteach agus acmhainní teanga a chuardach (trí roghchlár "
+"Brabhsáil Acmhainní) nó a roinnt (trí roghchlár Roinn Acmhainní)."
 
 #: templates/elri-info.html:25
-#, fuzzy
-#| msgid ""
-#| "For each language resource, you will be asked to provide the languages of "
-#| "its content, a short title, the group with which you wish to share the "
-#| "resource, and the associated licensing conditions (see <a href="
-#| "\"#Licensing_LRs\">below</a>)."
 msgid ""
 "For each language resource, you will be asked to provide the languages of "
 "its content, a short title, the group with which you wish to share the "
 "resource, and the associated licensing conditions (see <a href="
 "\"#Licensing_LRs\" title=\"licensing contitions\">below</a>)."
 msgstr ""
-"Do gach acmhainn teanga, iarrfar ort teangacha a inneachair a chlárú, mar "
-"aon le teideal gearr, an grúpa is mian leat an acmhainn a roinnt leis, agus "
-"na coinníollacha ceadúnaithe a bhaineann leis (féach <a href=\"#Licensing_LRs"
-"\">thíos</a>)."
+"I gcás gach acmhainn teanga, iarrfar ort teangacha an inneachair a chur ar "
+"fáil mar aon le teideal gearr, an grúpa lenar mian leat an acmhainn a "
+"roinnt, agus na coinníollacha ceadúnaithe a bhaineann léi (féach <a href="
+"\"#Licensing_LRs\" title=\"licensing contitions\">thíos</a>)."
 
 #: templates/elri-info.html:27
 msgid ""
@@ -344,6 +336,8 @@ msgid ""
 "Go to the Creative Commons Attribution Non-Commercial Share Alike 4.0 "
 "International license information page."
 msgstr ""
+"Téigh go dtí leathanach eolais ceadúnas Idirnáisiúnta Creative Commons "
+"Ceadúnas Sannta Neamhthráchtála Comhroinnte 4.0."
 
 #: templates/footer.html:14
 msgid "Privacy Policy"
@@ -430,6 +424,10 @@ msgstr ""
 #: templates/header.html:38 templates/header.html.py:48
 msgid "English"
 msgstr ""
+
+#: templates/header.html:70
+msgid "Go to the ELRI project homepage"
+msgstr "Téigh go dtí leathanach baile togra an ELRI"
 
 #: templates/header.html:82
 msgid "Browse the resources of the ELRI catalogue"
@@ -3006,11 +3004,9 @@ msgstr "N-Gram"
 
 #: templates/repository/resource_view/person.html:20
 msgid "Click to view contact card"
-msgstr "Cliceáil le hamharc ar chárta inneachair"
+msgstr "Brúigh le cárta teagmhála a fheiceáil"
 
 #: templates/repository/resource_view/person.html:25
-#, fuzzy
-#| msgid "Contact details"
 msgid "Contact Card"
 msgstr "Sonraí teagmhála"
 
@@ -3368,10 +3364,8 @@ msgid "Search and Browse"
 msgstr "Cuardaigh agus Brabhsáil"
 
 #: templates/repository/search.html:69
-#, fuzzy
-#| msgid "Browse Resources"
 msgid "Browse Language Resources"
-msgstr "Brabhsáil Acmhainní"
+msgstr "Brabhsáil Acmhainní Teanga"
 
 #: templates/repository/search.html:77 templates/repository/search.html:79
 msgid "Search"
@@ -3789,7 +3783,6 @@ msgstr "níor úsáideadh"
 #~ msgid "'Cookie Policy'"
 #~ msgstr "<b>Beartas Fianán</b>"
 
-#, fuzzy
 #~ msgid " E-Mail: "
 #~ msgstr "R-phost:"
 

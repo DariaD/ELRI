@@ -28,7 +28,7 @@
             {% if field.html_name == "organization_address" or field.html_name == "organization_phone_number" or field.html_name == "position"  %}
                {{ field.label_tag }}  {{ field }}
             {% else %}
-                <span style='color:red;' aria-label='Required Field'>*</span> {{ field.label_tag }}  {{ field }}
+                <span style='color:red;' aria-label="{% trans 'Required Field' %}">*</span> {{ field.label_tag }}  {{ field }}
             {% endif %}
       {% endif %}
       <div>{# for spacing and for clearing the last float environments #}</div>

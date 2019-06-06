@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:58+0200\n"
-"PO-Revision-Date: 2019-04-02 15:17+0200\n"
+"POT-Creation-Date: 2019-06-06 13:53+0200\n"
+"PO-Revision-Date: 2019-06-06 14:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -1636,8 +1636,8 @@ msgid ""
 "Enter a valid year value which conforms to the XML Schema \"gYear\" type "
 "(see http://www.w3.org/TR/xmlschema-2/#gYear). \"{}\" is not valid."
 msgstr ""
-"Iontráil luach bailí bliana a thagann leis an Scéimre XML \"gYear\" type "
-"(féach http://www.w3.org/TR/xmlschema-2/#gYear). Níl \"{}\" bailí."
+"Earráid: Iontráil luach bailí bliana a thagann leis an Scéimre XML \"gYear\" "
+"type (féach http://www.w3.org/TR/xmlschema-2/#gYear). Níl \"{}\" bailí."
 
 #: repository/validators.py:56
 #, python-brace-format
@@ -1647,7 +1647,7 @@ msgid ""
 "production from XML 1.0 (Second Edition), cf. http://www.w3.org/TR/2000/WD-"
 "xml-2e-20000814#NT-Char."
 msgstr ""
-"Ní mór gan úsáid a bhaint as an gcarachtar ag ionad {char_pos} "
+"Earráid:Ní mór gan úsáid a bhaint as an gcarachtar ag ionad {char_pos} "
 "(&#x{char_code:0>4x};). Iontráil teaghrán gan ach carachtair ann atá ag "
 "teacht le táirgeadh Char ó XML 1.0 (Dara hEagrán), cf. http://www.w3.org/"
 "TR/2000/WD-xml-2e-20000814#NT-Char."
@@ -1656,25 +1656,25 @@ msgstr ""
 msgid ""
 "Enter a valid language code as the key for each pair. \"{}\" is not valid."
 msgstr ""
-"Iontráil cód teanga bailí mar an eochair do gach péire. Níl \"{}\" bailí."
+"Earráid: Iontráil cód teanga bailí mar an eochair do gach péire. Níl \"{}\" "
+"bailí."
 
 #: repository/validators.py:86
 msgid "This field is required."
-msgstr "Tá an réimse seo de dhíth."
+msgstr "Earráid: Tá an réimse seo de dhíth."
 
 #: repository/validators.py:92
 msgid "This field accepts only number values (without commas)"
-msgstr "Ní ghlacann an réimse seo ach le luachanna uimhriúla (gan chamóga)"
+msgstr ""
+"Earráid: Ní ghlacann an réimse seo ach le luachanna uimhriúla (gan chamóga)"
 
 #: repository/validators.py:97
 msgid "Please edit the attribution text template"
-msgstr "Leasaigh an teimpléad don téacs admhála"
+msgstr "Earráid: Leasaigh an teimpléad don téacs admhála"
 
 #: repository/validators.py:102
-#, fuzzy
-#| msgid "Not a valid emailAddress value."
 msgid "Enter a valid email address."
-msgstr "Luach seoladh ríomhphoist nach bhfuil bailí."
+msgstr "Earráid: Luach seoladh ríomhphoist nach bhfuil bailí."
 
 #: repository/views.py:351
 msgid "Request for information regarding a resource"
@@ -1684,7 +1684,7 @@ msgstr ""
 
 #: repository/views.py:359
 msgid "There was an error sending out the request email."
-msgstr "Tharla earráid agus an ríomhphost iarratais á sheoladh amach."
+msgstr "Earráid: Tharla earráid agus an ríomhphost iarratais á sheoladh amach."
 
 #: repository/views.py:361
 msgid "You have successfully sent a message to the resource contact person."

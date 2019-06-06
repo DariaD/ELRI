@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:59+0200\n"
+"POT-Creation-Date: 2019-06-06 14:15+0200\n"
 "PO-Revision-Date: 2019-05-30 14:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -332,6 +332,10 @@ msgstr ""
 
 #: templates/header.html:38 templates/header.html.py:48
 msgid "English"
+msgstr ""
+
+#: templates/header.html:70
+msgid "Go to the ELRI project homepage"
 msgstr ""
 
 #: templates/header.html:82

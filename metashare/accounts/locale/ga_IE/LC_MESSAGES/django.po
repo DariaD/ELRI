@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:58+0200\n"
-"PO-Revision-Date: 2019-05-30 14:13+0200\n"
+"POT-Creation-Date: 2019-06-06 13:53+0200\n"
+"PO-Revision-Date: 2019-06-06 14:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -108,7 +108,8 @@ msgstr "Iarratas glactha | Application accepted"
 
 #: accounts/admin.py:318 accounts/admin.py:786
 msgid "There was an error sending out an application acceptance e-mail."
-msgstr "Tharla earráid agus rphost glactha iarratais á sheoladh amach."
+msgstr ""
+"Earráid: Tharla earráid agus rphost glactha iarratais á sheoladh amach."
 
 #: accounts/admin.py:321
 #, python-format
@@ -143,8 +144,8 @@ msgstr "Iarratas diúltaithe | Application declined"
 msgid ""
 "There was an error sending out an e-mail about turning down the application."
 msgstr ""
-"Tharla earráid agus rphost maidir leis an iarratas a dhiúltú á sheoladh "
-"amach."
+"Earráid: Tharla earráid agus rphost maidir leis an iarratas a dhiúltú á "
+"sheoladh amach."
 
 #: accounts/admin.py:381
 #, python-format
@@ -402,20 +403,20 @@ msgid_plural ""
 "This password is too short. It must contain at least %(min_length)d "
 "characters."
 msgstr[0] ""
-"Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó carachtar "
-"(%(min_length)d) a roghnú."
+"Earráid: Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó "
+"carachtar (%(min_length)d) a roghnú."
 msgstr[1] ""
-"Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó carachtar "
-"(%(min_length)d) a roghnú."
+"Earráid: Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó "
+"carachtar (%(min_length)d) a roghnú."
 msgstr[2] ""
-"Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó carachtar "
-"(%(min_length)d) a roghnú."
+"Earráid: Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó "
+"carachtar (%(min_length)d) a roghnú."
 msgstr[3] ""
-"Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó carachtar "
-"(%(min_length)d) a roghnú."
+"Earráid: Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó "
+"carachtar (%(min_length)d) a roghnú."
 msgstr[4] ""
-"Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó carachtar "
-"(%(min_length)d) a roghnú."
+"Earráid: Tá an pasfhocal seo róghairid. Caithfidh tú pasfhocal le níos mó "
+"carachtar (%(min_length)d) a roghnú."
 
 #: accounts/django_password_validators.py:150
 #, python-format
@@ -435,7 +436,7 @@ msgstr[4] ""
 #: accounts/django_password_validators.py:186
 #, python-format
 msgid "The password is too similar to the %(verbose_name)s."
-msgstr "Tá an pasfhocal róchosúil leis an %(verbose_name)s."
+msgstr "Earráid: Tá an pasfhocal róchosúil leis an %(verbose_name)s."
 
 #: accounts/django_password_validators.py:192
 msgid "Your password can't be too similar to your other personal information."
@@ -444,7 +445,7 @@ msgstr ""
 
 #: accounts/django_password_validators.py:218
 msgid "This password is too common."
-msgstr "Tá an pasfhocal seo róchoitianta."
+msgstr "Earráid: Tá an pasfhocal seo róchoitianta."
 
 #: accounts/django_password_validators.py:223
 msgid "Your password can't be a commonly used password."
@@ -452,7 +453,7 @@ msgstr "Ní féidir pasfhocal coitianta a bheith mar phasfhocal agat."
 
 #: accounts/django_password_validators.py:233
 msgid "This password is entirely numeric."
-msgstr "Tá an pasfhocal seo iomlán uimhriúil."
+msgstr "Earráid: Tá an pasfhocal seo iomlán uimhriúil."
 
 #: accounts/django_password_validators.py:238
 msgid "Your password can't be entirely numeric."
@@ -460,7 +461,7 @@ msgstr "Ní féidir pasfhocal iomlán uimhriúil a bheith agat."
 
 #: accounts/django_password_validators.py:248
 msgid "This password does not contain a digit."
-msgstr "Níl uimhir sa phasfhocal seo."
+msgstr "Earráid: Níl uimhir sa phasfhocal seo."
 
 #: accounts/django_password_validators.py:253
 msgid "Your password must contain at least one digit."
@@ -468,7 +469,7 @@ msgstr "Ní mór ar a laghad uimhir amháin a bheith i do phasfhocal."
 
 #: accounts/django_password_validators.py:263
 msgid "This password does not contain a punctuation character."
-msgstr "Níl carachtar poncaíochta sa phasfhocal seo."
+msgstr "Earráid: Níl carachtar poncaíochta sa phasfhocal seo."
 
 #: accounts/django_password_validators.py:268
 msgid "Your password must contain at least one punctuation character."
@@ -477,7 +478,7 @@ msgstr ""
 
 #: accounts/django_password_validators.py:278
 msgid "This password does not contain an uppercase character."
-msgstr "Níl carachtar i gcás uachtair sa phasfhocal seo."
+msgstr "Earráid: Níl carachtar i gcás uachtair sa phasfhocal seo."
 
 #: accounts/django_password_validators.py:283
 msgid "Your password must contain at least one uppercase character."
@@ -486,7 +487,7 @@ msgstr ""
 
 #: accounts/django_password_validators.py:293
 msgid "This password does not contain a lowercase character."
-msgstr "Níl carachtar i gcás íochtair sa phasfhocal seo."
+msgstr "Earráid: Níl carachtar i gcás íochtair sa phasfhocal seo."
 
 #: accounts/django_password_validators.py:298
 msgid "Your password must contain at least one lowercase character."
@@ -498,32 +499,74 @@ msgstr ""
 msgid ""
 "This password contains a character repeated more than %d times in a row."
 msgstr ""
-"Tá an carachtar céanna úsáidte níos mó uaireanta i ndiaidh a chéile ná mar "
-"atá ceadaithe chun pasfhocal ceart a chruthú (%d)."
+"Earráid: Tá an carachtar céanna úsáidte níos mó uaireanta i ndiaidh a chéile "
+"ná mar atá ceadaithe chun pasfhocal ceart a chruthú (%d)."
 
 #: accounts/django_password_validators.py:318
 #, python-format
 msgid ""
 "Your password can't contain a character repeated more than %d times in a row."
 msgstr ""
-"Tá an carachtar céanna úsáidte níos mó uaireanta i ndiaidh a chéile ná mar "
+"á an carachtar céanna úsáidte níos mó uaireanta i ndiaidh a chéile ná mar "
 "atá ceadaithe chun pasfhocal ceart a chruthú (%d)."
 
 #: accounts/forms.py:74
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
+"Earráid: Cathaigh litreacha, digite agus na carachtair @/./+/-/_ amhain le "
+"hadhaigh an méid seo."
+
+#: accounts/forms.py:76
+msgid "Desired account name"
+msgstr "Cén t-ainm cuntais ba mhaith leat?"
+
+#: accounts/forms.py:78
+msgid "First name"
+msgstr "Céadainm"
+
+#: accounts/forms.py:80
+msgid "Last name"
+msgstr "Sloinne"
+
+#: accounts/forms.py:81
+msgid "E-mail"
+msgstr "Ríomhphost"
+
+#: accounts/forms.py:89
+msgid "Organization name"
+msgstr "Ainm eagraíochta"
+
+#: accounts/forms.py:92
+msgid "Organization address"
+msgstr "Seoladh eagraíochta"
+
+#: accounts/forms.py:96
+msgid "Organization phone number"
+msgstr "Uimhir ghutháin eagraíochta"
+
+#: accounts/forms.py:99
+msgid "Position in the organization"
+msgstr "Post san eagraíocht"
+
+#: accounts/forms.py:108
+msgid "Password"
+msgstr "Pasfhocal"
+
+#: accounts/forms.py:112
+msgid "Password confirmation"
+msgstr "Deimhniú pasfhocail"
 
 #: accounts/forms.py:138
 msgid "User account name already exists, please choose another one."
-msgstr "Ainm cuntas úsáideora in úsáid cheana, roghnaigh ceann eile."
+msgstr "Earráid: Ainm cuntas úsáideora in úsáid cheana, roghnaigh ceann eile."
 
 #: accounts/forms.py:152 accounts/forms.py:155
 msgid "There is already an account registered with this e-mail address."
-msgstr "Tá cuntas cláraithe leis an seoladh rphoist seo cheana féin."
+msgstr "Earráid: Tá cuntas cláraithe leis an seoladh rphoist seo cheana féin."
 
 #: accounts/forms.py:166
 msgid "The two password fields did not match."
-msgstr "Níorbh ionann an dá réimse pasfhocal."
+msgstr "Earráid: Níorbh ionann an dá réimse pasfhocal."
 
 #: accounts/forms.py:209
 msgid "Subject"
@@ -557,7 +600,8 @@ msgstr "Ríomhphost"
 
 #: accounts/forms.py:235
 msgid "Not a valid username-email combination."
-msgstr "Níl an t-ainm úsáideora agus an rphost sin ag teacht le chéile."
+msgstr ""
+"Earráid: Níl an t-ainm úsáideora agus an rphost sin ag teacht le chéile."
 
 #: accounts/forms.py:281
 msgid "default editor groups"
@@ -606,7 +650,7 @@ msgstr "grúpa na mbainisteoirí eagraíochta"
 
 #: accounts/models.py:262
 msgid "Not a valid phone number"
-msgstr "Níl an uimhir ghutháin bailí"
+msgstr "Earráid: Níl an uimhir ghutháin bailí"
 
 #: accounts/models.py:274
 msgid "Is a META-SHARE associate member."
@@ -695,7 +739,7 @@ msgid ""
 "There was an error sending out the notification email to the administrators. "
 "Please contact them directly."
 msgstr ""
-"Tharla earráid agus an rphost fógartha á sheoladh amach go dtí na "
+"Earráid: Tharla earráid agus an rphost fógartha á sheoladh amach go dtí na "
 "riarthóirí. Déan teagmháil díreach leo, le do thoil."
 
 #: accounts/views.py:191
@@ -743,8 +787,8 @@ msgid ""
 "There was an error sending out the request email for your editor group "
 "application."
 msgstr ""
-"Tharla earráid agus an rphoist iarrtha do d’iarratas ar ghrúpa eagarthóirí á "
-"sheoladh amach."
+"Earráid: Tharla earráid agus an rphoist iarrtha do d’iarratas ar ghrúpa "
+"eagarthóirí á sheoladh amach."
 
 #: accounts/views.py:342
 #, python-format
@@ -799,8 +843,8 @@ msgid ""
 "There was an error sending out the request email for your organization "
 "application."
 msgstr ""
-"Tharla earráid agus an rphoist iarrtha do d’iarratas ar eagraíocht á "
-"sheoladh amach."
+"Earráid: Tharla earráid agus an rphoist iarrtha do d’iarratas ar eagraíocht "
+"á sheoladh amach."
 
 #: accounts/views.py:496
 #, python-format
@@ -847,8 +891,8 @@ msgid ""
 "There was an error sending out the activation email for your user account. "
 "Please contact the administrator at %s."
 msgstr ""
-"Tharla earráid agus an rphoist ghníomhachtaithe do do chuntas úsáideora á "
-"sheoladh amach. Déan teagmháil leis an riarthóir ag %s."
+"Earráid: Tharla earráid agus an rphoist ghníomhachtaithe do do chuntas "
+"úsáideora á sheoladh amach. Déan teagmháil leis an riarthóir ag %s."
 
 #: accounts/views.py:612
 msgid ""
@@ -862,36 +906,6 @@ msgstr ""
 #: accounts/views.py:657
 msgid "Apply for eDelivery membership"
 msgstr "Cuir isteach ar bhallraíocht in eDelivery"
-
-#~ msgid "Desired account name"
-#~ msgstr "Cén t-ainm cuntais ba mhaith leat?"
-
-#~ msgid "First name"
-#~ msgstr "Céadainm"
-
-#~ msgid "Last name"
-#~ msgstr "Sloinne"
-
-#~ msgid "E-mail"
-#~ msgstr "Ríomhphost"
-
-#~ msgid "Organization name"
-#~ msgstr "Ainm eagraíochta"
-
-#~ msgid "Organization address"
-#~ msgstr "Seoladh eagraíochta"
-
-#~ msgid "Organization phone number"
-#~ msgstr "Uimhir ghutháin eagraíochta"
-
-#~ msgid "Position in the organization"
-#~ msgstr "Post san eagraíocht"
-
-#~ msgid "Password"
-#~ msgstr "Pasfhocal"
-
-#~ msgid "Password confirmation"
-#~ msgstr "Deimhniú pasfhocail"
 
 #~ msgid "Phone number"
 #~ msgstr "Uimhir ghutháin"

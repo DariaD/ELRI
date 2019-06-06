@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:58+0200\n"
-"PO-Revision-Date: 2019-05-30 13:57+0200\n"
+"POT-Creation-Date: 2019-06-06 13:53+0200\n"
+"PO-Revision-Date: 2019-06-06 13:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -36,9 +36,13 @@ msgid ""
 "recipients."
 msgstr "Tharla earráid le seoladh rphost chuig na léirmheastóirí."
 
-#: local_settings.py:43
-msgid "Spanish"
-msgstr "Spáinnis"
+#: local_settings.py:42
+msgid "Gaelic"
+msgstr "Gaeilge"
+
+#: local_settings.py:44
+msgid "English"
+msgstr "Béarla"
 
 #: storage/models.py:113
 msgid "Can synchronize"
@@ -163,10 +167,9 @@ msgid ""
 "Please enter a correct username and password. Note that both fields may be "
 "case-sensitive. "
 msgstr ""
-"Cuir isteach ainm úsáideora ceart agus pasfhocal, le do thoil. Tabhair faoi "
-"deara go bhfuil seans ann go bhfuil na réimsí cásíogair. | Error: Please "
-"enter a correct username and password. Note that both fields may be case-"
-"sensitive."
+"Earráid: Cuir isteach ainm úsáideora agus pasfhocal bailí le do thoil. "
+"D'fhéadfadh an dá réimse a bheith cásíogair. | Error: Please enter a correct "
+"username and password. Note that both fields may be case-sensitive."
 
 #: views.py:23 views.py:25
 msgid "Please contact us if there is any issue with an existing account."
@@ -174,11 +177,8 @@ msgstr ""
 " Déan teagmháil linn má tá aon fhadhb ann le cuntas reatha.\n"
 "- Error: Please contact us if there is any issue with an existing account."
 
-#~ msgid "Gaelic"
-#~ msgstr "Gaeilge"
-
-#~ msgid "English"
-#~ msgstr "Béarla"
+#~ msgid "Spanish"
+#~ msgstr "Spáinnis"
 
 #~ msgid "French"
 #~ msgstr "Fraincis"

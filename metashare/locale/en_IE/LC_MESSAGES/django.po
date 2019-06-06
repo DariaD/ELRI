@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:59+0200\n"
-"PO-Revision-Date: 2019-05-30 13:56+0200\n"
+"POT-Creation-Date: 2019-06-06 14:15+0200\n"
+"PO-Revision-Date: 2019-06-06 13:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -34,8 +34,12 @@ msgid ""
 msgstr ""
 "An error occurred while trying to send a notification email to the reviewers."
 
-#: local_settings.py:43
-msgid "Spanish"
+#: local_settings.py:42
+msgid "Gaelic"
+msgstr ""
+
+#: local_settings.py:44
+msgid "English"
 msgstr ""
 
 #: storage/models.py:113
@@ -145,8 +149,8 @@ msgid ""
 msgstr ""
 "Error: Please enter a correct username and password. Note that both fields "
 "may be case-sensitive.\n"
-"| Cuir isteach ainm úsáideora ceart agus pasfhocal, le do thoil. Tabhair "
-"faoi deara go bhfuil seans ann go bhfuil na réimsí cásíogair."
+"| Earráid: Cuir isteach ainm úsáideora agus pasfhocal bailí le do thoil. "
+"D'fhéadfadh an dá réimse a bheith cásíogair."
 
 #: views.py:23 views.py:25
 msgid "Please contact us if there is any issue with an existing account."

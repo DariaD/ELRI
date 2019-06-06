@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:59+0200\n"
-"PO-Revision-Date: 2019-05-30 17:00+0200\n"
+"POT-Creation-Date: 2019-06-06 14:15+0200\n"
+"PO-Revision-Date: 2019-06-06 14:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -104,6 +104,7 @@ msgstr "Iarratas glactha  | Application accepted"
 #: accounts/admin.py:318 accounts/admin.py:786
 msgid "There was an error sending out an application acceptance e-mail."
 msgstr ""
+"Error: There was an error sending out an application acceptance e-mail."
 
 #: accounts/admin.py:321
 #, python-format
@@ -134,7 +135,8 @@ msgstr "Iarratas diúltaithe  | Application declined "
 #: accounts/admin.py:378 accounts/admin.py:838
 msgid ""
 "There was an error sending out an e-mail about turning down the application."
-msgstr "There was an error sending an e-mail about declining the application."
+msgstr ""
+"Error: There was an error sending an e-mail about declining the application."
 
 #: accounts/admin.py:381
 #, python-format
@@ -463,6 +465,46 @@ msgstr ""
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
 "Error: This value may contain only letters, numbers and @/./+/-/_ characters."
+
+#: accounts/forms.py:76
+msgid "Desired account name"
+msgstr "What do you want to call your account?"
+
+#: accounts/forms.py:78
+msgid "First name"
+msgstr "Name"
+
+#: accounts/forms.py:80
+msgid "Last name"
+msgstr "Surname"
+
+#: accounts/forms.py:81
+msgid "E-mail"
+msgstr ""
+
+#: accounts/forms.py:89
+msgid "Organization name"
+msgstr "Organisation name"
+
+#: accounts/forms.py:92
+msgid "Organization address"
+msgstr "Organisation address"
+
+#: accounts/forms.py:96
+msgid "Organization phone number"
+msgstr "Organisation phone number"
+
+#: accounts/forms.py:99
+msgid "Position in the organization"
+msgstr "Position in the organisation"
+
+#: accounts/forms.py:108
+msgid "Password"
+msgstr ""
+
+#: accounts/forms.py:112
+msgid "Password confirmation"
+msgstr ""
 
 #: accounts/forms.py:138
 msgid "User account name already exists, please choose another one."
@@ -809,24 +851,3 @@ msgstr ""
 #: accounts/views.py:657
 msgid "Apply for eDelivery membership"
 msgstr ""
-
-#~ msgid "Desired account name"
-#~ msgstr "What do you want to call your account?"
-
-#~ msgid "First name"
-#~ msgstr "Name"
-
-#~ msgid "Last name"
-#~ msgstr "Surname"
-
-#~ msgid "Organization name"
-#~ msgstr "Organisation name"
-
-#~ msgid "Organization address"
-#~ msgstr "Organisation address"
-
-#~ msgid "Organization phone number"
-#~ msgstr "Organisation phone number"
-
-#~ msgid "Position in the organization"
-#~ msgstr "Position in the organisation"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-30 16:59+0200\n"
-"PO-Revision-Date: 2019-04-08 16:02+0200\n"
+"POT-Creation-Date: 2019-06-06 14:15+0200\n"
+"PO-Revision-Date: 2019-06-06 14:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -1366,6 +1366,8 @@ msgid ""
 "Enter a valid year value which conforms to the XML Schema \"gYear\" type "
 "(see http://www.w3.org/TR/xmlschema-2/#gYear). \"{}\" is not valid."
 msgstr ""
+"Error: Enter a valid year value which conforms to the XML Schema \"gYear\" "
+"type (see http://www.w3.org/TR/xmlschema-2/#gYear). \"{}\" is not valid."
 
 #: repository/validators.py:56
 #, python-brace-format
@@ -1375,27 +1377,33 @@ msgid ""
 "production from XML 1.0 (Second Edition), cf. http://www.w3.org/TR/2000/WD-"
 "xml-2e-20000814#NT-Char."
 msgstr ""
+"Error: The character at position {char_pos} (&#x{char_code:0>4x};) must not "
+"be used. Enter a string consisting of only characters that match the Char "
+"production from XML 1.0 (Second Edition), cf. http://www.w3.org/TR/2000/WD-"
+"xml-2e-20000814#NT-Char."
 
 #: repository/validators.py:72
 msgid ""
 "Enter a valid language code as the key for each pair. \"{}\" is not valid."
 msgstr ""
+"Error: Enter a valid language code as the key for each pair. \"{}\" is not "
+"valid."
 
 #: repository/validators.py:86
 msgid "This field is required."
-msgstr ""
+msgstr "Error: This field is required."
 
 #: repository/validators.py:92
 msgid "This field accepts only number values (without commas)"
-msgstr ""
+msgstr "Error: This field accepts only number values (without commas)"
 
 #: repository/validators.py:97
 msgid "Please edit the attribution text template"
-msgstr ""
+msgstr "Error: Please edit the attribution text template"
 
 #: repository/validators.py:102
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Error: Enter a valid email address."
 
 #: repository/views.py:351
 msgid "Request for information regarding a resource"
@@ -1405,7 +1413,7 @@ msgstr ""
 
 #: repository/views.py:359
 msgid "There was an error sending out the request email."
-msgstr ""
+msgstr "Error: There was an error sending out the request email."
 
 #: repository/views.py:361
 msgid "You have successfully sent a message to the resource contact person."
