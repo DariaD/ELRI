@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:15+0200\n"
-"PO-Revision-Date: 2019-05-30 14:23+0200\n"
+"PO-Revision-Date: 2019-06-07 09:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -40,6 +40,8 @@ msgid ""
 "Please try again and, if the error persists, contact the ELRI NRS support "
 "group (<a href=\"mailto:%(email)s\" >%(email)s</a>)."
 msgstr ""
+"Error: Please try again and, if the error persists, contact the ELRI NRS "
+"support group (<a href=\"mailto:%(email)s\" >%(email)s</a>)."
 
 #: templates/500.html:7
 msgid "Internal Server Error (500)"
@@ -50,7 +52,8 @@ msgid ""
 "We&rsquo;re sorry, but an internal error occurred when processing your "
 "request."
 msgstr ""
-"We’re sorry, but an internal error occurred when processing your request."
+"Error: We’re sorry, but an internal error occurred when processing your "
+"request."
 
 #: templates/back.html:5
 msgid "ELRI National Relay Station"
@@ -2010,6 +2013,11 @@ msgid ""
 "or internal errors. Trying again later might\n"
 "                solve the problem."
 msgstr ""
+"Error: We&rsquo;re afraid, the selected legal documentation is currently not "
+"available for download. This\n"
+"                problem may be temporary due to network connection problems "
+"or internal errors. Trying again later might\n"
+"                solve the problem."
 
 #: templates/repository/legal_not_downloadable.html:18
 #: templates/repository/lr_not_downloadable.html:18
@@ -2091,6 +2099,11 @@ msgid ""
 "errors. Trying again later might solve the\n"
 "                problem."
 msgstr ""
+"Error: We&rsquo;re afraid the selected resource is currently not available "
+"for download. This problem may be\n"
+"                temporary due to network connection problems or internal "
+"errors. Trying again later might solve the\n"
+"                problem."
 
 #: templates/repository/multi_field_widget.html:6
 msgid "Add Another Field"
@@ -2194,6 +2207,10 @@ msgid ""
 "                may be temporary due to network connection problems or "
 "internal errors. Trying again later might solve"
 msgstr ""
+"Error: We&rsquo;re afraid, the selected validation report is currently not "
+"available for download. This problem\n"
+"                may be temporary due to network connection problems or "
+"internal errors. Trying again later might solve"
 
 #: templates/repository/resource_download_information_email.html:2
 #, python-format

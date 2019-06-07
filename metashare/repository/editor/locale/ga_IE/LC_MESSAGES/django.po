@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 13:53+0200\n"
-"PO-Revision-Date: 2019-06-06 14:38+0200\n"
+"PO-Revision-Date: 2019-06-07 09:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -25,7 +25,7 @@ msgstr "Uaslódáil cur síos ar acmhainn(í) nua"
 
 #: repository/editor/editorutils.py:257
 msgid "Database error"
-msgstr "Earráid sa bhunachar sonraí"
+msgstr "Earráid: Earráid sa bhunachar sonraí"
 
 #: repository/editor/editorutils.py:272
 #, python-format
@@ -211,7 +211,8 @@ msgstr "Scrios samhail ghaolta"
 #: repository/editor/resource_editor.py:574
 msgid ""
 "Something went wrong when processing the resource with the tm2tmx toolchain."
-msgstr "Níor éirigh leis an acmhainn a phróiseáil leis an toolchain tm2tmx."
+msgstr ""
+"Earráid: Níor éirigh leis an acmhainn a phróiseáil leis an toolchain tm2tmx."
 
 #: repository/editor/resource_editor.py:579
 #: repository/editor/resource_editor.py:590
@@ -223,8 +224,8 @@ msgstr "Níor éirigh leis an acmhainn a phróiseáil leis an toolchain tm2tmx."
 #, python-format
 msgid "Error when processing resource %(rname)s"
 msgstr ""
-"Tharla earráid i rith próiseáil na hacmhainne %(rname)s | Error when "
-"processing resource %(rname)s"
+"Earráid: Tharla earráid i rith próiseáil na hacmhainne %(rname)s | Error "
+"when processing resource %(rname)s"
 
 #: repository/editor/resource_editor.py:579
 #: repository/editor/resource_editor.py:590
@@ -239,15 +240,15 @@ msgid ""
 "error.log attached to the resource. Contact the ELRI NRS support team for "
 "more information at %(email)s"
 msgstr ""
-"Tharla earráid i rith próiseáil na hacmhainne %(rname)s. Seiceáil loga na "
-"hearráide atá ceangailte leis an acmhainn. Déan teagmháil le foireann "
-"tacaíochta SAN ELRI le haghaidh tuilleadh eolais ag %(email)s\n"
+"Earráid: Tharla earráid i rith próiseáil na hacmhainne %(rname)s. Seiceáil "
+"loga na hearráide atá ceangailte leis an acmhainn. Déan teagmháil le "
+"foireann tacaíochta SAN ELRI le haghaidh tuilleadh eolais ag %(email)s\n"
 "\n"
 "_______________________________________\n"
 "\n"
-"An error occurred when processing the resource %(rname)s. Please check the "
-"error.log attached to the resource. Contact the ELRI NRS support team for "
-"more information at %(email)s"
+"Error: An error occurred when processing the resource %(rname)s. Please "
+"check the error.log attached to the resource. Contact the ELRI NRS support "
+"team for more information at %(email)s"
 
 #: repository/editor/resource_editor.py:581
 #: repository/editor/resource_editor.py:592
@@ -277,7 +278,8 @@ msgid ""
 "toolchain.\n"
 " "
 msgstr ""
-"Níor éirigh leis an acmhainn a phróiseáil leis an toolchain doc2tmx\n"
+"Earráid: Níor éirigh leis an acmhainn a phróiseáil leis an toolchain "
+"doc2tmx\n"
 " "
 
 #: repository/editor/resource_editor.py:632
@@ -293,7 +295,8 @@ msgstr "Theip ar an iarratas POST chuig an toolchain doc2tmx "
 #: repository/editor/resource_editor.py:752
 msgid "Only ingested or error resources can be re-processed."
 msgstr ""
-"Ní féidir ach acmhainní ionghafa nó acmhainní le hearráidí a athphróiseáil."
+"Earráid: Ní féidir ach acmhainní ionghafa nó acmhainní le hearráidí a "
+"athphróiseáil."
 
 #: repository/editor/resource_editor.py:756
 #: repository/editor/resource_editor.py:759
@@ -308,8 +311,8 @@ msgid ""
 "resources and check the error.log file(s). You will receive a notification "
 "email."
 msgstr ""
-"Níor éirigh leis an acmhainn a phróiseáil. Triall arís an acmhainn a "
-"phróiseáil agus seiceáil loga na hearráide. Gheobhaidh tú rphost fógartha."
+"Earráid: Níor éirigh leis an acmhainn a phróiseáil. Triall arís an acmhainn "
+"a phróiseáil agus seiceáil loga na hearráide. Gheobhaidh tú rphost fógartha."
 
 #: repository/editor/resource_editor.py:768
 #: repository/editor/resource_editor.py:940
@@ -329,8 +332,8 @@ msgid ""
 "email.\n"
 " "
 msgstr ""
-"Níor éirigh leis an acmhainn a phróiseáil. Triall arís an acmhainn a "
-"phróiseáil agus seiceáil loga na hearráide. Gheobhaidh tú rphost fógartha."
+"Earráid: Níor éirigh leis an acmhainn a phróiseáil. Triall arís an acmhainn "
+"a phróiseáil agus seiceáil loga na hearráide. Gheobhaidh tú rphost fógartha."
 
 #: repository/editor/resource_editor.py:791
 msgid "Re-process selected resources"
@@ -453,7 +456,8 @@ msgid ""
 "                        "
 msgstr ""
 "\n"
-"                        Cuireadh isteach ar an bpróiseas ionghabhála.\n"
+"                       Earráid:  Cuireadh isteach ar an bpróiseas "
+"ionghabhála.\n"
 "                        Athphróiseáil na hacmhainní le stádas earráide\n"
 "                        "
 

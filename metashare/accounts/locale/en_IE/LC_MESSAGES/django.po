@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:15+0200\n"
-"PO-Revision-Date: 2019-06-06 14:36+0200\n"
+"PO-Revision-Date: 2019-06-07 09:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -441,7 +441,7 @@ msgstr ""
 
 #: accounts/django_password_validators.py:293
 msgid "This password does not contain a lowercase character."
-msgstr "Error:This password does not contain a lowercase character."
+msgstr "Error: This password does not contain a lowercase character."
 
 #: accounts/django_password_validators.py:298
 msgid "Your password must contain at least one lowercase character."

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 13:53+0200\n"
-"PO-Revision-Date: 2019-05-30 14:26+0200\n"
+"PO-Revision-Date: 2019-06-07 14:07+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -26,12 +26,16 @@ msgid ""
 "ELRI: a repository used for documenting, storing, browsing and accessing "
 "Language Resources."
 msgstr ""
+"Stáisiún Athsheachadta Náisiúnta ELRI: stór chun Acmhainní Teanga a stóráil, "
+"a chuardach agus a aisghabháil."
 
 #: templates/repository/editor/contributions/contribute.html:12
 msgid ""
 "ELRI, language resources, language tools, ELRC, European Language Resource "
 "Coordination"
 msgstr ""
+"Stáisiún Athsheachadta Náisiúnta, acmhainní teanga, cuimhní aistriúcháin, an "
+"tSaoráid um Chónascadh na hEorpa"
 
 #: templates/repository/editor/contributions/contribute.html:62
 msgid ""
@@ -53,7 +57,7 @@ msgstr "\"Léigh níos mó faoi\""
 
 #: templates/repository/editor/contributions/contribute.html:73
 msgid "Go to the web page main content."
-msgstr ""
+msgstr "Téigh go dtí príomh-inneachar an leathanaigh ghréasáin. "
 
 #: templates/repository/editor/contributions/contribute.html:85
 msgid "Your browser does not support JavaScript!"
@@ -69,7 +73,7 @@ msgstr ""
 
 #: templates/repository/editor/contributions/contribute.html:90
 msgid "Contribute"
-msgstr ""
+msgstr "Cuir Acmhainní ar Fáil"
 
 #: templates/repository/editor/contributions/contribute.html:99
 msgid "Uploading your data"

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:15+0200\n"
-"PO-Revision-Date: 2019-06-06 14:38+0200\n"
+"PO-Revision-Date: 2019-06-07 09:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: repository/editor/editorutils.py:257
 msgid "Database error"
-msgstr ""
+msgstr "Error: Database error"
 
 #: repository/editor/editorutils.py:272
 #, python-format
@@ -185,6 +185,8 @@ msgstr ""
 msgid ""
 "Something went wrong when processing the resource with the tm2tmx toolchain."
 msgstr ""
+"Error: Something went wrong when processing the resource with the tm2tmx "
+"toolchain."
 
 #: repository/editor/resource_editor.py:579
 #: repository/editor/resource_editor.py:590
@@ -196,8 +198,8 @@ msgstr ""
 #, python-format
 msgid "Error when processing resource %(rname)s"
 msgstr ""
-"Tharla earráid i rith próiseáil na hacmhainne %(rname)s  | Error when "
-"processing resource %(rname)s "
+"Earráid: Tharla earráid i rith próiseáil na hacmhainne %(rname)s  | Error "
+"when processing resource %(rname)s "
 
 #: repository/editor/resource_editor.py:579
 #: repository/editor/resource_editor.py:590
@@ -212,15 +214,15 @@ msgid ""
 "error.log attached to the resource. Contact the ELRI NRS support team for "
 "more information at %(email)s"
 msgstr ""
-"Tharla earráid i rith próiseáil na hacmhainne %(rname)s. Seiceáil loga na "
-"hearráide atá ceangailte leis an acmhainn. Déan teagmháil le foireann "
-"tacaíochta SAN ELRI le haghaidh tuilleadh eolais ag %(email)s\n"
+"Earráid: Tharla earráid i rith próiseáil na hacmhainne %(rname)s. Seiceáil "
+"loga na hearráide atá ceangailte leis an acmhainn. Déan teagmháil le "
+"foireann tacaíochta SAN ELRI le haghaidh tuilleadh eolais ag %(email)s\n"
 "\n"
 "_______________________________________\n"
 "\n"
-"An error occurred when processing the resource %(rname)s. Please check the "
-"error.log attached to the resource. Contact the ELRI NRS support team for "
-"more information at %(email)s"
+"Error: An error occurred when processing the resource %(rname)s. Please "
+"check the error.log attached to the resource. Contact the ELRI NRS support "
+"team for more information at %(email)s"
 
 #: repository/editor/resource_editor.py:581
 #: repository/editor/resource_editor.py:592
@@ -250,6 +252,8 @@ msgid ""
 "toolchain.\n"
 " "
 msgstr ""
+"Error: Something went wrong when processing the resource with the doc2tmx "
+"toolchain."
 
 #: repository/editor/resource_editor.py:632
 msgid "Invalid json response from doc2tmx toolchain: "
@@ -263,7 +267,7 @@ msgstr ""
 
 #: repository/editor/resource_editor.py:752
 msgid "Only ingested or error resources can be re-processed."
-msgstr ""
+msgstr "Error: Only ingested or error resources can be re-processed."
 
 #: repository/editor/resource_editor.py:756
 #: repository/editor/resource_editor.py:759
@@ -278,6 +282,9 @@ msgid ""
 "resources and check the error.log file(s). You will receive a notification "
 "email."
 msgstr ""
+"Error: Something went wrong when processing the resource(s). Re-process the "
+"error resources and check the error.log file(s). You will receive a "
+"notification email."
 
 #: repository/editor/resource_editor.py:768
 #: repository/editor/resource_editor.py:940
@@ -295,6 +302,9 @@ msgid ""
 "email.\n"
 " "
 msgstr ""
+"Error: Something went wrong when processing the resource(s). Re-process the "
+"error resources and check the error.log file(s). You will receive a "
+"notification email."
 
 #: repository/editor/resource_editor.py:791
 msgid "Re-process selected resources"
@@ -398,6 +408,9 @@ msgid ""
 "                        Re-process the resource(s) with error status.\n"
 "                        "
 msgstr ""
+"\n"
+"                        Error: The ingestion process has been interrupted.\n"
+"                        Re-process the resource(s) with error status."
 
 #: repository/editor/resource_editor.py:1020
 msgid ""
