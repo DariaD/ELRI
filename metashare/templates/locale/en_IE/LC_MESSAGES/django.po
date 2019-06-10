@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:15+0200\n"
+"POT-Creation-Date: 2019-06-10 12:36+0200\n"
 "PO-Revision-Date: 2019-06-07 09:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -85,7 +85,11 @@ msgstr ""
 msgid "\"Learn more\""
 msgstr ""
 
-#: templates/base.html:69
+#: templates/base.html:60
+msgid "\"Cookies policy\""
+msgstr ""
+
+#: templates/base.html:70
 msgid "Go to the web page main content."
 msgstr ""
 

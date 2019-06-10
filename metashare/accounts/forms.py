@@ -73,12 +73,12 @@ class RegistrationRequestForm(Form):
     """
     alphanumeric = RegexValidator(r'^[0-9a-zA-Z@.+\-_]*$', _(u'This value may contain only letters, numbers and @/./+/-/_ characters.'))
     shortname = forms.CharField(max_length=User._meta.get_field('username').max_length,validators=[alphanumeric],
-                                label=_(mark_safe(u"Desired account name")))
+                                label=mark_safe(_(u"Desired account name")))
     first_name = forms.CharField(User._meta.get_field('first_name').max_length,
-                                 label=_(mark_safe(u"First name")))
+                                 label=mark_safe(_(u"First name")))
     last_name = forms.CharField(User._meta.get_field('last_name').max_length,
-                                label=_(mark_safe(u"Last name")))
-    email = forms.EmailField(label=_(mark_safe(u"E-mail")))
+                                label=mark_safe(_(u"Last name")))
+    email = forms.EmailField(label=mark_safe(_(u"E-mail")))
 
 	# For National Relay Stations, the country is limited to the Member State in which the NRS is deployed
     #country = forms.ChoiceField(UserProfile._meta.get_field('country').choices,
@@ -86,17 +86,17 @@ class RegistrationRequestForm(Form):
                                 #label=mark_safe( "Country")))
 
     organization = forms.CharField(UserProfile._meta.get_field('affiliation').max_length,
-                                   label=_(mark_safe(u"Organization name")))
+                                   label=mark_safe(_(u"Organization name")))
     organization_address = forms.CharField(
             UserProfile._meta.get_field('affiliation_address').max_length,
-            label=_(mark_safe(u"Organization address")), required=False)
+            label=mark_safe(_(u"Organization address")), required=False)
     organization_phone_number = forms.CharField(
             UserProfile._meta.get_field('affiliation_phone_number').max_length,
 
-            label=_(mark_safe(u"Organization phone number")), required=False)
+            label=mark_safe(_(u"Organization phone number")), required=False)
 
     position = forms.CharField(UserProfile._meta.get_field('position').max_length,
-                               label=_(mark_safe(u"Position in the organization")), required=False)
+                               label=mark_safe(_(u"Position in the organization")), required=False)
 
                                
 
@@ -105,11 +105,11 @@ class RegistrationRequestForm(Form):
                                    #label=mark_safe(u"%s<span style='color:grey'>*</span>" % _("Phone number")))
 
     password = forms.CharField(User._meta.get_field('password').max_length,
-                               label=_(mark_safe(u"Password")),
+                               label=mark_safe(_(u"Password")),
                                widget=forms.PasswordInput())
     confirm_password = forms.CharField(
         User._meta.get_field('password').max_length,
-        label=_(mark_safe(u"Password confirmation")), widget=forms.PasswordInput())
+        label=mark_safe(_(u"Password confirmation")), widget=forms.PasswordInput())
 
 
 	#Commenting from now, as it might be more functional to handle group assignment for logged in users

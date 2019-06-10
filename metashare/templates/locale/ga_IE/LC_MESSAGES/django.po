@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 13:53+0200\n"
-"PO-Revision-Date: 2019-06-07 10:01+0200\n"
+"POT-Creation-Date: 2019-06-10 12:39+0200\n"
+"PO-Revision-Date: 2019-06-10 12:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -94,7 +94,11 @@ msgstr "\"Tuigim\""
 msgid "\"Learn more\""
 msgstr "\"Léigh níos mó faoi\""
 
-#: templates/base.html:69
+#: templates/base.html:60
+msgid "\"Cookies policy\""
+msgstr "'Beartas Fianán'"
+
+#: templates/base.html:70
 msgid "Go to the web page main content."
 msgstr "Téigh go dtí príomh-inneachar an leathanaigh ghréasáin."
 
@@ -3780,9 +3784,6 @@ msgstr "níor úsáideadh"
 
 #~ msgid "\"Allow cookies\""
 #~ msgstr "\"Ceadaigh fianáin\""
-
-#~ msgid "'Cookie Policy'"
-#~ msgstr "<b>Beartas Fianán</b>"
 
 #~ msgid " E-Mail: "
 #~ msgstr "R-phost:"
