@@ -189,7 +189,9 @@ def to_xml_string(node, encoding="ASCII"):
     """
     Serialize the given XML node as Unicode string using the given encoding.
     """
-    
+    #remove the group element in the node for compatibility 
+    for group in node.findall('groups'):
+        node.remove(group)
     xml_string = ElementTree.tostring(node, encoding=encoding)
     xml_string = xml_string.decode(encoding)
     
