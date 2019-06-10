@@ -25,6 +25,9 @@ DJANGO_BASE = ''
 # http://www.i18nguy.com/unicode/language-identifiers.html
 USE_L10N = True
 
+# MAX SIZE FOR CONTRIBUTE
+MAXIMUM_UPLOAD_SIZE_CONTRIBUTE= 100 * 1024 * 1024
+
 # one of the supported countries
 # one wants to make sure the country is among the EU countries
 COUNTRY = filter(lambda country: country == environ['ELRI_COUNTRY'], iana.get_eu_regions())[0]
