@@ -424,10 +424,21 @@ def prepare_error_zip(error_msg,resource_path,request):
     add_files2zip(resource_path+'/doc/input',errorzip)
     add_files2zip(resource_path+'/tm/input',errorzip)
     add_files2zip(resource_path+'/other',errorzip)
+    #remove files from the toolchain folders
+    if os.path.isdir(resource_path+'/doc'):
+        shutil.rmtree(resource_path+'/doc')
+    if os.path.isdir(resource_path + '/doc'):
+        shutil.rmtree(resource_path+'/tm')
+    if os.path.isdir(resource_path + '/other'):
+        shutil.rmtree(resource_path+'/other')
+
     error_log = open(os.path.join(resource_path,'error.log'), 'w')
     error_log.write(error_msg.encode("utf-8"))
     error_log.close()
     errorzip.write(os.path.join(resource_path,'error.log'), 'error.log')
+    #remove the error.log file
+    if os.path.isfile(os.path.join(resource_path,'error.log')):
+        os.remove(os.path.join(resource_path,'error.log'))
     #close zip file with processed resources
     errorzip.close()
 
@@ -664,7 +675,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                                     send_mail(_("Error when processing resource %(rname)s") % ({'rname':r_name}), _('An error occurred when processing the resource %(rname)s. Please check the error.log attached to the resource. Contact the ELRI NRS support team for more information at %(email)s') % ({'rname':r_name,'email':settings.EMAIL_ADDRESSES['elri-nrs-support']}), settings.EMAIL_ADDRESSES['elri-no-reply'],group_reviewers)
                                 except: 
                                     messages.error(request,_("There was an error sending out the ERROR notification email to the group reviewers. Please contact them directly."))
-                                
+
                     #if something success-> create new archive.zip and replace the old one uploaded by the user     
                     # if any errors, then handle error reporting
                     if errors > 0 or error_msg!='':
@@ -714,10 +725,16 @@ class ResourceModelAdmin(SchemaModelAdmin):
                         licence_path=access_links
                         path, filename = os.path.split(licence_path)
                         processed_zip.write(licence_path,'license_'+filename)
-                        
-                        
+
                         #close zip file with processed resources
                         processed_zip.close()
+                        # remove files from the toolchain folders
+                        if os.path.isdir(resource_path + '/doc'):
+                            shutil.rmtree(resource_path + '/doc')
+                        if os.path.isdir(resource_path + '/doc'):
+                            shutil.rmtree(resource_path + '/tm')
+                        if os.path.isdir(resource_path + '/other'):
+                            shutil.rmtree(resource_path + '/other')
                         #if pre_status == INGESTED or pre_status==ERROR :
                         change_resource_status(obj,status=INGESTED, precondition_status=PROCESSING)
                             
@@ -728,6 +745,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             prepare_error_zip(error_msg,resource_path,request)
                             processing_status = processing_status and False
                         elif call_tm2tmx==0 and call_doc2tmx==0:
+
                             #ingest file that is not processed
                             #create the archive.zip with the processed resources
                             processed_zip=zipfile.ZipFile(resource_path+'/archive.zip',mode='w')
@@ -761,6 +779,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             
                             #close zip file with processed resources
                             processed_zip.close()
+
                             change_resource_status(obj,status=INGESTED, precondition_status=PROCESSING)
                             processing_status = processing_status and True
                         else:
@@ -787,7 +806,8 @@ class ResourceModelAdmin(SchemaModelAdmin):
         except:
             messages.error(request,_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email."))
             
-            error_msg=error_msg+_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email.\n ")
+            error_msg=_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email.\n ")
+            errors=0
             for obj in queryset:
                 change_resource_status(obj,status=ERROR, precondition_status=PROCESSING)
                 resource_path=obj.storage_object._storage_folder()
@@ -804,6 +824,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                     send_mail(_("Error when processing resource %(rname)s") % ({'rname':r_name}), _('An error occurred when processing the resource %(rname)s. Please check the error.log attached to the resource. Contact the ELRI NRS support team for more information at %(email)s') % ({'rname':r_name,'email':settings.EMAIL_ADDRESSES['elri-nrs-support']}), settings.EMAIL_ADDRESSES['elri-no-reply'],group_reviewers)
                 except: 
                     messages.error(request,_("There was an error sending out the ERROR notification email to the group reviewers. Please contact them directly."))
+
     process_action.short_description = _("Re-process selected resources")
 
     def publish_action(self, request, queryset):
@@ -832,6 +853,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             lic_restriction=lic.find('restrictionsOfUse').text
                         licences_name.append(lic_name)
                         licences_restriction.append(lic_restriction)
+
                     resource_path=obj.storage_object._storage_folder()
 
                     #attribution text
@@ -882,6 +904,8 @@ class ResourceModelAdmin(SchemaModelAdmin):
                     # (Attribution text:)
                     # IPR Holder: Name Surname (email), Organization 
                     # Contact Person: Name Surname (email), Organization 
+                    #if metadata_file exist --> update it : remove + add
+
                     metadata_file_path=resource_path+'/'+resource_name[0]+'_metadata.txt'
                     with codecs.open(metadata_file_path, encoding='utf-8',mode='w') as metadata_file:
                         metadata_file.write(_('Resource_name: %s  \n') % resource_name[0])
@@ -903,12 +927,12 @@ class ResourceModelAdmin(SchemaModelAdmin):
                                 metadata_file.write(_('Contact Person: ')+p+' '+contact_surname[i]+' ('+contact_email[i]+'), '+contact_organization[i]+'\n')
                         else:
                             metadata_file.write(_('Contact Person: N/A \n'))
-                    
+                    #lr_archive_zip=zipfile.ZipFile(resource_path+'/archive.zip', mode='a')
+                    #if resource_name[0]+'_metadata.txt' in lr_archive_zip.namelist():
                     remove_from_zip(resource_path+'/archive.zip', resource_name[0]+'_metadata.txt')
                     lr_archive_zip=zipfile.ZipFile(resource_path+'/archive.zip', mode='a')        
                     lr_archive_zip.write(metadata_file_path,resource_name[0]+'_metadata.txt')
                     lr_archive_zip.close()
-
                     
                     #send corresponding emails
                     emails=obj.owners.all().values_list('email',flat=True)
@@ -1024,6 +1048,8 @@ class ResourceModelAdmin(SchemaModelAdmin):
                         Successfully ingested {}(s) internal resource(s). 
                         You will be notified by email once the resource(s) has been fully processed.
                         """.format(successful))) 
+                    #TODO: add licence.pdf here
+
                     #send the ingested resource notification email
                     for i,r in enumerate(resource_names):
                         email_data={'resourcename':r}
