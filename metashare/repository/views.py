@@ -66,7 +66,7 @@ from metashare.repository.models import resourceInfoType_model, identificationIn
     metadataInfoType_model, languageDescriptionTextInfoType_model, languageDescriptionMediaTypeType_model, \
     languageDescriptionInfoType_model, lexicalConceptualResourceTextInfoType_model, \
     lexicalConceptualResourceMediaTypeType_model, lexicalConceptualResourceInfoType_model, distributionInfoType_model, \
-    licenceInfoType_model, resourceCreationInfoType_model
+    licenceInfoType_model, resourceCreationInfoType_model, projectInfoType_model
 from metashare.repository.search_indexes import resourceInfoType_modelIndex, \
     update_lr_index_entry
 from metashare.settings import LOG_HANDLER, STATIC_URL, DJANGO_URL, MAXIMUM_UPLOAD_SIZE, CONTRIBUTION_FORM_DATA, \
@@ -205,9 +205,9 @@ def download(request, object_id, **kwargs):
                  'l_conditions': l_info.restrictionsOfUse}
         if licence_choice == 'non-standard/Other_Licence/Terms':
             res_name=resource.identificationInfo.get_default_resourceName()
-            _dict['licence_path']=STATIC_URL + 'metashare/licences/'+u'_'.join(res_name.split())+'_licence.pdf'     
+            _dict['licence_path']=STATIC_URL + 'metashare/licences/'+u'_'.join(res_name.split())+'_licence.pdf'
         if licence_choice == 'publicDomain' or licence_choice == "openUnder-PSI":
-            _dict['licence_path']=''    
+            _dict['licence_path']=''
         return render_to_response('repository/licence_agreement.html',
                                   _dict, context_instance=RequestContext(request))
     elif len(licences) > 1:
@@ -1117,7 +1117,7 @@ def contribute(request):
             return HttpResponse(json.dumps(response),
                                 content_type="application/json")
 
-        if sum(fobj.size for fobj in file_objects) <= MAXIMUM_UPLOAD_SIZE_CONTRIBUTE:
+        if sum(fobj.size for fobj in file_objects) <= MAXIMUM_UPLOAD_SIZE_CONTRIBUTE :
             try:
                 if not os.path.isdir(unprocessed_dir):
                     os.makedirs(unprocessed_dir)
@@ -1132,6 +1132,7 @@ def contribute(request):
                 licences_folder= STATIC_ROOT + '/metashare/licences'
                 licence_filepath = os.path.sep.join((licences_folder,
                                                      licence_filename))
+                #TODO:que pasa si ya existe el archivo? que pasa si dos recursos se llaman igual y suben una licencia adhoc?
                 with open(licence_filepath, 'wb+') as licence_destination:
                     for chunk in licence_file_object.chunks():
                         licence_destination.write(chunk)
@@ -1288,9 +1289,20 @@ def create_description(xml_file, type, base, user):
         resourceName={'en': unicode(info['title'])}, #.encode('utf-8')},
         description={'en': unicode(info['description'])},#.encode('utf-8')},
         appropriatenessForDSI=info['domains'])
+
+
     resource_creation = resourceCreationInfoType_model.objects.create(
-        createdUsingELRCServices=False
-    )
+        createdUsingELRCServices=False,
+        anonymized=False)
+    elri_project=projectInfoType_model.objects.create()
+    elri_project.projectName["en"]= u"European Language Resource Infrastructure"
+    elri_project.projectShortName["en"]=u"ELRI"
+    elri_project.url=[u'http://www.elri-project.eu',]
+    elri_project.fundingType=[u'euFunds',]
+    elri_project.funder = [u'European Comission',]
+    elri_project.fundingCountry = [u'European Union',]
+    elri_project.save()
+    resource_creation.fundingProject.add(elri_project)
 
     # CONTACT PERSON:
 
@@ -1438,9 +1450,18 @@ def create_description(xml_file, type, base, user):
     '''distribution = distributionInfoType_model.objects.create(
         availability=u"underReview",
         PSI=False)
-    licence_obj, _ = licenceInfoType_model.objects.get_or_create(
-        licence=info['licence'])
-    distribution.licenceInfo.add(licence_obj)
+    #licence_obj, _ = licenceInfoType_model.objects.get_or_create( licence=info['licence'])
+    #LOGGER.info(licence_obj)
+    licence_obj=licenceInfoType_model.objects.filter(licence=info['licence'])
+    LOGGER.info(licence_obj)
+    if len(licence_obj)>0:
+        LOGGER.info(licence_obj[0])
+        distribution.licenceInfo.add(licence_obj[0])
+    else:
+        licence_obj=licenceInfoType_model.objects.create(licence=info['licence'])
+        LOGGER.info(licence_obj)
+        distribution.licenceInfo.add(licence_obj)
+        
     resource.distributioninfotype_model_set.add(distribution)
     #LOGGER.info(len(resource.distributioninfotype_model_set.all()))
     resource.save()'''
@@ -1462,6 +1483,7 @@ def create_description(xml_file, type, base, user):
     distribution.licenceInfo.add(licence_obj)
     resource.distributioninfotype_model_set.add(distribution)
     resource.save()
+
 
 
     # also add the designated maintainer, based on the country of the country of the donor
