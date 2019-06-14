@@ -7,6 +7,7 @@ import json
 import logging
 import codecs
 import tempfile
+
 from django import forms
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
@@ -46,7 +47,8 @@ from metashare.repository.models import resourceComponentTypeType_model, \
     lexicalConceptualResourceInfoType_model, toolServiceInfoType_model, \
     corpusMediaTypeType_model, languageDescriptionMediaTypeType_model, \
     lexicalConceptualResourceMediaTypeType_model, resourceInfoType_model, \
-    licenceInfoType_model, User
+    licenceInfoType_model, User, sizeInfoType_model, textFormatInfoType_model
+
 from metashare.repository.supermodel import SchemaModel
 from metashare.stats.model_utils import saveLRStats, UPDATE_STAT, INGEST_STAT, DELETE_STAT
 from metashare.storage.models import PUBLISHED, INGESTED, INTERNAL, PROCESSING, ERROR, \
@@ -89,7 +91,7 @@ LICENCEINFOTYPE_URLS_LICENCE_CHOICES = {
     # TODO: ODC-BY
     'ODC-BY-1.0': ( 'metashare/licences/ODC-BY-1.0.pdf', MEMBER_TYPES.NON),
     'ODbL-1.0': ( 'metashare/licences/ODbL-1.0.pdf', MEMBER_TYPES.NON),
-    'AGPL-3.0': ('metashare/licences/AGPL-3.0.pdf', MEMBER_TYPES.NON),
+    'AGPL-3.0': ( 'metashare/licences/AGPL-3.0.pdf', MEMBER_TYPES.NON),
     'Apache-2.0': ( 'metashare/licences/Apache-2.0.pdf', MEMBER_TYPES.NON),
     'BSD-4-Clause': ( 'metashare/licences/BSD-4-Clause.pdf', MEMBER_TYPES.NON),
     'BSD-3-Clause': ( 'metashare/licences/BSD-3-Clause.pdf', MEMBER_TYPES.NON),
@@ -442,6 +444,7 @@ def prepare_error_zip(error_msg,resource_path,request):
     #close zip file with processed resources
     errorzip.close()
 
+
 def remove_from_zip(zipfname, *filenames):
     tempdir = tempfile.mkdtemp()
     try:
@@ -596,6 +599,21 @@ class ResourceModelAdmin(SchemaModelAdmin):
                                 if json_validator(response_tm):
                                     if response_tm.json()["status"]=="Success":
                                         successful +=1
+                                        #clear previous information
+                                        if len(obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].sizeinfotype_model_set.all()) > 0:
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].sizeinfotype_model_set.clear()
+                                        if len(obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].textformatinfotype_model_set.all()) > 0:
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].textformatinfotype_model_set.clear()
+                                        props = response_tm.json()["lr_properties"]
+                                        for prop in props:
+                                            size_info = sizeInfoType_model.objects.create(size=int(prop["size"]),
+                                                                                      sizeUnit=prop["size_unit"])
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].sizeinfotype_model_set.add(size_info)
+
+                                            lr_data_format = textFormatInfoType_model.objects.create(dataFormat=prop["data_format"])
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].textformatinfotype_model_set.add(lr_data_format)
+                                        obj.storage_object.update_storage()
+
                                     else:
                                         change_resource_status(obj,status=ERROR, precondition_status=PROCESSING)
                                         error_msg=error_msg+_("Something went wrong when processing the resource with the tm2tmx toolchain.")+response_tm.json()["info"]+'\n'
@@ -642,8 +660,26 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             try:
                                 response_doc=requests.post(settings.DOC2TMX_URL,json=doc_json)
                                 if json_validator(response_doc):
+
                                     if response_doc.json()["status"] == "Success":
                                         successful += 1
+                                        # clear previous information
+                                        if len(obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].sizeinfotype_model_set.all()) > 0:
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].sizeinfotype_model_set.clear()
+                                        if len(obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].textformatinfotype_model_set.all()) > 0:
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].textformatinfotype_model_set.clear()
+
+                                        props=response_doc.json()["lr_properties"]
+                                        for prop in props:
+                                            size_info = sizeInfoType_model.objects.create(size=prop["size"],
+                                                                                          sizeUnit=prop["size_unit"])
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].sizeinfotype_model_set.add(size_info)
+
+                                            lr_data_format = textFormatInfoType_model.objects.create(
+                                                dataFormat=prop["data_format"])
+                                            obj.resourceComponentType.as_subclass().corpusMediaType.corpustextinfotype_model_set.all()[0].textformatinfotype_model_set.add(lr_data_format)
+                                        obj.storage_object.update_storage()
+
                                     else:
                                         change_resource_status(obj,status=ERROR, precondition_status=PROCESSING)
                                         error_msg=error_msg+_("Something went wrong when processing the resource with the doc2tmx toolchain.\n ")+response_doc.json()["info"]+"\n"
