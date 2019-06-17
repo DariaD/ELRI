@@ -40,7 +40,9 @@ COPY resources/env_secrets_expand.sh \
 
 RUN svn export ${GIT_URL}/metashare /elri/metashare \
     && svn export ${GIT_URL}/project_management /elri/project_management \
-    && svn export ${GIT_URL}/elri_resources /elri/elri_resources \
+    && svn export ${GIT_URL}/elri_resources /elri/elri_resources/config \
+    && svn export ${GIT_URL}/elri_resources/toolchain_resources /elri/toolchain_resources \
+    && mkdir -p /elri/elri_resources/toolchain_resources \
     && svn export ${GIT_URL}/requirements.txt /elri/requirements.txt \
     && mkdir -p /elri/metashare/unprocessed \
              /elri/metashare/processed \
