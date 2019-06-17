@@ -99,6 +99,7 @@ if DJANGO_BASE == "":
 urlpatterns += staticfiles_urlpatterns()
 
 js_info_dict = {
+    'domain': 'djangojs',
     'packages': ('metashare',),
 }
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 17:16+0200\n"
-"PO-Revision-Date: 2019-06-07 09:58+0200\n"
+"POT-Creation-Date: 2019-06-17 16:38+0200\n"
+"PO-Revision-Date: 2019-06-17 16:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -1714,7 +1714,7 @@ msgstr ""
 "gcomhaid ZIP agus\n"
 "                triall arís é le do thoil."
 
-#: repository/views.py:1152
+#: repository/views.py:1153
 msgid ""
 "\n"
 "                            Your request could not be completed.\"\n"
@@ -1728,7 +1728,7 @@ msgstr ""
 "truallaithe, nó\n"
 "                            ní comhad ZIP bailí é."
 
-#: repository/views.py:1161
+#: repository/views.py:1162
 msgid ""
 "\n"
 "                            Only files of type DOC(X), ODT, RTF, PDF, TMX, "
@@ -1749,11 +1749,11 @@ msgstr ""
 "cineáil seo ón gcomhaid ZIP, agus\n"
 "                            triall arís é le do thoil."
 
-#: repository/views.py:1204
+#: repository/views.py:1205
 msgid "New submitted contributions"
 msgstr "Ábhar nua curtha ar fáil | New submitted contributions"
 
-#: repository/views.py:1212
+#: repository/views.py:1213
 msgid ""
 "\n"
 "                Thank you for sharing, your data have been successfully "
@@ -1767,20 +1767,15 @@ msgstr ""
 "bhfoireann ELRI. Gheobhaidh tú rphost nuair a bheas an acmhainn réidh don "
 "íoslódáil."
 
-#: repository/views.py:1221
+#: repository/views.py:1222
 msgid ""
-"\n"
-"                The file you are trying to upload exceeds the size limit. If "
-"the file(s) you\n"
-"                would like to contribute exceed(s) {:.10} MB please contact "
-"us to provide an SFTP link for direct\n"
-"                download or consider uploading smaller files."
+"The file(s) you are trying to upload exceeds the size limit. If the file(s) "
+"you would like to contribute exceed(s) {:.10} MB please contact us to "
+"provide an SFTP link for direct download or consider uploading smaller files."
 msgstr ""
-"\n"
-"                Tá an comhad a bhfuil tú ag iarraidh uaslódáil ró-mhór. Má "
-"tá an comhad nó na comhaid\n"
-"                níos mó ná {:.10} MB, téigh i dteagmháil linn le do thoil "
-"chun nasc SFTP a fháil, nó triall arís é le comhaid níos lú."
+"Tá an comhad a bhfuil tú ag iarraidh uaslódáil ró-mhór. Má tá an comhad nó "
+"na comhaid níos mó ná {:.10} MB, téigh i dteagmháil linn le do thoil chun "
+"nasc SFTP a fháil, nó triall arís é le comhaid níos lú."
 
 #~ msgid "Resource"
 #~ msgstr "Acmhainn"

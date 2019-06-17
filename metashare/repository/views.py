@@ -1219,11 +1219,7 @@ def contribute(request):
             
         else:
             response['status'] = "failed"
-            response['message'] = _("""
-                The file you are trying to upload exceeds the size limit. If the file(s) you
-                would like to contribute exceed(s) {:.10} MB please contact us to provide an SFTP link for direct
-                download or consider uploading smaller files.""".format(
-                float(MAXIMUM_UPLOAD_SIZE_CONTRIBUTE) / (1024 * 1024)))
+            response['message'] = _("The file(s) you are trying to upload exceeds the size limit. If the file(s) you would like to contribute exceed(s) {:.10} MB please contact us to provide an SFTP link for direct download or consider uploading smaller files.").format(float(MAXIMUM_UPLOAD_SIZE_CONTRIBUTE) / (1024 * 1024))
             return HttpResponse(json.dumps(response), content_type="application/json")
 
     # In ELRI, LR contributions can only be shared within the groups to which a user belongs.
