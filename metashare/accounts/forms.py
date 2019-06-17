@@ -130,6 +130,7 @@ class RegistrationRequestForm(Form):
         Make sure that the user name is still available.
         """
         _user_name = self.cleaned_data['shortname']
+
         try:
             User.objects.get(username=_user_name)
         except:
@@ -164,7 +165,7 @@ class RegistrationRequestForm(Form):
         pswrd_conf = self.cleaned_data.get('confirm_password',None)
         if pswrd != pswrd_conf:
             raise ValidationError(_('The two password fields did not match.'))
-        #if 'shortname' in self.cleaned_data.keys(): #check password iif there is a valid username, to avoid 
+        #if 'shortname' in self.cleaned_data.keys() and 'email' in self.cleaned_data.keys() and 'password' in :  #check password iif there is a valid username, to avoid
         validate_password(pswrd, user=User(
                 # this in-memory object is just for password validation
                 username=self.cleaned_data.get('shortname',None),
@@ -177,11 +178,10 @@ class RegistrationRequestForm(Form):
                 # this in-memory object is just for password validation
                 user_id=1, # dummy foreign key
 
-                affiliation=self.cleaned_data['organization'],
-                affiliation_address=self.cleaned_data['organization_address'],
-                affiliation_phone_number=self.cleaned_data['organization_phone_number'],
+                affiliation=self.cleaned_data.get('organization',None),
+                affiliation_address=self.cleaned_data.get('organization_address',None),
+                affiliation_phone_number=self.cleaned_data.get('organization_phone_number',None),
             ))
-
         return pswrd
 
         # cfedermann: possible extensions for future improvements.
