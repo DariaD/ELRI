@@ -760,10 +760,18 @@ class ResourceModelAdmin(SchemaModelAdmin):
                         #add access file to the lr.archive.zip file 
                         licence_path=access_links
                         path, filename = os.path.split(licence_path)
-                        processed_zip.write(licence_path,'license_'+filename)
-
-                        #close zip file with processed resources
-                        processed_zip.close()
+                        #if license file does not exist: error:
+                        try :
+                            processed_zip.write(licence_path,'license_'+filename)
+                            # close zip file with processed resources
+                            processed_zip.close()
+                        except:
+                            messages.error(request,_("There was an error adding the license file. Please check that a Non-standard license file has been uploaded through the contribute page. "))
+                            error_msg=_("There was an error adding the license file. Please check that a Non-standard license file has been uploaded through the contribute page. ")
+                            prepare_error_zip(error_msg, resource_path, request)
+                            processing_status = processing_status and False
+                            change_resource_status(obj, status=ERROR, precondition_status=PROCESSING)
+                            return processing_status
                         # remove files from the toolchain folders
                         if os.path.isdir(resource_path + '/doc'):
                             shutil.rmtree(resource_path + '/doc')
@@ -811,10 +819,20 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             #add access file to the lr.archive.zip file 
                             licence_path=access_links
                             path, filename = os.path.split(licence_path)
-                            processed_zip.write(licence_path,'license_'+filename)
-                            
-                            #close zip file with processed resources
-                            processed_zip.close()
+                            # if license file does not exist: error:
+                            try:
+                                processed_zip.write(licence_path, 'license_' + filename)
+                                # close zip file with processed resources
+                                processed_zip.close()
+                            except:
+                                messages.error(request, _(
+                                    "There was an error adding the license file. Please check that a Non-standard license file has been uploaded through the contribute page. "))
+                                error_msg = _(
+                                    "There was an error adding the license file. Please check that a Non-standard license file has been uploaded through the contribute page. ")
+                                prepare_error_zip(error_msg, resource_path, request)
+                                processing_status = processing_status and False
+                                change_resource_status(obj, status=ERROR, precondition_status=PROCESSING)
+                                return processing_status
 
                             change_resource_status(obj,status=INGESTED, precondition_status=PROCESSING)
                             processing_status = processing_status and True
