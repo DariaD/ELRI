@@ -429,7 +429,7 @@ def prepare_error_zip(error_msg,resource_path,request):
     #remove files from the toolchain folders
     if os.path.isdir(resource_path+'/doc'):
         shutil.rmtree(resource_path+'/doc')
-    if os.path.isdir(resource_path + '/doc'):
+    if os.path.isdir(resource_path + '/tm'):
         shutil.rmtree(resource_path+'/tm')
     if os.path.isdir(resource_path + '/other'):
         shutil.rmtree(resource_path+'/other')
@@ -776,7 +776,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                         # remove files from the toolchain folders
                         if os.path.isdir(resource_path + '/doc'):
                             shutil.rmtree(resource_path + '/doc')
-                        if os.path.isdir(resource_path + '/doc'):
+                        if os.path.isdir(resource_path + '/tm'):
                             shutil.rmtree(resource_path + '/tm')
                         if os.path.isdir(resource_path + '/other'):
                             shutil.rmtree(resource_path + '/other')
@@ -835,6 +835,13 @@ class ResourceModelAdmin(SchemaModelAdmin):
                                 change_resource_status(obj, status=ERROR, precondition_status=PROCESSING)
                                 return processing_status
 
+                            # remove files from the toolchain folders
+                            if os.path.isdir(resource_path + '/doc'):
+                                shutil.rmtree(resource_path + '/doc')
+                            if os.path.isdir(resource_path + '/tm'):
+                                shutil.rmtree(resource_path + '/tm')
+                            if os.path.isdir(resource_path + '/other'):
+                                shutil.rmtree(resource_path + '/other')
                             change_resource_status(obj,status=INGESTED, precondition_status=PROCESSING)
                             processing_status = processing_status and True
                         else:
