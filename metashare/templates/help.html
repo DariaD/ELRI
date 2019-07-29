@@ -2,6 +2,7 @@
 {% load email_protection i18n %}
 {% load get_email %}
 {% load get_guidelines %}
+{% load get_infographic %}
 {% load static %}
 {% block content %}
 
@@ -17,6 +18,14 @@
                 <li> <a href="{% static elri_userguidelines %}" target="_blank">{% trans 'User guidelines' %}</a>
                 </li>
             
+        </ul>
+        <ul>
+
+            {% get_current_language as LANGUAGE_CODE %}
+                {% get_infographic LANGUAGE_CODE as elri_infographic %}
+                <li> <a href="{% static elri_infographic %}" target="_blank">{% trans 'Irish NRS infographic' %}</a>
+                </li>
+
         </ul>
         <h2>{% trans 'Contact details' %}</h2>
         <ul>

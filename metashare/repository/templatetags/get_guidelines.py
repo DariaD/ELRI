@@ -15,4 +15,3 @@ def get_guidelines(lang):
     """
     elri_guidelines='metashare/ELRI_user_guidelines_'+lang+'.pdf'
     return elri_guidelines
-    
