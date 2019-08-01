@@ -151,7 +151,7 @@ class UploadELRCThread(threading.Thread):
                 elrc_resource_id = self.upload_resource_to_elrc(resource)
                 if elrc_resource_id:
                     #resource.ELRCUploaded = True
-                    if change_resource_status(obj, status=ELRC, precondition_status=PUBLISHED):
+                    if change_resource_status(resource, status=ELRC, precondition_status=PUBLISHED):
                     #resource.save()
                         self.output.put(('success', resource.id))
                     else:
