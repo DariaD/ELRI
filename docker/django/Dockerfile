@@ -7,7 +7,7 @@ FROM python:2.7.15-stretch
 
 #ARG RELEASE="trunk"
 #ARG RELEASE="tags/R3.3.9"
-ARG RELEASE="branches/VIC+ELDA"
+ARG RELEASE="branches/VIC_ELDA2"
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
     SOLR_HOST="solr" \
@@ -48,7 +48,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
              /elri/metashare/processed \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
     && pip install -r /elri/requirements.txt \
-    && pip install git+https://github.com/ELDAELRA/ELRI.git@VIC+ELDA#subdirectory=elrc-share-client \
+    && pip install git+https://github.com/ELDAELRA/ELRI.git@VIC_ELDA2#subdirectory=elrc-share-client \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh
@@ -58,7 +58,7 @@ RUN svn export ${GIT_URL}/elri_resources/config/web_service.cfg /elri/web_servic
 
 COPY resources/local_settings.py \
      resources/maintainers.dat \
-     resources/wsgi.py /elri/metashare 
+     resources/wsgi.py /elri/metashare/ 
 
 EXPOSE 8000
 
