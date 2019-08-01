@@ -23,7 +23,7 @@
 
             {% get_current_language as LANGUAGE_CODE %}
                 {% get_infographic LANGUAGE_CODE as elri_infographic %}
-                <li> <a href="{% static elri_infographic %}" target="_blank">{% trans 'Irish NRS infographic' %}</a>
+                <li> <a href="{% static elri_infographic %}" target="_blank">{% trans 'Irish NRS infographic' %}</a> - {% trans 'contains information on types of texts and files to upload, as well as additional information about contributing data.' %}
                 </li>
 
         </ul>
