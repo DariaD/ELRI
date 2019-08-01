@@ -39,6 +39,7 @@ INGESTED = 'g'
 PUBLISHED = 'p'
 PROCESSING = 'r'
 ERROR = 'e'
+ELRC = 'u' # u from uploaded to the ELRC_SHARE
 
 STATUS_CHOICES = (
     (INTERNAL, 'internal'),
@@ -46,6 +47,7 @@ STATUS_CHOICES = (
     (PROCESSING, 'processing'),
     (ERROR, 'error'),
     (PUBLISHED, 'published'),
+    (ELRC, 'uploaded_ELRC-SHARE'),
 )
 
 # Copy status constants and choice:
@@ -232,6 +234,7 @@ class StorageObject(models.Model):
         """
         Returns the path to the local folder for this storage object instance.
         """
+        #return '{0}/{1}'.format(settings.STORAGE_PATH, self.identifier)
         return os.path.join(settings.STORAGE_PATH, self.identifier)
 
     def get_storage_archive_path(self):
@@ -469,7 +472,7 @@ class StorageObject(models.Model):
             dumps(_dict_global, cls=DjangoJSONEncoder, sort_keys=True, separators=(',', ':'))
         if self.global_storage != _global_storage:
             self.global_storage = _global_storage
-            if self.publication_status in (INGESTED, PUBLISHED, PROCESSING, ERROR):
+            if self.publication_status in (INGESTED, PUBLISHED, PROCESSING, ERROR, ELRC):
                 with open('{0}/storage-global.json'.format(
                         self._storage_folder()), 'wb') as _out:
                     _out.write(unicode(self.global_storage).encode('utf-8'))

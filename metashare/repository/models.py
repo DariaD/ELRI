@@ -93,8 +93,8 @@ class resourceInfoType_model(SchemaModel):
       ( 'resourceComponentType/corpusInfo', 'resourceComponentType', REQUIRED ),
       ( 'resourceComponentType/toolServiceInfo', 'resourceComponentType', REQUIRED ),
       ( 'resourceComponentType/languageDescriptionInfo', 'resourceComponentType', REQUIRED ),
-      ( 'resourceComponentType/lexicalConceptualResourceInfo', 'resourceComponentType', REQUIRED ),
-      ('ELRCUploaded', 'ELRCUploaded', OPTIONAL)
+      ( 'resourceComponentType/lexicalConceptualResourceInfo', 'resourceComponentType', REQUIRED )#,
+      #('ELRCUploaded', 'ELRCUploaded', OPTIONAL)
     )
     __schema_classes__ = {
       u'contactPerson': "personInfoType_model",
@@ -181,7 +181,7 @@ class resourceInfoType_model(SchemaModel):
     storage_object = models.ForeignKey(StorageObject, blank=True, null=True,
       unique=True)
 
-    ELRCUploaded = models.NullBooleanField(_("Uploaded to ELRC"), blank=True, null=True)
+    #ELRCUploaded = models.NullBooleanField(_("Uploaded to ELRC"), blank=True, null=True)
 
     def save(self, *args, **kwargs):
         """

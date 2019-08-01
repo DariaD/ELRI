@@ -56,7 +56,7 @@ from metashare.repository.models import resourceComponentTypeType_model, \
 
 from metashare.repository.supermodel import SchemaModel
 from metashare.stats.model_utils import saveLRStats, UPDATE_STAT, INGEST_STAT, DELETE_STAT
-from metashare.storage.models import PUBLISHED, INGESTED, INTERNAL, PROCESSING, ERROR, \
+from metashare.storage.models import PUBLISHED, INGESTED, INTERNAL, PROCESSING, ERROR, ELRC,\
     ALLOWED_ARCHIVE_EXTENSIONS, ALLOWED_VALIDATION_EXTENSIONS, ALLOWED_LEGAL_DOCUMENTATION_EXTENSIONS
 from metashare.utils import verify_subclass, create_breadcrumb_template_params
 
@@ -150,9 +150,12 @@ class UploadELRCThread(threading.Thread):
                 resource = self.queue.get()
                 elrc_resource_id = self.upload_resource_to_elrc(resource)
                 if elrc_resource_id:
-                    resource.ELRCUploaded = True
-                    resource.save()
-                    self.output.put(('success', resource.id))
+                    #resource.ELRCUploaded = True
+                    if change_resource_status(obj, status=ELRC, precondition_status=PUBLISHED):
+                    #resource.save()
+                        self.output.put(('success', resource.id))
+                    else:
+                        self.output.put(('error', resource.id))
                 else:
                     self.output.put(('error', resource.id))
             else:
@@ -180,6 +183,16 @@ class UploadELRCThread(threading.Thread):
         )
 
 
+def _get_user_membership(user):
+    """
+    Returns a `MEMBER_TYPES` type based on the permissions of the given
+    authenticated user.
+    """
+    if user.has_perm('accounts.ms_full_member'):
+        return MEMBER_TYPES.FULL
+    elif user.has_perm('accounts.ms_associate_member'):
+        return MEMBER_TYPES.ASSOCIATE
+    return MEMBER_TYPES.NON
 def _get_user_membership(user):
     """
     Returns a `MEMBER_TYPES` type based on the permissions of the given
@@ -535,8 +548,8 @@ class ResourceModelAdmin(SchemaModelAdmin):
 
     content_fields = ('resourceComponentType',)
     # list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'editor_Groups',)
-    list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'validated', 'ELRCUploaded')
-    list_filter = ('storage_object__publication_status', ResourceTypeFilter, ValidatedFilter, 'ELRCUploaded')
+    list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'validated') #, 'ELRCUploaded')
+    list_filter = ('storage_object__publication_status', ResourceTypeFilter, ValidatedFilter) #, 'ELRCUploaded')
     actions = (
         'process_action', 'publish_action',
         'suspend_action', 'ingest_action',
@@ -1247,7 +1260,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
 
             for resource in queryset:
                 resource_status = check_resource_status(resource)
-                if resource_status == PUBLISHED and not resource.ELRCUploaded:
+                if resource_status == PUBLISHED : #and not resource.ELRCUploaded:
                     ELRC_THREAD.add_resource(resource)
                     resources_success.append(str(resource.id))
                 else:
@@ -1271,32 +1284,40 @@ class ResourceModelAdmin(SchemaModelAdmin):
         """
         if has_edit_permission(request, queryset):
             for obj in queryset:
-                if not obj.ELRCUploaded:
-                    obj.ELRCUploaded = True
-                    obj.save()
+                #if not obj.ELRCUploaded:
+                #    obj.ELRCUploaded = True
+                #    obj.save()
+                if obj.storage_object.publication_status !=ELRC:
+                    if change_resource_status(obj,status=ELRC,precondition_status=PUBLISHED):
+                        messages.info(request,_("Resource marked as uploaded to ELRC-SHARE"))
+                    else:
+                        messages.error(request, _("Only published resources can be set as uploaded to ELRC-SHARE"))
                 else:
-                    messages.warning(request, 'Resource is already defined has ELRC uploaded: %s' % obj.pk)
+                    messages.warning(request, 'Resource is already marked as uploaded to ELRC-SHARE: %s' % obj.pk)
         else:
             messages.error(request, _('You dont have the permission to run this action.'))
         return
 
-    mark_elrc_uploaded.short_description = _('Mark resources has ELRC uploaded.')
+    mark_elrc_uploaded.short_description = _('Mark as uploaded to ELRC-SHARE')
 
     def unmark_elrc_uploaded(self, request, queryset):
         """ Define all resources of queryset has not ELRC uploaded.
         """
         if has_edit_permission(request, queryset):
             for obj in queryset:
-                if obj.ELRCUploaded:
-                    obj.ELRCUploaded = None
-                    obj.save()
+                #if obj.ELRCUploaded:
+                #    obj.ELRCUploaded = None
+                #    obj.save()
+                if obj.storage_object.publication_status ==ELRC:
+                    if change_resource_status(obj,status=PUBLISHED,precondition_status=ELRC):
+                        messages.info(request,_("Resource unmarked as uploaded to ELRC-SHARE"))
                 else:
-                    messages.warning(request, 'Resource is not defined has ELRC uploaded: %s' % obj.pk)
+                    messages.warning(request, 'Resource is not marked as uploaded to ELRC-SHARE: %s' % obj.pk)
         else:
             messages.error(request, _('You dont have the permission to run this action.'))
         return
 
-    unmark_elrc_uploaded.short_description = _('Unmark resources has ELRC uploaded.')
+    unmark_elrc_uploaded.short_description = _('Unmark as uploaded to ELRC-SHARE')
 
     def export_xml_action(self, request, queryset):
         from StringIO import StringIO
