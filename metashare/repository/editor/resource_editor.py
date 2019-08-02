@@ -1,4 +1,4 @@
-import datetime, requests, os, zipfile
+import datetime, requests, os, zipfile, io
 from functools import update_wrapper
 from mimetypes import guess_type
 from shutil import copyfile
@@ -7,6 +7,10 @@ import json
 import logging
 import codecs
 import tempfile
+
+import threading, time
+from queue import Queue
+from elrc_client.client import ELRCShareClient
 
 from django import forms
 from django.contrib import admin, messages
@@ -27,7 +31,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _, ungettext
 from django.views.decorators.csrf import csrf_protect
 
-
+from django.core.exceptions import ImproperlyConfigured
 
 from metashare import settings
 from metashare.local_settings import STATIC_ROOT
@@ -118,6 +122,62 @@ LICENCEINFOTYPE_URLS_LICENCE_CHOICES = {
     'non-standard/Other_Licence/Terms': ('', MEMBER_TYPES.NON),
     'underReview': ('', MEMBER_TYPES.GOD),
 }
+
+ELRC_THREAD = None
+ELRC_THREAD_OUTPUT = Queue()
+
+
+
+class UploadELRCThread(threading.Thread):
+    """ Thread for upload management from ELRI resources files to ELRC.
+    """
+    def __init__(self, output=None):
+        threading.Thread.__init__(self)
+        self.daemon = True
+        self.started = False
+        self.output = output
+        self.queue = Queue()
+        self.client = ELRCShareClient()
+        self.client.login(username=settings.ELRC_USERNAME, password=settings.ELRC_PASSWORD)
+
+    def run(self):
+        """ Consume resources of `self.queue` and upload each of them to ELRC-Share with the ELRC-Share client.
+        """
+        self.started = True
+        while not self.queue.empty():
+            if self.client.logged_in:
+                resource = self.queue.get()
+                elrc_resource_id = self.upload_resource_to_elrc(resource)
+                if elrc_resource_id:
+                    resource.ELRCUploaded = True
+                    resource.save()
+
+                    self.output.put(('success', resource.id))
+                else:
+                    self.output.put(('error', resource.id))
+            else:
+                LOGGER.error(_("Client can't connect to the ELRC-Share server. Try to reconnect now."))
+                self.client.login(username=settings.ELRC_USERNAME, password=settings.ELRC_PASSWORD)
+                time.sleep(10)
+
+    def add_resource(self, resource):
+        """ Add new resource to `self.queue`.
+        """
+        if not isinstance(resource, resourceInfoType_model):
+            LOGGER.error("Resource to upload on ELRC is not instance of `resourceInfoType_model` model.")
+        self.queue.put(resource)
+        return
+
+    def upload_resource_to_elrc(self, resource):
+        """ Upload `resource` argument on ELRC server with the storage object xml path and archive path.
+        `resource` argument must be an instance of `resourceInfoType_model`.
+        """
+        if not isinstance(resource, resourceInfoType_model):
+            raise TypeError("Resource to upload on ELRC is not instance of `resourceInfoType_model` model.")
+        return self.client.create(
+            resource.storage_object.get_storage_xml_path(),
+            resource.storage_object.get_download()
+        )
 
 
 
@@ -471,11 +531,30 @@ class ResourceModelAdmin(SchemaModelAdmin):
     # list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'editor_Groups',)
     list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'validated')
     list_filter = ('storage_object__publication_status', ResourceTypeFilter, ValidatedFilter)
-    actions = ('process_action','publish_action', 'suspend_action', 'ingest_action', 'mark_elrc_uploaded',
+    actions = ('process_action','publish_action', 'suspend_action', 'ingest_action', 'publish_elrc_action', 'mark_elrc_uploaded',
         'unmark_elrc_uploaded', 'export_xml_action', 'delete', 'add_group', 'remove_group',
         'add_owner', 'remove_owner', 'process_resource')
     hidden_fields = ('storage_object', 'owners', 'editor_groups',)
     search_fields = ("identificationInfo__resourceName", "identificationInfo__resourceShortName", "identificationInfo__description", "identificationInfo__identifier")
+
+    def changelist_view(self, request, extra_context=None):
+        from collections import defaultdict
+        from metashare.repository.editor.resource_editor import ELRC_THREAD_OUTPUT
+        # Temporary
+        messages_dict = {
+            'success': _("Resources uploaded: {0} ID: {1}"),
+            'error': _("Resources upload failed: {0} ID: {1}"),
+            'info': _("Resources status change success: {0} ID: {1}")
+        }
+        messages_counter = defaultdict(list)
+        while not ELRC_THREAD_OUTPUT.empty():
+            message_type, resource_id = ELRC_THREAD_OUTPUT.get()
+            messages_counter[message_type].append(str(resource_id))
+        for key, message in messages_counter.items():
+            message = messages_dict[key].format(len(message), ','.join(message))
+            getattr(messages, key)(request, message)
+        return super(ResourceModelAdmin, self).changelist_view(request, extra_context)
+
 
     def process_action(self, request, queryset, from_ingest=None ):
         try:
@@ -1031,6 +1110,41 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             'perform this action for all selected resources.'))
 
     publish_action.short_description = _("Publish selected ingested resources")
+
+    def publish_elrc_action(self, request, queryset):
+        """ Each resource objects of queryset, update related XML file and archive file on ELRC website.
+        """
+        global ELRC_THREAD
+        if not hasattr(settings, 'ELRC_USERNAME') or not hasattr(settings, 'ELRC_PASSWORD'):
+            raise ImproperlyConfigured(
+                'Define ELRC_API_USERNAME and ELRC_API_PASSWORD into settings before uploading.'
+            )
+
+        resources_success = list()
+        resources_failed = list()
+
+        if not ELRC_THREAD or not ELRC_THREAD.is_alive():
+            ELRC_THREAD = UploadELRCThread(output=ELRC_THREAD_OUTPUT)
+
+        for resource in queryset:
+            resource_status = check_resource_status(resource)
+            if resource_status == PUBLISHED and not resource.ELRCUploaded:
+                ELRC_THREAD.add_resource(resource)
+                resources_success.append(str(resource.id))
+            else:
+                resources_failed.append(str(resource.id))
+
+        if resources_success:
+            messages.info(request, _("Resources added to the upload list: {0}.".format(len(resources_success))))
+        if resources_failed:
+            messages.error(request, _(
+                "Resource upload failed: {0}. ID: {1}".format(len(resources_failed), ','.join(resources_failed))))
+
+        if not ELRC_THREAD.started:
+            ELRC_THREAD.start()
+        return
+
+    publish_elrc_action.short_description = _("Publish selected resources on ELRC-Share")
 
     def mark_elrc_uploaded(self, request, queryset):
         """ Define all resources of queryset has ELRC uploaded.
