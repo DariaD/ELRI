@@ -874,11 +874,13 @@ class MetashareFacetedSearchView(FacetedSearchView):
                     resource_names.append(resourceName+str(id_res))
             if resource_names:
                 published_status=['published','uploaded_ELRC-SHARE']
+                LOGGER.info(published_status)
                 sqs = sqs.filter(publicationStatusFilter__in=published_status,
                                  resourceNameSort__in=resource_names)
-                #sqs = sqs.filter(publicationStatusFilter__exact='published',
-                #                 resourceNameSort__in=resource_names)
-
+                LOGGER.info(sqs)
+                sqs = sqs.filter(publicationStatusFilter__exact='published',
+                                 resourceNameSort__in=resource_names)
+                LOGGER.info(sqs)
             else:
                 sqs = sqs.none()
 
