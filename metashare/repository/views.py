@@ -873,8 +873,12 @@ class MetashareFacetedSearchView(FacetedSearchView):
                     #  can arise from resources sharing the same name but with different group sharing policy
                     resource_names.append(resourceName+str(id_res))
             if resource_names:
-                sqs = sqs.filter(publicationStatusFilter__exact='published',
+                published_status=['published','uploaded_ELRC-SHARE']
+                sqs = sqs.filter(publicationStatusFilter__in=published_status,
                                  resourceNameSort__in=resource_names)
+                #sqs = sqs.filter(publicationStatusFilter__exact='published',
+                #                 resourceNameSort__in=resource_names)
+
             else:
                 sqs = sqs.none()
 
