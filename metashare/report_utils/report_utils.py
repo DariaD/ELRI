@@ -21,7 +21,7 @@ def get_resources():
     for r in all_resources:
         is_relations = [rel.relationType.startswith("is") for rel in r.relationinfotype_model_set.all()]
         status = r.storage_object.publication_status
-        if status == 'p' or (status == 'g' and any(is_relations)):
+        if status == 'p' or status == 'u' or (status == 'g' and any(is_relations)):
             resources.append(r)
     return resources
 

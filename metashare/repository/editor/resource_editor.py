@@ -51,7 +51,7 @@ from metashare.repository.models import resourceComponentTypeType_model, \
 
 from metashare.repository.supermodel import SchemaModel
 from metashare.stats.model_utils import saveLRStats, UPDATE_STAT, INGEST_STAT, DELETE_STAT
-from metashare.storage.models import PUBLISHED, INGESTED, INTERNAL, PROCESSING, ERROR, \
+from metashare.storage.models import PUBLISHED, INGESTED, INTERNAL, PROCESSING, ERROR, ELRC,\
     ALLOWED_ARCHIVE_EXTENSIONS, ALLOWED_VALIDATION_EXTENSIONS, ALLOWED_LEGAL_DOCUMENTATION_EXTENSIONS
 from metashare.utils import verify_subclass, create_breadcrumb_template_params
 
@@ -118,6 +118,7 @@ LICENCEINFOTYPE_URLS_LICENCE_CHOICES = {
     'non-standard/Other_Licence/Terms': ('', MEMBER_TYPES.NON),
     'underReview': ('', MEMBER_TYPES.GOD),
 }
+
 
 
 def _get_user_membership(user):
@@ -470,8 +471,8 @@ class ResourceModelAdmin(SchemaModelAdmin):
     # list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'editor_Groups',)
     list_display = ('__unicode__', 'id', 'resource_type', 'publication_status', 'resource_Owners', 'validated')
     list_filter = ('storage_object__publication_status', ResourceTypeFilter, ValidatedFilter)
-    actions = ('process_action','publish_action', 'suspend_action', 'ingest_action',
-        'export_xml_action', 'delete', 'add_group', 'remove_group',
+    actions = ('process_action','publish_action', 'suspend_action', 'ingest_action', 'mark_elrc_uploaded',
+        'unmark_elrc_uploaded', 'export_xml_action', 'delete', 'add_group', 'remove_group',
         'add_owner', 'remove_owner', 'process_resource')
     hidden_fields = ('storage_object', 'owners', 'editor_groups',)
     search_fields = ("identificationInfo__resourceName", "identificationInfo__resourceShortName", "identificationInfo__description", "identificationInfo__identifier")
@@ -1030,6 +1031,46 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             'perform this action for all selected resources.'))
 
     publish_action.short_description = _("Publish selected ingested resources")
+
+    def mark_elrc_uploaded(self, request, queryset):
+        """ Define all resources of queryset has ELRC uploaded.
+        """
+        if has_edit_permission(request, queryset):
+            for obj in queryset:
+                # if not obj.ELRCUploaded:
+                #    obj.ELRCUploaded = True
+                #    obj.save()
+                if obj.storage_object.publication_status != ELRC:
+                    if change_resource_status(obj, status=ELRC, precondition_status=PUBLISHED):
+                        messages.info(request, _("Resource marked as uploaded to ELRC-SHARE"))
+                    else:
+                        messages.error(request, _("Only published resources can be set as uploaded to ELRC-SHARE"))
+                else:
+                    messages.warning(request, 'Resource is already marked as uploaded to ELRC-SHARE: %s' % obj.pk)
+        else:
+            messages.error(request, _('You dont have the permission to run this action.'))
+        return
+
+    mark_elrc_uploaded.short_description = _('Mark as uploaded to ELRC-SHARE')
+
+    def unmark_elrc_uploaded(self, request, queryset):
+        """ Define all resources of queryset has not ELRC uploaded.
+        """
+        if has_edit_permission(request, queryset):
+            for obj in queryset:
+                # if obj.ELRCUploaded:
+                #    obj.ELRCUploaded = None
+                #    obj.save()
+                if obj.storage_object.publication_status == ELRC:
+                    if change_resource_status(obj, status=PUBLISHED, precondition_status=ELRC):
+                        messages.info(request, _("Resource unmarked as uploaded to ELRC-SHARE"))
+                else:
+                    messages.warning(request, 'Resource is not marked as uploaded to ELRC-SHARE: %s' % obj.pk)
+        else:
+            messages.error(request, _('You dont have the permission to run this action.'))
+        return
+
+    unmark_elrc_uploaded.short_description = _('Unmark as uploaded to ELRC-SHARE')
 
     def suspend_action(self, request, queryset):
         if has_publish_permission(request, queryset):

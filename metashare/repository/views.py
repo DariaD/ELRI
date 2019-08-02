@@ -73,7 +73,7 @@ from metashare.settings import LOG_HANDLER, STATIC_URL, DJANGO_URL, MAXIMUM_UPLO
     ROOT_PATH, LANGUAGE_CODE
 from metashare.stats.model_utils import getLRStats, saveLRStats, \
     saveQueryStats, VIEW_STAT, DOWNLOAD_STAT
-from metashare.storage.models import PUBLISHED, INGESTED
+from metashare.storage.models import PUBLISHED, INGESTED, ELRC
 from metashare.utils import prettify_camel_case_string
 
 MAXIMUM_READ_BLOCK_SIZE = 4096
@@ -306,7 +306,7 @@ def download_contact(request, object_id):
     """
     resource = get_object_or_404(resourceInfoType_model,
                                  storage_object__identifier=object_id,
-                                 storage_object__publication_status=PUBLISHED)
+                                 storage_object__publication_status__in=[PUBLISHED, ELRC])
 
     default_message = ""
     """_("We are interested in using the above mentioned " \
@@ -399,14 +399,14 @@ def has_view_permission(request, res_obj):
           user.groups.filter(name='reviewers').exists()
          )
          and
-         res_obj.storage_object.publication_status in (INGESTED, PUBLISHED)
+         res_obj.storage_object.publication_status in (INGESTED, PUBLISHED, ELRC)
         )
         or
         (
          user.groups.filter(name__in=
             res_obj.groups.values_list("name", flat=True)).exists()
          and
-         res_obj.storage_object.publication_status == PUBLISHED
+         res_obj.storage_object.publication_status in (PUBLISHED, ELRC)
         )
        ):
         return True
@@ -424,7 +424,7 @@ def view(request, resource_name=None, object_id=None):
     # by EC members and technical reviewers
     resource = get_object_or_404(resourceInfoType_model,
                                  storage_object__identifier=object_id,
-                                 storage_object__publication_status__in=[INGESTED, PUBLISHED])
+                                 storage_object__publication_status__in=[INGESTED, PUBLISHED, ELRC])
 
     if not has_view_permission(request, resource):
         raise PermissionDenied
@@ -784,9 +784,13 @@ class MetashareFacetedSearchView(FacetedSearchView):
                     #concatenate it to its id to resolve the conflicts that
                     #  can arise from resources sharing the same name but with different group sharing policy
                     resource_names.append(resourceName+str(id_res))
+
             if resource_names:
-                sqs = sqs.filter(publicationStatusFilter__exact='published',
+                published_status = ['published', 'uploadedELRC']
+                sqs = sqs.filter(publicationStatusFilter__in=published_status,
                                  resourceNameSort__in=resource_names)
+                #sqs = sqs.filter(publicationStatusFilter__exact='published',
+                #                 resourceNameSort__in=resource_names)
             else:
                 sqs = sqs.none()
 
@@ -1542,7 +1546,7 @@ def create_description(xml_file, type, base, user):
     return (resource, cperson, info['userInfo']['country'])
 
 
-status = {"p": "PUBLISHED", "g": "INGESTED", "i": "INTERNAL"}
+status = {"p": "PUBLISHED", "g": "INGESTED", "i": "INTERNAL", "u": "ELRC"}
 
 
 def repo_report(request):

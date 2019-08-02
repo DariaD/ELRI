@@ -19,7 +19,7 @@ from metashare.repository.models import resourceInfoType_model, \
     languageDescriptionInfoType_model
 from metashare.repository.search_fields import LabeledMultiValueField, LabeledCharField
 from metashare.settings import LOG_HANDLER, LANGUAGE_CODE
-from metashare.storage.models import StorageObject, INGESTED, PUBLISHED, INTERNAL
+from metashare.storage.models import StorageObject, INGESTED, PUBLISHED, INTERNAL, ELRC
 from metashare.stats.model_utils import DOWNLOAD_STAT, VIEW_STAT
 
 
@@ -233,14 +233,14 @@ class resourceInfoType_modelIndex(SearchIndex, indexes.Indexable):
         have not been deleted, yet.
         """
         return self.get_model().objects.filter(storage_object__deleted=False,
-                                               storage_object__publication_status__in=[INGESTED, PUBLISHED])
+                                               storage_object__publication_status__in=[INGESTED, PUBLISHED, ELRC])
 
     def should_update(self, instance, **kwargs):
         '''
         Only index resources that are at least ingested.
         In other words, do not index internal resources.
         '''
-        return instance.storage_object.publication_status in (INGESTED, PUBLISHED)
+        return instance.storage_object.publication_status in (INGESTED, PUBLISHED, ELRC)
 
     def update_object(self, instance, using=None, **kwargs):
         """

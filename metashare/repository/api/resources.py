@@ -74,7 +74,7 @@ class MetadataInfoResource(ModelResource):
     metadataCreationDate = fields.DateField(attribute='metadataCreationDate', verbose_name='created')
 
 
-pub_status = dict(p='published', g='ingested', i='internal')
+pub_status = dict(p='published', g='ingested', i='internal', u='uploadedELRC')
 
 
 class StorageResource(ModelResource):

@@ -54,7 +54,7 @@ class TogetherManager(models.Model):
         filters deleted and non-published resources
         """
         from metashare.repository.models import resourceInfoType_model
-        from metashare.storage.models import PUBLISHED   
+        from metashare.storage.models import PUBLISHED, ELRC
         # get pairs with count above threshold
         pairs = ResourceCountPair.objects\
           .filter(container__container__name=self.name)\
@@ -66,7 +66,7 @@ class TogetherManager(models.Model):
             try:
                 resource = resourceInfoType_model.objects.get(
                   storage_object__identifier=pair.lrid)
-                if resource.storage_object.publication_status != PUBLISHED\
+                if resource.storage_object.publication_status != PUBLISHED or resource.storage_object.publication_status != ELRC \
                   or resource.storage_object.deleted:
                     continue
                 together_list.append(resource)

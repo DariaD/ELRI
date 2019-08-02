@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from metashare.repository.models import resourceInfoType_model
 from metashare.settings import LOG_HANDLER, COUNTRY, LANGUAGE_CODE
-from metashare.storage.models import PUBLISHED
+from metashare.storage.models import PUBLISHED, ELRC
 
 # Setup logging support,
 LOGGER = logging.getLogger(__name__)
@@ -34,9 +34,13 @@ def frontpage(request):
     
     LOGGER.info(u'Rendering frontpage view for user "{0}".'
                 .format(request.user.username or "Anonymous"))
+    #lr_count = resourceInfoType_model.objects.filter(
+    #    storage_object__publication_status=PUBLISHED,
+    #    storage_object__deleted=False).count()
     lr_count = resourceInfoType_model.objects.filter(
-        storage_object__publication_status=PUBLISHED,
+        storage_object__publication_status__in=[PUBLISHED,ELRC],
         storage_object__deleted=False).count()
+
     dictionary = {'country': COUNTRY}
     return render_to_response('frontpage.html', dictionary,
       context_instance=RequestContext(request))

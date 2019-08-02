@@ -6,7 +6,7 @@ from django.dispatch import receiver
 from haystack.exceptions import NotHandled
 from haystack.signals import BaseSignalProcessor
 
-from metashare.storage.models import StorageObject, INGESTED, PUBLISHED
+from metashare.storage.models import StorageObject, INGESTED, PUBLISHED, ELRC
 from metashare.repository.models import resourceInfoType_model
 from project_management.models import ManagementObject
 
@@ -46,7 +46,7 @@ class PatchedSignalProcessor(BaseSignalProcessor):
         update should be sent to & update the object on those backends.
         """
         # only create/update index entries of ingested and published resources
-        if instance.publication_status in (INGESTED, PUBLISHED):
+        if instance.publication_status in (INGESTED, PUBLISHED, ELRC):
             using_backends = self.connection_router.for_write(instance=instance)
 
             for using in using_backends:

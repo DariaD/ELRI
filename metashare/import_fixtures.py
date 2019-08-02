@@ -56,6 +56,8 @@ if __name__ == "__main__":
                     
                     if "published" in filename:
                         resource.storage_object.publication_status = 'p'
+                    elif "uploadedELRC" in filename:
+                        resource.storage_object.publication_status = 'u'
                     elif "ingested" in filename:
                         resource.storage_object.publication_status = 'g'
                     else: #if internal (if no status given, status default is internal)
