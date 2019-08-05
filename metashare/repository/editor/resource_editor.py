@@ -1114,34 +1114,39 @@ class ResourceModelAdmin(SchemaModelAdmin):
     def publish_elrc_action(self, request, queryset):
         """ Each resource objects of queryset, update related XML file and archive file on ELRC website.
         """
-        global ELRC_THREAD
-        if not hasattr(settings, 'ELRC_USERNAME') or not hasattr(settings, 'ELRC_PASSWORD'):
-            raise ImproperlyConfigured(
-                'Define ELRC_API_USERNAME and ELRC_API_PASSWORD into settings before uploading.'
-            )
+        if has_edit_permission(request,queryset):
+            global ELRC_THREAD
+            if not hasattr(settings, 'ELRC_USERNAME') or not hasattr(settings, 'ELRC_PASSWORD'):
+                raise ImproperlyConfigured(
+                    'Define ELRC_API_USERNAME and ELRC_API_PASSWORD into settings before uploading.'
+                )
 
-        resources_success = list()
-        resources_failed = list()
+            resources_success = list()
+            resources_failed = list()
 
-        if not ELRC_THREAD or not ELRC_THREAD.is_alive():
-            ELRC_THREAD = UploadELRCThread(output=ELRC_THREAD_OUTPUT)
+            if not ELRC_THREAD or not ELRC_THREAD.is_alive():
+                ELRC_THREAD = UploadELRCThread(output=ELRC_THREAD_OUTPUT)
 
-        for resource in queryset:
-            resource_status = check_resource_status(resource)
-            if resource_status == PUBLISHED and not resource.ELRCUploaded:
-                ELRC_THREAD.add_resource(resource)
-                resources_success.append(str(resource.id))
-            else:
-                resources_failed.append(str(resource.id))
+            for resource in queryset:
+                resource_status = check_resource_status(resource)
+                if resource_status == PUBLISHED and not resource.ELRCUploaded:
+                    ELRC_THREAD.add_resource(resource)
+                    resources_success.append(str(resource.id))
+                else:
+                    resources_failed.append(str(resource.id))
 
-        if resources_success:
-            messages.info(request, _("Resources added to the upload list: {0}.".format(len(resources_success))))
-        if resources_failed:
-            messages.error(request, _(
-                "Resource upload failed: {0}. ID: {1}".format(len(resources_failed), ','.join(resources_failed))))
+            if resources_success:
+                messages.info(request, _("Resources added to the upload list: {0}.".format(len(resources_success))))
+            if resources_failed:
+                messages.error(request, _(
+                    "Resource upload failed: {0}. ID: {1}".format(len(resources_failed), ','.join(resources_failed))))
 
-        if not ELRC_THREAD.started:
-            ELRC_THREAD.start()
+            if not ELRC_THREAD.started:
+                ELRC_THREAD.start()
+            return
+        else:
+            messages.error(request, _('You do not have the permission to ' \
+                            'perform this action for all selected resources.'))
         return
 
     publish_elrc_action.short_description = _("Publish selected resources on ELRC-Share")
