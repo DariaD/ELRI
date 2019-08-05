@@ -33,6 +33,8 @@ services:
       - ELRI_EMAIL_ADDRESSES={{DOCKER-SECRET:app.secret}}
       - ELRI_WORKERS={{DOCKER-SECRET:app.secret}}
       - ELRI_THREADS={{DOCKER-SECRET:app.secret}}
+      - ELRI_API_USERNAME={{DOCKER-SECRET:app.secret}}
+      - ELRI_API_PASSWORD={{DOCKER-SECRET:app.secret}}
 
     depends_on:
       - solr
