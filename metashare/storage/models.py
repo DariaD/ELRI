@@ -234,6 +234,24 @@ class StorageObject(models.Model):
         """
         return '{0}/{1}'.format(settings.STORAGE_PATH, self.identifier)
 
+    def get_storage_archive_path(self):
+        path = self._storage_folder()
+        if os.path.isfile(path):
+            return path
+        return None
+
+    def get_storage_xml_path(self):
+        """ Return the last metadata XML file.
+        """
+        base_path = self._storage_folder()
+
+        metadata_file_name = 'metadata-{:0>4d}.xml'.format(self.revision)
+        metadata_file_path = os.path.join(base_path, metadata_file_name)
+
+        if os.path.isfile(metadata_file_path):
+            return metadata_file_path
+        return None
+
     def compute_checksum(self):
         """
         Computes the MD5 hash checksum for the binary archive which may be
