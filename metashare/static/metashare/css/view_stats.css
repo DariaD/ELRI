@@ -1,7 +1,12 @@
+.w-100 {
+    width: 100%;
+}
+
 /* tabbed panel */
 .etabs { margin: 0; padding: 0}
 
-.tab {display: inline-block;
+.tab {
+    display: inline-block;
     zoom: 1; 
     *display:inline; 
     margin-right: 5px;
@@ -13,7 +18,8 @@
 	-khtml-border-radius: 5px 5px 0 0;
 }
 
-.tab a {font-family: Tahoma,Arial;
+.tab a {
+    font-family: Tahoma,Arial;
   	text-shadow: 0px -1px 1px #FF9900;
 	font-weight: 600; 
 	color: white !important;
@@ -21,10 +27,12 @@
     line-height: 2em; 
     display: block; 
     padding: 0 10px; 
-    outline: none; 
+    outline: none;
 }
 
-.tab a:hover { text-decoration: none; 
+/*.tab a:hover { text-decoration: none;*/
+.tab:not(.tab-nobr) a:hover {
+    text-decoration: none
     background: url("../images/button_top_bg2.png")
 }
 
@@ -32,15 +40,7 @@
     color: #fff 
 }
 
-.tab-container .panel-container {background: #fff; 
-    border: solid #666 1px; 
-    padding: 10px; 
-    -moz-border-radius: 0 5px 5px 5px; 
-    -webkit-border-radius: 0 5px 5px 5px;
-    -khtml-border-radius: 0 5px 5px 5px;
-}
-
-.tab.tab-nobr { background: #fff; 
+.tab.tab-nobr { background: #fff;
     font-weight: 600; 
     font-family: Tahoma,Arial;
   	color: #000 !important;
@@ -50,6 +50,19 @@
     outline: none;
     text-decoration: none;
     border-bottom: none; 
+}
+
+.tab.tab-nobr a {
+    color: #000 !important;
+    text-shadow: none;
+}
+
+.tab-container .panel-container {background: #fff;
+    border: solid #666 1px;
+    padding: 10px;
+    -moz-border-radius: 0 5px 5px 5px;
+    -webkit-border-radius: 0 5px 5px 5px;
+    -khtml-border-radius: 0 5px 5px 5px;
 }
 
 .content_tab {
