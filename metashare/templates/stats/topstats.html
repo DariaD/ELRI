@@ -1,75 +1,82 @@
-{% extends "base.html" %}
-{% load static from staticfiles %}
-{%load i18n %}
-{% block content %}
-    <noscript><b>{% trans 'It seems JavaScript is either disabled or not supported by your browser.' %}</b>
-        {% blocktrans %}JavaScript should be enabled in order to support all functionalities.
-        Enable JavaScript by changing your browser options, and then try again.{% endblocktrans %}
-    </noscript>
-    {% if geovisits|length > 0 %}
-        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
-        <script type="text/javascript">
-            try {
-                google.load('visualization', '1', {packages: ['geochart']});
-                google.setOnLoadCallback(drawVisualization);
-            } catch (e) {
-                // error calling Google occured
-            }
-            var data;
-            var setOn = 0;
-            function drawVisualization() {
-                var data = google.visualization.arrayToDataTable([
-                    ['Country', 'Count'],
-                    {% for geoinfo in geovisits %}
-                        {% if geoinfo.0|length > 0 %}
-                            ['{{ geoinfo.0 }}', {{ geoinfo.1 }}],
-                        {% endif %}
-                    {% endfor %}
-                ]);
-                var options = {width: 300, legend: false, colorAxis: {colors: ['#FF6600']}};
-                options["datalessRegionColor"] = 'efefef';
-
-                var geochart = new google.visualization.GeoChart(
-                        document.getElementById('googlemap'));
-                google.visualization.events.addListener(geochart, 'select',
-                        function () {
-                            var selection = geochart.getSelection()[0];
-                            var countrycode = data.getValue(selection.row, 0);
-                            window.location.replace("{% url 'frontpage' %}stats/top/?view={{ view }}&country=" + countrycode);
-                        });
-
-                geochart.draw(data, options);
-
-            }
-        </script>
-    {% endif %}
-
-    <script language="javascript">
-        $(document).ready(function () {
-            $("div.filter").each(function () {
-                var allDds = $(this).children("div").not('.subresult').nextUntil("div.accordion");
-                if (allDds.length > 4) {
-                    var hideableDds = allDds.has("a.addableFacet");
-                    if (hideableDds.length > 1) {
-                        hiddenDds = hideableDds.slice(
-                                Math.max(0, 4 - (allDds.length - hideableDds.length))).hide();
-                        var moreTxt = 'more', lessTxt = 'less';
-                        hiddenDds.last().after($("<div><a href='#'>" + moreTxt + "</a></div>")
-                                .children().first().click({hiddenDds: hiddenDds}, function (e) {
-                                    e.preventDefault();
-                                    $(this).text($(this).text() == moreTxt ? lessTxt : moreTxt);
-                                    e.data.hiddenDds.slideToggle();
-                                }).parent());
-                    }
+{% extends "stats/base.html" %}
+{% load static i18n  %}
+    {% block extra_js %}
+        <noscript><b>{% trans 'It seems JavaScript is either disabled or not supported by your browser.' %}</b>
+            {% blocktrans %}JavaScript should be enabled in order to support all functionalities.
+            Enable JavaScript by changing your browser options, and then try again.{% endblocktrans %}
+        </noscript>
+        {% if geovisits|length > 0 %}
+            <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+            <script type="text/javascript">
+                try {
+                    google.load('visualization', '1', {packages: ['geochart']});
+                    google.setOnLoadCallback(drawVisualization);
+                } catch (e) {
+                    // error calling Google occured
                 }
-            });
-            $("div.filter").hide();
-            $("div.accordion").each(function () {
-                $(this).next("div.filter").find("a.removableFacet").parents("div.filter").show();
-                addStatus($(this));
-                $(this).next("div.filter").find("a.addFilter").parents("div.filter").show();
-                addStatus($(this));
-            });
+                var data;
+                var setOn = 0;
+                function drawVisualization() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Country', 'Count'],
+                        {% for geoinfo in geovisits %}
+                            {% if geoinfo.0|length > 0 %}
+                                ['{{ geoinfo.0 }}', {{ geoinfo.1 }}],
+                            {% endif %}
+                        {% endfor %}
+                    ]);
+                    var options = {width: 300, legend: false, colorAxis: {colors: ['#FF6600']}};
+                    options["datalessRegionColor"] = 'efefef';
+
+                    var geochart = new google.visualization.GeoChart(
+                            document.getElementById('googlemap'));
+                    google.visualization.events.addListener(geochart, 'select',
+                            function () {
+                                var selection = geochart.getSelection()[0];
+                                var countrycode = data.getValue(selection.row, 0);
+                                window.location.replace("{% url 'frontpage' %}stats/top/?view={{ view }}&country=" + countrycode);
+                            });
+
+                    geochart.draw(data, options);
+                }
+            </script>
+        {% endif %}
+        <script language="javascript">
+            $(document).ready(function () {
+                function addStatus(filter) {
+                    if (filter.next("div.filter").attr("style") == "display: none;") {
+                        filter.addClass('collapsed');
+                        filter.removeClass('expanded');
+                    }
+                    else {
+                        filter.addClass('expanded');
+                        filter.removeClass('collapsed');
+                    }
+                };
+                $("div.filter").each(function () {
+                    var allDds = $(this).children("div").not('.subresult').nextUntil("div.accordion");
+                    if (allDds.length > 4) {
+                        var hideableDds = allDds.has("a.addableFacet");
+                        if (hideableDds.length > 1) {
+                            hiddenDds = hideableDds.slice(
+                                    Math.max(0, 4 - (allDds.length - hideableDds.length))).hide();
+                            var moreTxt = 'more', lessTxt = 'less';
+                            hiddenDds.last().after($("<div><a href='#'>" + moreTxt + "</a></div>")
+                                    .children().first().click({hiddenDds: hiddenDds}, function (e) {
+                                        e.preventDefault();
+                                        $(this).text($(this).text() == moreTxt ? lessTxt : moreTxt);
+                                        e.data.hiddenDds.slideToggle();
+                                    }).parent());
+                        }
+                    }
+                });
+                $("div.filter").hide();
+                $("div.accordion").each(function () {
+                    $(this).next("div.filter").find("a.removableFacet").parents("div.filter").show();
+                    addStatus($(this));
+                    $(this).next("div.filter").find("a.addFilter").parents("div.filter").show();
+                    addStatus($(this));
+                });
 
             $("div.accordion.expanded").each(function () {
                 if ($(this).next("div.filter").find("a.removableFacet").length > 0) {
