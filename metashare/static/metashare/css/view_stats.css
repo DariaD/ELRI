@@ -24,23 +24,16 @@
     outline: none; 
 }
 
-.tab a:hover { text-decoration: none; 
+.tab:not(.tab-nobr) a:hover {
+    text-decoration: none;
     background: url("../images/button_top_bg2.png")
 }
 
-.tab a.active { font-weight: bold; 
+.tab a.active { font-weight: bold;
     color: #fff 
 }
 
-.tab-container .panel-container {background: #fff; 
-    border: solid #666 1px; 
-    padding: 10px; 
-    -moz-border-radius: 0 5px 5px 5px; 
-    -webkit-border-radius: 0 5px 5px 5px;
-    -khtml-border-radius: 0 5px 5px 5px;
-}
-
-.tab.tab-nobr { background: #fff; 
+.tab.tab-nobr { background: #fff;
     font-weight: 600; 
     font-family: Tahoma,Arial;
   	color: #000 !important;
@@ -51,6 +44,21 @@
     text-decoration: none;
     border-bottom: none; 
 }
+
+.tab.tab-nobr a {
+    color: #000 !important;
+    text-shadow: none;
+}
+
+.tab-container .panel-container {
+    background: #fff;
+    border: solid #666 1px;
+    padding: 10px;
+    -moz-border-radius: 0 5px 5px 5px;
+    -webkit-border-radius: 0 5px 5px 5px;
+    -khtml-border-radius: 0 5px 5px 5px;
+}
+
 
 .content_tab {
     padding: 10px;
