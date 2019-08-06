@@ -172,7 +172,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    #'django.contrib.sites',
+#    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.messages',
     'django.contrib.humanize',
@@ -183,6 +183,7 @@ INSTALLED_APPS = (
     'haystack',
     'analytical',
     'tastypie',
+
     'metashare.accounts',
     'metashare.storage',
     # 'metashare.sync',
@@ -305,4 +306,8 @@ CACHES = {
 
 TASTYPIE_ALLOW_MISSING_SLASH = True
 TASTYPIE_DEFAULT_FORMATS = ['json']
+
+ELRC_API_USERNAME = os.environ.get('ELRC_API_USERNAME', None)
+ELRC_API_PASSWORD = os.environ.get('ELRC_API_PASSWORD', None)
+
 
