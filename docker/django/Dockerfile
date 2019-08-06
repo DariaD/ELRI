@@ -8,7 +8,7 @@ FROM python:2.7.15-stretch
 #ARG RELEASE="trunk"
 #ARG RELEASE="tags/R3.1"
 #ARG RELEASE="branches/tempmasterR31"
-ARG RELEASE="branches/DCU"
+ARG RELEASE="branches/DCU_VIC_ELDA_R3.4"
 
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
