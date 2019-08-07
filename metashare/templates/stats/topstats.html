@@ -78,66 +78,43 @@
                     addStatus($(this));
                 });
 
-            $("div.accordion.expanded").each(function () {
-                if ($(this).next("div.filter").find("a.removableFacet").length > 0) {
-                    $(this).addClass("selected");
-                }
-                if ($(this).next("div.filter").find("a.addFilter").length > 0) {
-                    $(this).addClass("selected");
-                }
+                $("div.accordion.expanded").each(function () {
+                    if ($(this).next("div.filter").find("a.removableFacet").length > 0) {
+                        $(this).addClass("selected");
+                    }
+                    if ($(this).next("div.filter").find("a.addFilter").length > 0) {
+                        $(this).addClass("selected");
+                    }
+                });
+
+                $("div.accordion").click(function () {
+                    if ($(this).next("div.filter").attr("style") == "display: none;") {
+                        $(this).addClass('expanded');
+                        $(this).removeClass('collapsed');
+                    }
+                    else {
+                        $(this).addClass('collapsed');
+                        $(this).removeClass('expanded');
+                    }
+                    $(this).next("div.filter").slideToggle();
+                });
             });
+        </script>
+    {% endblock %}
 
-            $("div.accordion").click(function () {
-                if ($(this).next("div.filter").attr("style") == "display: none;") {
-                    $(this).addClass('expanded');
-                    $(this).removeClass('collapsed');
-                }
-                else {
-                    $(this).addClass('collapsed');
-                    $(this).removeClass('expanded');
-                }
-                $(this).next("div.filter").slideToggle();
-            });
-        });
 
-        function addStatus(filter) {
-            if (filter.next("div.filter").attr("style") == "display: none;") {
-                filter.addClass('collapsed');
-                filter.removeClass('expanded');
-            }
-            else {
-                filter.addClass('expanded');
-                filter.removeClass('collapsed');
-            }
-        }
-    </script>
-
-    <link rel="stylesheet" href="{% static "metashare/css/view_stats.css" %}" type="text/css" media="screen"/>
-    <link rel="stylesheet" href="{% static "metashare/css/results.css" %}" type="text/css" media="screen"/>
-
-    <div class='tab-container'>
-        <ul class='etabs'>
-            <li class='tab tab-nobr'>{% trans 'ELRI visits statistics' %}</li>
-            <!--<li class='tab tab-nobr'>{% trans 'ELRC-SHARE visits statistics' %}</li>-->
-            <li class='tab'><a href="{% url 'frontpage' %}stats/usage/">{% trans 'Statistics on resource metadata' %}</a></li>
-            {% if user.username and myres %}
-                <li class='tab'><a href="{% url 'frontpage' %}stats/mystats/">{% trans 'My resources' %}</a></li>
-            {% endif %}
-        </ul>
-    </div>
-
-    <div class="content_tab">
+    {% block content_tab %}
         <div style="margin-left: 0px; padding-top: 1px;">
             <form class="form_helper" name="topform" id="topform" action="{% url 'frontpage' %}stats/top/" method="get">
                 <h4>{% trans 'Show the' %} <select style="color: #000; background: #eee" name='view' onchange="topform.submit();">
 
                     <option value='topviewed'
-                            style="background-image: url({% static "stats/img/view_icon.gif" %}); background-repeat: no-repeat; padding-left: 20px;">
+                            style="background-image: url({% static 'stats/img/view_icon.gif' %}); background-repeat: no-repeat; padding-left: 20px;">
                         {% trans 'Most Viewed Resources' %}
                     </option>
 
                     <option value='topqueries'
-                            style="background-image: url({% static "stats/img/retrieve_icon.gif" %}); background-repeat: no-repeat; padding-left: 20px;"
+                            style="background-image: url({% static 'stats/img/retrieve_icon.gif' %}); background-repeat: no-repeat; padding-left: 20px;"
                             {% ifequal view "topqueries" %}
                             selected
                             {% endifequal %}>
@@ -145,7 +122,7 @@
                     </option>
 
                     <option value='latestqueries'
-                            style="background-image: url({% static "stats/img/retrieve_icon.gif" %}); background-repeat: no-repeat; padding-left: 20px;"
+                            style="background-image: url({% static 'stats/img/retrieve_icon.gif' %}); background-repeat: no-repeat; padding-left: 20px;"
                             {% ifequal view "latestqueries" %}
                             selected
                             {% endifequal %}>
@@ -153,7 +130,7 @@
                     </option>
 
                     <option value='topdownloaded'
-                            style="background-image: url({% static "stats/img/download_icon.gif" %}); background-repeat: no-repeat; padding-left: 20px;"
+                            style="background-image: url({% static 'stats/img/download_icon.gif' %}); background-repeat: no-repeat; padding-left: 20px;"
                             {% ifequal view "topdownloaded" %}
                             selected
                             {% endifequal %}>
@@ -161,7 +138,7 @@
                     </option>
 
                     <option value='latestupdated'
-                            style="background-image: url({% static "stats/img/update_icon.gif" %}); background-repeat: no-repeat; padding-left: 20px;"
+                            style="background-image: url({% static 'stats/img/update_icon.gif' %}); background-repeat: no-repeat; padding-left: 20px;"
                             {% ifequal view "latestupdated" %}
                             selected
                             {% endifequal %}>
@@ -181,7 +158,7 @@
                             <h4>{% trans 'Filter by:' %}</h4>
                             <div id="searchFilters">
                                 {% if not "late" in view %}
-                                    <div class="accordion"><a href="#" onclick="return false">{% trans 'Date' %}</a></div>
+                                    <div class="accordion"><a href="#">{% trans 'Date' %}</a></div>
                                     <div class="filter">
                                         {% with "day week month year" as list %}
                                             {% for date in list.split %}
@@ -202,8 +179,9 @@
                                 {% endif %}
 
                                 {% if geovisits|length > 0 %}
-                                    <div class="accordion"><a href="#" onclick="return false">{% trans 'Provenance' %}
-                                        of {{ visitstitle }}</a></div>
+                                    <div class="accordion">
+                                        <a href="#">{% trans 'Provenance' %} of {{ visitstitle }}</a>
+                                    </div>
                                     <div class="filter">
                                         {% for geoinfo in geovisits %}
                                             <div style="vertical-align: top">
@@ -217,10 +195,9 @@
                                                 {% endifequal %}
                                                 {{ geoinfo.2 }}
                                                 <img height=20
-                                                     src="{% static "metashare/css/international_flags/iso/32x32/flag-"|add:geoinfo.0|lower|add:".png" %}">
+                                                     src="{% static 'metashare/css/international_flags/iso/32x32/flag-'|add:geoinfo.0|lower|add:'.png' %}">
                                                 </a>
                                                 &nbsp;({{ geoinfo.1 }})
-
                                             </div>
                                         {% endfor %}
                                     </div>
@@ -239,7 +216,6 @@
                         <ul class=errorlist>{% trans 'No data matched' %}</ul>
                     {% endif %}
                 {% endif %}
-
                 <div class="content_box">
                     <div class="results">
                         {% if offset != 0 or has_next %}
@@ -257,7 +233,6 @@
                                 {% endif %}
                             </p>
                         {% endif %}
-
                         {% spaceless %}
                             {% load resource_languages %}
                             {% load resource_media_types %}
@@ -274,7 +249,7 @@
 
                                         <div class="resourceName">
                                             <a href="{% url 'frontpage' %}repository/search/?{{ object.4 }}"><img
-                                                    src="{% static "metashare/css/sexybuttons/images/icons/silk/zoom.png" %}"> {{ object.0 }}
+                                                    src="{% static 'metashare/css/sexybuttons/images/icons/silk/zoom.png' %}"> {{ object.0 }}
                                             </a>
                                             {% ifnotequal object.1 "" %}
                                                 &nbsp;&nbsp;filter by:
@@ -291,7 +266,6 @@
                                                 {% endifequal %}
                                             </div>
                                         </div>
-
                                     {% else %}
                                         {% ifnotequal object.1 "" %}
                                             <div class=lasttime>{{ object.1 }}</div>
@@ -306,31 +280,23 @@
                                             &nbsp;{% resource_media_types object.0.resourceComponentType.as_subclass %}
 
                                             <div class="accessStats">
-                                                <img src="{% static "stats/img/download_icon.gif" %}"
+                                                <img src="{% static 'stats/img/download_icon.gif' %}"
                                                      alt="{% trans 'Number of downloads' %}"
                                                      title="{% trans 'Number of downloads' %}"/>&nbsp;{{ object.0.storage_object.identifier|get_download_count }}
-                                                <img src="{% static "stats/img/view_icon.gif" %}" alt="{% trans 'Number of views' %}"
+                                                <img src="{% static 'stats/img/view_icon.gif' %}" alt="{% trans 'Number of views' %}"
                                                      title="{% trans 'Number of views' %}"/>&nbsp;{{ object.0.storage_object.identifier|get_view_count }}
                                             </div>
                                             <ul>
                                                 {% resource_languages object.0.resourceComponentType.as_subclass %}
                                             </ul>
                                         </div>
-
                                     {% endif %}
                                 </div>
                             {% endfor %}
                         {% endspaceless %}
-
                     </div>
-                    {# end results #}
-                </div>{# end content_box #}
-                </div>{# end id=content #}
                 </div>
-
-            {% endif %}
-{% endblock %}
-
-  
-  
-
+            </div>
+        </div>
+        {% endif %}
+    {% endblock %}
