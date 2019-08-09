@@ -36,7 +36,8 @@ COPY --from=base /tmp/dockerize /usr/local/bin/
 COPY resources/env_secrets_expand.sh \
      resources/startup.sh \
      resources/create_super_user.sh \
-     resources/gettext.patch \ 
+     resources/gettext.patch \
+     resources/middleware.patch \
      resources/0002_resourceinfotype_model_elrcuploaded.py \
      resources/manage.py /elri/
 
