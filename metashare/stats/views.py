@@ -534,7 +534,7 @@ def creationstats(request):
                     Q(metadataCreationDate__lte=end_date)
                 )
             else:
-                return JsonResponse({'errors': _('Start date is greater than end date.')})
+                return JsonResponse({'errors': _('The start date must be before the end date.')})
         else:
             resources = metadataInfoType_model.objects.all()
         for resource in resources.order_by("metadataCreationDate"):
