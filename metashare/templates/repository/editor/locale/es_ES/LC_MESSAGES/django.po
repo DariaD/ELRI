@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:17+0200\n"
-"PO-Revision-Date: 2019-06-18 16:43+0200\n"
+"POT-Creation-Date: 2019-08-19 11:33+0200\n"
+"PO-Revision-Date: 2019-08-19 14:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -457,7 +457,18 @@ msgstr ""
 "cantidad de archivos del siguiente tipo: <strong> .doc(x), .odt, .rtf, ."
 "pdf, .tmx, .sdltm, .xml, .tbx, .xls(x) o .txt </strong> hasta 100MB."
 
-#: templates/repository/editor/contributions/contribute.html:291
+#: templates/repository/editor/contributions/contribute.html:290
+msgid ""
+"Please note that PDF files are allowed but typically lead to resources of "
+"lower quality. It is highly recommended to upload documents in other formats "
+"(e.g., odt, doc(x), rtf), if possible."
+msgstr ""
+"Tenga en cuenta que es posible cargar archivos en formato PDF, pero también "
+"que estos producen recursos de menor calidad. Por tanto, se recomienda "
+"encarecidamente cargar los documentos en otros formatos (por ejemplo, odt, "
+"doc(x), rtf), siempre que sea posible."
+
+#: templates/repository/editor/contributions/contribute.html:292
 msgid ""
 "In case the data you wish to upload are larger than 100MB, please contact us "
 "to provide an SFTP link for direct download or consider uploading smaller "
@@ -467,19 +478,40 @@ msgstr ""
 "póngase en contacto con nosotros para proporcionar un enlace SFTP de carga "
 "directa o contemple la posibilidad de subir archivos más pequeños."
 
-#: templates/repository/editor/contributions/contribute.html:296
+#: templates/repository/editor/contributions/contribute.html:297
 msgid "Group(s)"
 msgstr "Grupo(s)"
 
-#: templates/repository/editor/contributions/contribute.html:305
+#: templates/repository/editor/contributions/contribute.html:306
 msgid ""
 "The group(s) the language resource can be shared with (hold down the CTRL "
 "key to select multiple groups)."
 msgstr ""
-"Idioma(s) del recurso (para recursos multilingües, mantenga pulsada la tecla "
-"CTRL para seleccionar varios idiomas)"
+"Grupos con los que el recurso puede ser compartido (mantenga pulsada la "
+"tecla CTRL para seleccionar varios grupos)."
 
-#: templates/repository/editor/contributions/contribute.html:312
+#: templates/repository/editor/contributions/contribute.html:308
+msgid ""
+"Resources shared with the National Organisations group will be accessible to "
+"registered ELRI users (members of public institutions) in Country only. "
+"Those shared with the group National Organisations+European Commission will "
+"also be accessible to the European Commission, via the ELRC-SHARE platform, "
+"to help improve its public automated translation services. Resources shared "
+"with the Open Data group will be accessible to registered ELRI users and to "
+"users of the EU Open Data Portal."
+msgstr ""
+"Los recursos compartidos con el grupo Organizaciones Nacionales sólo serán "
+"accesibles para los usuarios registrados de ELRI en España (miembros de "
+"instituciones públicas españolas). Los compartidos con el grupo "
+"Organizaciones Nacionales+Comisión Europea serán además accesibles para la "
+"Comisión Europea, en concreto la Dirección General de Traducción (DGT), "
+"quien los usará, a través de la plataforma ELRC-SHARE, para ayudar a mejorar "
+"sus servicios de traducción automática orientada a las admninistraciones "
+"públicas. Los recursos compartidos con el grupo Open Data serán accesibles "
+"para los usuarios registrados de ELRI y para los usuarios del EU Open Data "
+"Portal."
+
+#: templates/repository/editor/contributions/contribute.html:316
 #, python-format
 msgid ""
 "I agree with the <a target=\"_blank\" href=\"%(legal_url)s#Sharing"
@@ -489,11 +521,11 @@ msgstr ""
 "\"> Términos de servicio de subida de recursos lingüísticos para los "
 "titulares de datos </a>"
 
-#: templates/repository/editor/contributions/contribute.html:324
+#: templates/repository/editor/contributions/contribute.html:328
 msgid "Submit"
 msgstr "Enviar"
 
-#: templates/repository/editor/contributions/contribute.html:325
+#: templates/repository/editor/contributions/contribute.html:329
 msgid "Reset"
 msgstr "Reiniciar"
 
