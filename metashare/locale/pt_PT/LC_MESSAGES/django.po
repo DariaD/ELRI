@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:09+0200\n"
-"PO-Revision-Date: 2019-06-06 18:22+0200\n"
+"POT-Creation-Date: 2019-08-19 11:38+0200\n"
+"PO-Revision-Date: 2019-08-20 12:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -38,9 +38,25 @@ msgstr ""
 msgid "Gaelic"
 msgstr "Gaélico"
 
+#: local_settings.py:46
+msgid "Spanish"
+msgstr "Espanhol"
+
 #: local_settings.py:47
 msgid "English"
 msgstr "Inglês"
+
+#: local_settings.py:48
+msgid "French"
+msgstr "Francês"
+
+#: local_settings.py:49
+msgid "Portuguese"
+msgstr "Português"
+
+#: stats/views.py:537
+msgid "The start date must be before the end date."
+msgstr ""
 
 #: storage/models.py:113
 msgid "Can synchronize"
@@ -178,12 +194,3 @@ msgid "Please contact us if there is any issue with an existing account."
 msgstr ""
 "Por favor entre em contacto connosco se houver algum problema com uma conta "
 "existente."
-
-#~ msgid "Spanish"
-#~ msgstr "Espanhol"
-
-#~ msgid "French"
-#~ msgstr "Francês"
-
-#~ msgid "Portuguese"
-#~ msgstr "Português"
