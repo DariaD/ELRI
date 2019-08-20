@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:07+0200\n"
-"PO-Revision-Date: 2019-06-06 18:19+0200\n"
+"POT-Creation-Date: 2019-08-19 11:37+0200\n"
+"PO-Revision-Date: 2019-08-20 11:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -263,7 +263,7 @@ msgstr "Merci de remplir tous les champs pour créer un compte."
 
 #: templates/accounts/create_account.html:14
 #: templates/accounts/create_account.html:15
-#: templates/accounts/create_account.html:35
+#: templates/accounts/create_account.html:34
 msgid "Create Account"
 msgstr "Créer un compte"
 
@@ -276,6 +276,57 @@ msgid ""
 msgstr ""
 "J'accepte <a target=\"_blank\" href=\"%(elri_tos)s\">les Conditions "
 "d'utilisation d'ELRI</a>."
+
+#: templates/accounts/create_account.html:39
+msgid "Password requirements:"
+msgstr "Mot de passe:"
+
+#: templates/accounts/create_account.html:41
+msgid " It must contain at least 10 characters"
+msgstr "Votre mot de passe  doit contenir au moins 10 caractère."
+
+#: templates/accounts/create_account.html:42
+msgid ""
+" It can't be too similar to other personal information (username, "
+"first_name, last_name, email, etc.)"
+msgstr ""
+"Votre mot de passe ne doit pas être trop similaire aux autres champs "
+"d'information personnelle."
+
+#: templates/accounts/create_account.html:43
+msgid " It can't be a commonly used password"
+msgstr "Votre mot de passe ne doit pas être trop commun."
+
+#: templates/accounts/create_account.html:44
+msgid " It can't be entirely numeric"
+msgstr "Votre mot de passe ne doit pas être entièrement numérique."
+
+#: templates/accounts/create_account.html:45
+msgid " It must contain at least one digit "
+msgstr "Votre mot de passe doit contenir au moins un chiffre."
+
+#: templates/accounts/create_account.html:46
+#, python-format
+msgid ""
+" It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
+"<=>?@[\\\\]^_`{|}~ "
+msgstr ""
+"Votre mot de passe doit contenir au moins un signe de ponctuation: !\"#$%%&"
+"\\'()*+,-./:;<=>?@[\\\\]^_`{|}~ "
+
+#: templates/accounts/create_account.html:47
+msgid " It must contain at least one uppercase character"
+msgstr "Votre mot de passe doit contenir au moins un caractère en majuscule."
+
+#: templates/accounts/create_account.html:48
+msgid " It must contain at least one lowercase character"
+msgstr "Votre mot de passe doit contenir au moins un caractère en minuscule."
+
+#: templates/accounts/create_account.html:49
+msgid " It cannot contain a repeated character in a row"
+msgstr ""
+"Votre mot de passe ne doit pas contenir plus de 2 caracteres répétés à la "
+"suite."
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6
 #: templates/accounts/delete_organization_application_selected_confirmation.html:6
