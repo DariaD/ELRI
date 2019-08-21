@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 16:32+0200\n"
-"PO-Revision-Date: 2019-06-07 09:59+0200\n"
+"POT-Creation-Date: 2019-08-20 13:49+0200\n"
+"PO-Revision-Date: 2019-08-21 12:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -313,6 +313,58 @@ msgstr ""
 #: templates/accounts/create_account.html:31
 msgid "Required Field"
 msgstr "Tá an réimse seo de dhíth."
+
+#: templates/accounts/create_account.html:41
+msgid "Password requirements:"
+msgstr "Phasfhocal:"
+
+#: templates/accounts/create_account.html:43
+msgid " It must contain at least 10 characters"
+msgstr "Ní mór ar a laghad 10 carachtar a bheith i do phasfhocal."
+
+#: templates/accounts/create_account.html:44
+msgid ""
+" It can't be too similar to other personal information (username, "
+"first_name, last_name, email, etc.)"
+msgstr ""
+"Ní féidir le do phasfhocal a bheith róchosúil le do shonraí pearsanta eile."
+
+#: templates/accounts/create_account.html:45
+msgid " It can't be a commonly used password"
+msgstr "Ní féidir pasfhocal coitianta a bheith mar phasfhocal agat."
+
+#: templates/accounts/create_account.html:46
+msgid " It can't be entirely numeric"
+msgstr "Ní féidir pasfhocal iomlán uimhriúil a bheith agat."
+
+#: templates/accounts/create_account.html:47
+msgid " It must contain at least one digit "
+msgstr "Ní mór ar a laghad uimhir amháin a bheith i do phasfhocal."
+
+#: templates/accounts/create_account.html:48
+#, python-format
+msgid ""
+" It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
+"<=>?@[\\\\]^_`{|}~ "
+msgstr ""
+"Ní mór ar a laghad carachtar poncaíochta amháin a bheith i do phasfhocal: !"
+"\"#$%%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~ "
+
+#: templates/accounts/create_account.html:49
+msgid " It must contain at least one uppercase character"
+msgstr ""
+"Ní mór ar a laghad carachtar i gcás uachtair amháin a bheith i do phasfhocal."
+
+#: templates/accounts/create_account.html:50
+msgid " It must contain at least one lowercase character"
+msgstr ""
+"Ní mór ar a laghad carachtar i gcás íochtair amháin a bheith i do phasfhocal."
+
+#: templates/accounts/create_account.html:51
+msgid " It cannot contain a repeated character in a row"
+msgstr ""
+"Á an carachtar céanna úsáidte níos mó uaireanta i ndiaidh a chéile ná mar "
+"atá ceadaithe chun pasfhocal ceart a chruthú (2)."
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6
 #: templates/accounts/delete_organization_application_selected_confirmation.html:6

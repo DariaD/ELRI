@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 17:14+0200\n"
-"PO-Revision-Date: 2019-06-07 09:49+0200\n"
+"POT-Creation-Date: 2019-08-20 13:48+0200\n"
+"PO-Revision-Date: 2019-08-20 13:52+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -299,6 +299,51 @@ msgstr ""
 
 #: templates/accounts/create_account.html:31
 msgid "Required Field"
+msgstr ""
+
+#: templates/accounts/create_account.html:41
+msgid "Password requirements:"
+msgstr ""
+
+#: templates/accounts/create_account.html:43
+msgid " It must contain at least 10 characters"
+msgstr ""
+
+#: templates/accounts/create_account.html:44
+msgid ""
+" It can't be too similar to other personal information (username, "
+"first_name, last_name, email, etc.)"
+msgstr ""
+
+#: templates/accounts/create_account.html:45
+msgid " It can't be a commonly used password"
+msgstr ""
+
+#: templates/accounts/create_account.html:46
+msgid " It can't be entirely numeric"
+msgstr ""
+
+#: templates/accounts/create_account.html:47
+msgid " It must contain at least one digit "
+msgstr ""
+
+#: templates/accounts/create_account.html:48
+#, python-format
+msgid ""
+" It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
+"<=>?@[\\\\]^_`{|}~ "
+msgstr ""
+
+#: templates/accounts/create_account.html:49
+msgid " It must contain at least one uppercase character"
+msgstr ""
+
+#: templates/accounts/create_account.html:50
+msgid " It must contain at least one lowercase character"
+msgstr ""
+
+#: templates/accounts/create_account.html:51
+msgid " It cannot contain a repeated character in a row"
 msgstr ""
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6

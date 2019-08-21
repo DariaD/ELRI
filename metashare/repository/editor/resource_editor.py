@@ -1250,7 +1250,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
             ELRC_THREAD.start()
         return
 
-    publish_elrc_action.short_description = _("Publish selected resources on ELRC-Share")
+    publish_elrc_action.short_description = _("Upload resource to ELRC-SHARE")
 
     def mark_elrc_uploaded(self, request, queryset):
         """ Define all resources of queryset to ELRC uploaded.
@@ -1258,7 +1258,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
         queryset.update(ELRCUploaded=True)
         return
 
-    mark_elrc_uploaded.short_description = _("Mark resources as uploaded to ELRC-Share")
+    mark_elrc_uploaded.short_description = _("Mark as uploaded to ELRC-SHARE")
 
     def unmark_elrc_uploaded(self, request, queryset):
         """ Define all resources of queryset has not ELRC uploaded.
@@ -1274,7 +1274,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
             messages.error(request, _('You dont have the permission to run this action.'))
         return
 
-    unmark_elrc_uploaded.short_description = _('Unmark as uploaded to ELRC-Share')
+    unmark_elrc_uploaded.short_description = _('Unmark as uploaded to ELRC-SHARE')
 
     def export_xml_action(self, request, queryset):
         from StringIO import StringIO

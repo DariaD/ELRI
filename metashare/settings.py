@@ -136,6 +136,8 @@ TEMPLATE_LOADERS = (
     )),
 )
 
+
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',

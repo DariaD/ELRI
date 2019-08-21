@@ -164,7 +164,7 @@ class UserAttributeSimilarityValidator(object):
     as well as the full address.
     """
     DEFAULT_USER_ATTRIBUTES = ('username', 'first_name', 'last_name', 'email')
-
+#TODO: ONLY COMPARE WITH USERNAME ; CHECK IF MODIFYING MAX_SIMILARITY HELPS
     def __init__(self, user_attributes=DEFAULT_USER_ATTRIBUTES, max_similarity=0.7):
         self.user_attributes = user_attributes
         self.max_similarity = max_similarity
@@ -180,6 +180,7 @@ class UserAttributeSimilarityValidator(object):
             value_parts = re.split('\W+', value) + [value]
             for value_part in value_parts:
                 similarity = SequenceMatcher(a=password.lower(), b=value_part.lower()).quick_ratio()
+                #TODO: CHECK IF THIS IS EVA'S O LUIS' CODE:
                 if similarity > self.max_similarity or similarity == 1 or self.max_similarity == 0:
                     verbose_name = force_text(user._meta.get_field(attribute_name).verbose_name)
                     raise ValidationError(

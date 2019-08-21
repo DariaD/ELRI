@@ -279,6 +279,7 @@
                 <input multiple accept=".zip,.doc,.docx,.odt,.rtf,.pdf,.tmx,.sdltm,.xml,.tbx,.xls,.xlsx,.txt" id="filebutton" name="filebutton" class="input-file" type="file"
                        required="">
                 <span class="help-block contrib-help">{% trans 'Please upload a single <strong>.zip</strong> file or any number of files of the following type: <strong>.doc(x), .odt, .rtf, .pdf, .tmx, .sdltm, .xml, .tbx, .xls(x), or .txt file</strong> up to 100MB.' %}
+                    </br> {% trans 'Please note that PDF files are allowed but typically lead to resources of lower quality. It is highly recommended to upload documents in other formats (e.g., odt, doc(x), rtf), if possible.' %}
                     </br>
                     {% trans 'In case the data you wish to upload are larger than 100MB, please contact us to provide an SFTP link for direct download or consider uploading smaller files' %}
                 </span>
@@ -294,7 +295,10 @@
                         <option value="{{ group_id }}">{{ group_name }}</option>
                         {% endfor %}
                     </select>
-                    <span class="help-block contrib-help">{% trans 'The group(s) the language resource can be shared with (hold down the CTRL key to select multiple groups).' %}</span>
+                    <span class="help-block contrib-help">{% trans 'The group(s) the language resource can be shared with (hold down the CTRL key to select multiple groups).' %}
+                        </br>
+                        {% blocktrans %}Resources shared with the National Organisations group will be accessible to registered ELRI users (members of public institutions) in Country only. Those shared with the group National Organisations+European Commission will also be accessible to the European Commission, via the ELRC-SHARE platform, to help improve its public automated translation services. Resources shared with the Open Data group will be accessible to registered ELRI users and to users of the EU Open Data Portal.{% endblocktrans %}
+                    </span>
                 </div>
             </div>
             <!-- Terms of Service confirmation -->
