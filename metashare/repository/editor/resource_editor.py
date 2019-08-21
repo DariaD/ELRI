@@ -949,10 +949,10 @@ class ResourceModelAdmin(SchemaModelAdmin):
                 messages.error(request, _('You do not have the permission to ' \
                                 'perform this action for all selected resources.'))
                 return processing_status
-        except:
-            messages.error(request,_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email."))
+        except Exception as e:
+            messages.error(request,_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email.")+"\n"+str(e))
             
-            error_msg=_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email.\n ")
+            error_msg=_("Something went wrong when processing the resource(s). Re-process the error resources and check the error.log file(s). You will receive a notification email.\n ")+str(e)
             errors=0
             for obj in queryset:
                 change_resource_status(obj,status=ERROR, precondition_status=PROCESSING)
