@@ -14,7 +14,7 @@ from queue import Queue
 from functools import update_wrapper
 from mimetypes import guess_type
 from shutil import copyfile
-from elrc_client.client import ELRCShareClient
+#from elrc_client.client import ELRCShareClient
 
 from django import forms
 from django.contrib import admin, messages

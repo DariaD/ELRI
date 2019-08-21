@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 11:33+0200\n"
-"PO-Revision-Date: 2019-08-19 15:05+0200\n"
+"POT-Creation-Date: 2019-08-21 13:24+0200\n"
+"PO-Revision-Date: 2019-06-17 17:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -146,7 +146,7 @@ msgstr "Grupos con los que se comparte el recurso"
 
 #: repository/models.py:183
 msgid "Uploaded to ELRC"
-msgstr "Subido a ELRC-SHARE"
+msgstr ""
 
 #: repository/models.py:298
 msgid ""
@@ -1745,10 +1745,6 @@ msgid ""
 "the following type: <strong>.doc(x), .odt, .rtf, .pdf, .tmx, .sdltm, .xml, ."
 "tbx, .xls(x), or .txt file</strong> up to 100MB."
 msgstr ""
-"Por favor, cargue un solo archivo  <strong>.zip</strong> o cualquier "
-"cantidad de archivos del siguiente tipo:\n"
-"<strong>.doc(x), .odt, .rtf, .pdf, .tmx, .sdltm, .xml, .tbx, .xls(x), o .txt "
-"file</strong> hasta 100MB. "
 
 #: repository/views.py:1169
 msgid ""

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 11:38+0200\n"
-"PO-Revision-Date: 2019-08-20 12:28+0200\n"
+"POT-Creation-Date: 2019-08-21 13:24+0200\n"
+"PO-Revision-Date: 2019-08-21 13:30+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -258,7 +258,7 @@ msgstr "Erro: Por favor preencha todos os campos para criar a sua conta."
 
 #: templates/accounts/create_account.html:14
 #: templates/accounts/create_account.html:15
-#: templates/accounts/create_account.html:34
+#: templates/accounts/create_account.html:43
 msgid "Create Account"
 msgstr "Criar conta"
 
@@ -271,55 +271,18 @@ msgid ""
 msgstr ""
 "Aceito os <a target=\"_blank\" href=\"%(elri_tos)s\">Termos de Serviço</a>."
 
-#: templates/accounts/create_account.html:39
-msgid "Password requirements:"
-msgstr "Palavra-passe:"
-
-#: templates/accounts/create_account.html:41
-msgid " It must contain at least 10 characters"
-msgstr "A sua palavra-passe tem que conter pelo menos 10 caracteres."
-
-#: templates/accounts/create_account.html:42
+#: templates/accounts/create_account.html:32
 msgid ""
-" It can't be too similar to other personal information (username, "
-"first_name, last_name, email, etc.)"
+"The password must contain at least 10 characters and include at least one "
+"capital letter, one lowercase letter, one digit and one special character (e."
+"g., punctuation mark). It should also differ from the username and not "
+"contain more that two identical characters in a row"
 msgstr ""
-"A sua palavra-passe não pode ser tão parecida com a sua informação pessoal."
-
-#: templates/accounts/create_account.html:43
-msgid " It can't be a commonly used password"
-msgstr "A sua palavra-passe não pode ser uma palavra-passe usada vulgarmente."
-
-#: templates/accounts/create_account.html:44
-msgid " It can't be entirely numeric"
-msgstr "A sua palavra-passe não pode ser inteiramente numérica."
-
-#: templates/accounts/create_account.html:45
-msgid " It must contain at least one digit "
-msgstr "A sua palavra-passe deverá conter pelo menos um dígito."
-
-#: templates/accounts/create_account.html:46
-#, python-format
-msgid ""
-" It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
-"<=>?@[\\\\]^_`{|}~ "
-msgstr ""
-"A sua palavra-passe deverá conter pelo menos um caracter de pontuação: !\"#$"
-"%%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~"
-
-#: templates/accounts/create_account.html:47
-msgid " It must contain at least one uppercase character"
-msgstr "A sua palavra-passe deverá conter pelo menos uma letra maiúscula."
-
-#: templates/accounts/create_account.html:48
-msgid " It must contain at least one lowercase character"
-msgstr "A sua palavra-passe deverá conter pelo menos uma letra minúscula."
-
-#: templates/accounts/create_account.html:49
-msgid " It cannot contain a repeated character in a row"
-msgstr ""
-"A sua palavra-passe não deverá conter um caracter repetido mais do que 2 "
-"vezes seguidas."
+"A palavra-passe deve conter pelo menos 10 caracteres e incluir pelo menos "
+"uma letra maiúscula, uma letra minúscula, um dígito e um caractere especial "
+"(por exemplo, um sinal de pontuação). A palavra-passe também deve ser "
+"diferente do seu nome de utilizador e não deve conter mais do que dois "
+"caracteres idênticos seguidos."
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6
 #: templates/accounts/delete_organization_application_selected_confirmation.html:6
@@ -709,6 +672,47 @@ msgstr "Obrigado por usar o eTradução! "
 #: templates/accounts/update_default_editor_group.html:25
 msgid "Update"
 msgstr "Atualização"
+
+#~ msgid "Password requirements:"
+#~ msgstr "Palavra-passe:"
+
+#~ msgid " It must contain at least 10 characters"
+#~ msgstr "A sua palavra-passe tem que conter pelo menos 10 caracteres."
+
+#~ msgid ""
+#~ " It can't be too similar to other personal information (username, "
+#~ "first_name, last_name, email, etc.)"
+#~ msgstr ""
+#~ "A sua palavra-passe não pode ser tão parecida com a sua informação "
+#~ "pessoal."
+
+#~ msgid " It can't be a commonly used password"
+#~ msgstr ""
+#~ "A sua palavra-passe não pode ser uma palavra-passe usada vulgarmente."
+
+#~ msgid " It can't be entirely numeric"
+#~ msgstr "A sua palavra-passe não pode ser inteiramente numérica."
+
+#~ msgid " It must contain at least one digit "
+#~ msgstr "A sua palavra-passe deverá conter pelo menos um dígito."
+
+#~ msgid ""
+#~ " It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
+#~ "<=>?@[\\\\]^_`{|}~ "
+#~ msgstr ""
+#~ "A sua palavra-passe deverá conter pelo menos um caracter de pontuação: !"
+#~ "\"#$%%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~"
+
+#~ msgid " It must contain at least one uppercase character"
+#~ msgstr "A sua palavra-passe deverá conter pelo menos uma letra maiúscula."
+
+#~ msgid " It must contain at least one lowercase character"
+#~ msgstr "A sua palavra-passe deverá conter pelo menos uma letra minúscula."
+
+#~ msgid " It cannot contain a repeated character in a row"
+#~ msgstr ""
+#~ "A sua palavra-passe não deverá conter um caracter repetido mais do que 2 "
+#~ "vezes seguidas."
 
 #~ msgid ""
 #~ "With this form you can send messages to the node maintainers, for "

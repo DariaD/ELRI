@@ -27,7 +27,16 @@
         <!--{{ field }} <label for="{{ field.auto_id }}">{% blocktrans %}I accept the <a target="_blank" href="{{ elri_tos }}">ELRI Terms of Service</a>.{% endblocktrans %}</label>-->
 
       {% else %}
-          {{ field.label_tag }} {{ field }}
+          {% if field.html_name == "password" %}
+
+      <div><center>{% blocktrans %}The password must contain at least 10 characters and include at least one capital letter, one lowercase letter, one digit and one special character (e.g., punctuation mark). It should also differ from the username and not contain more that two identical characters in a row{% endblocktrans %}</center></div>
+            <br/>
+
+            {{ field.label_tag }} {{ field }}
+
+          {% else %}
+            {{ field.label_tag }} {{ field }}
+          {% endif %}
       {% endif %}
       <div>{# for spacing and for clearing the last float environments #}</div>
     {% endfor %}
@@ -36,18 +45,6 @@
     </br>
     <hr>
     </br>
-    <h2 style="font-size: 20pt; line-height:150%; font-weight: normal; color:#111; display:block; " id="password-help">{% trans 'Password requirements:' %} </h2>
-<ol>
-  <li>{% blocktrans %} It must contain at least 10 characters{% endblocktrans %}</li>
-  <li>{% blocktrans %} It can't be too similar to other personal information (username, first_name, last_name, email, etc.){% endblocktrans %}</li>
-  <li>{% blocktrans %} It can't be a commonly used password{% endblocktrans %}</li>
-  <li>{% blocktrans %} It can't be entirely numeric{% endblocktrans %}</li>
-  <li>{% blocktrans %} It must contain at least one digit {% endblocktrans %}</li>
-  <li>{% blocktrans %} It must contain at least one punctuation character: !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ {% endblocktrans %}</li>
-  <li>{% blocktrans %} It must contain at least one uppercase character{% endblocktrans %}</li>
-  <li>{% blocktrans %} It must contain at least one lowercase character{% endblocktrans %}</li>
-  <li>{% blocktrans %} It cannot contain a repeated character in a row{% endblocktrans %}</li>
-</ol>
   </form>
 
 </div>

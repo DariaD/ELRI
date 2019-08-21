@@ -163,9 +163,9 @@ class UserAttributeSimilarityValidator(object):
     example, a password is validated against either part of an email address,
     as well as the full address.
     """
-    DEFAULT_USER_ATTRIBUTES = ('username', 'first_name', 'last_name', 'email')
+    DEFAULT_USER_ATTRIBUTES = ('username') #, 'first_name', 'last_name', 'email')
 
-    def __init__(self, user_attributes=DEFAULT_USER_ATTRIBUTES, max_similarity=0.7):
+    def __init__(self, user_attributes=DEFAULT_USER_ATTRIBUTES, max_similarity=0.5):
         self.user_attributes = user_attributes
         self.max_similarity = max_similarity
 
