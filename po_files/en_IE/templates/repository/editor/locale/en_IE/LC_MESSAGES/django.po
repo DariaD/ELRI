@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 17:14+0200\n"
-"PO-Revision-Date: 2019-06-07 09:51+0200\n"
+"POT-Creation-Date: 2019-08-23 10:51+0200\n"
+"PO-Revision-Date: 2019-08-23 10:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -424,7 +424,14 @@ msgid ""
 "tbx, .xls(x), or .txt file</strong> up to 100MB."
 msgstr ""
 
-#: templates/repository/editor/contributions/contribute.html:283
+#: templates/repository/editor/contributions/contribute.html:282
+msgid ""
+"Please note that PDF files are allowed but typically lead to resources of "
+"lower quality. It is highly recommended to upload documents in other formats "
+"(e.g., odt, doc(x), rtf), if possible."
+msgstr ""
+
+#: templates/repository/editor/contributions/contribute.html:284
 msgid ""
 "In case the data you wish to upload are larger than 100MB, please contact us "
 "to provide an SFTP link for direct download or consider uploading smaller "
@@ -434,11 +441,11 @@ msgstr ""
 "provide an SFTP link for direct download, or else please consider uploading "
 "smaller files"
 
-#: templates/repository/editor/contributions/contribute.html:288
+#: templates/repository/editor/contributions/contribute.html:289
 msgid "Group(s)"
 msgstr ""
 
-#: templates/repository/editor/contributions/contribute.html:297
+#: templates/repository/editor/contributions/contribute.html:298
 msgid ""
 "The group(s) the language resource can be shared with (hold down the CTRL "
 "key to select multiple groups)."
@@ -446,18 +453,36 @@ msgstr ""
 "The group(s) that the language resource can be shared with (hold down the "
 "CTRL key – or CMD key for Apple users – to select multiple groups)."
 
-#: templates/repository/editor/contributions/contribute.html:304
+#: templates/repository/editor/contributions/contribute.html:300
+msgid ""
+"Resources shared with the National Organisations group will be accessible to "
+"registered ELRI users (members of public institutions) in Country only. "
+"Those shared with the group National Organisations+European Commission will "
+"also be accessible to the European Commission, via the ELRC-SHARE platform, "
+"to help improve its public automated translation services. Resources shared "
+"with the Open Data group will be accessible to registered ELRI users and to "
+"users of the EU Open Data Portal."
+msgstr ""
+"Resources shared with the National Organisations group will be accessible to "
+"registered ELRI users (members of public institutions) in Ireland only. "
+"Those shared with the group National Organisations+European Commission will "
+"also be accessible to the European Commission, via the ELRC-SHARE platform, "
+"to help improve its public automated translation services. Resources shared "
+"with the Open Data group will be accessible to registered ELRI users and to "
+"users of the EU Open Data Portal."
+
+#: templates/repository/editor/contributions/contribute.html:308
 #, python-format
 msgid ""
 "I agree with the <a target=\"_blank\" href=\"%(legal_url)s#Sharing"
 "\">Language Resource upload Terms of Service for Data Holders</a> "
 msgstr ""
 
-#: templates/repository/editor/contributions/contribute.html:316
+#: templates/repository/editor/contributions/contribute.html:320
 msgid "Submit"
 msgstr ""
 
-#: templates/repository/editor/contributions/contribute.html:317
+#: templates/repository/editor/contributions/contribute.html:321
 msgid "Reset"
 msgstr ""
 
