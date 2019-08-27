@@ -141,7 +141,7 @@ class UploadELRCThread(threading.Thread):
         self.output = output
         self.queue = Queue()
         self.client = ELRCShareClient()
-        self.client.login(username=settings.ELRC_USERNAME, password=settings.ELRC_PASSWORD)
+        self.client.login(username=settings.ELRC_API_USERNAME, password=settings.ELRC_API_PASSWORD)
 
     def run(self):
         """ Consume resources of `self.queue` and upload each of them to ELRC-Share with the ELRC-Share client.
@@ -159,7 +159,7 @@ class UploadELRCThread(threading.Thread):
                     self.output.put(('error', resource.id))
             else:
                 LOGGER.error(_("Client can't connect to the ELRC-Share server. Try to reconnect now."))
-                self.client.login(username=settings.ELRC_USERNAME, password=settings.ELRC_PASSWORD)
+                self.client.login(username=settings.ELRC_API_USERNAME, password=settings.ELRC_API_PASSWORD)
                 time.sleep(10)
 
     def add_resource(self, resource):
@@ -520,7 +520,7 @@ def remove_from_zip(zipfname, *filenames):
         shutil.move(tempname, zipfname)
     finally:
         shutil.rmtree(tempdir)
-        
+
 class ResourceModelAdmin(SchemaModelAdmin): 
     haystack_connection = 'default'
     inline_type = 'stacked'
@@ -794,7 +794,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                                     send_mail(_("Error when processing resource %(rname)s") % ({'rname':r_name}), _('An error occurred when processing the resource %(rname)s. Please check the error.log attached to the resource. Contact the ELRI NRS support team for more information at %(email)s') % ({'rname':r_name,'email':settings.EMAIL_ADDRESSES['elri-nrs-support']}), settings.EMAIL_ADDRESSES['elri-no-reply'],group_reviewers)
                                 except: 
                                     messages.error(request,_("There was an error sending out the ERROR notification email to the group reviewers. Please contact them directly."))
-                            
+
                     #if something success-> create new archive.zip and replace the old one uploaded by the user     
                     # if any errors, then handle error reporting
                     if errors > 0 or error_msg!='':
@@ -842,7 +842,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                                 access_links,attr=LICENCEINFOTYPE_URLS_LICENCE_CHOICES[l]  
                                 access_links = STATIC_ROOT +'/'+access_links
                                 #LOGGER.info(access_links)
-                        #add access file to the lr.archive.zip file 
+                        #add access file to the lr.archive.zip file
                         licence_path=access_links
                         path, filename = os.path.split(licence_path)
                         #if license file does not exist: error:
@@ -874,7 +874,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             prepare_error_zip(error_msg,resource_path,request)
                             processing_status = processing_status and False
                         elif call_tm2tmx==0 and call_doc2tmx==0:
-                            
+
                             #ingest file that is not processed
                             #create the archive.zip with the processed resources
                             processed_zip=zipfile.ZipFile(resource_path+'/archive.zip',mode='w')
@@ -999,9 +999,9 @@ class ResourceModelAdmin(SchemaModelAdmin):
                             lic_restriction=lic.find('restrictionsOfUse').text
                         licences_name.append(lic_name)
                         licences_restriction.append(lic_restriction)
-                       
+
                     resource_path=obj.storage_object._storage_folder()
-                  
+
                     #attribution text
                     attr_text=''
                     for at in resource_info.iter('attributionText'):
@@ -1195,7 +1195,7 @@ class ResourceModelAdmin(SchemaModelAdmin):
                         You will be notified by email once the resource(s) has been fully processed.
                         """.format(successful))) 
                     #TODO: add licence.pdf here
-                    
+
                     #send the ingested resource notification email
                     for i,r in enumerate(resource_names):
                         email_data={'resourcename':r}
@@ -1220,8 +1220,11 @@ class ResourceModelAdmin(SchemaModelAdmin):
     def publish_elrc_action(self, request, queryset):
         """ Each resource objects of queryset, update related XML file and archive file on ELRC website.
         """
+        messages.warning(request,_("This action is unavailable. It is still under development. Please upload the LR manually to ELRC-SHARE."))
+        return
+
         global ELRC_THREAD
-        if not hasattr(settings, 'ELRC_USERNAME') or not hasattr(settings, 'ELRC_PASSWORD'):
+        if not hasattr(settings, 'ELRC_API_USERNAME') or not hasattr(settings, 'ELRC_API_PASSWORD'):
             raise ImproperlyConfigured(
                 'Define ELRC_API_USERNAME and ELRC_API_PASSWORD into settings before uploading.'
             )
