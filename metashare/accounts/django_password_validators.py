@@ -173,7 +173,7 @@ class UserAttributeSimilarityValidator(object):
     def validate(self, password, user=None):
         if not user:
             return
-        print(self.user_attributes)
+        
         for attribute_name in self.user_attributes:
             value = getattr(user, attribute_name, None)
             if not value or not isinstance(value, string_types):
