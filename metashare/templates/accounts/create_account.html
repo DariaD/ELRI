@@ -31,8 +31,8 @@
                {{ field.label_tag }}  {{ field }}
             {% elif field.html_name == "password" %}
               <div><center>{% blocktrans %}The password must contain at least 10 characters and include at least one capital letter, one lowercase letter, one digit and one special character (e.g., punctuation mark). It should also differ from the username and not contain more that two identical characters in a row{% endblocktrans %}</center></div>
-              <br> <br> 
-                {{ field.label_tag }} {{ field }}
+              <br> <br>
+                 <span style='color:red;' aria-label="{% trans 'Required Field' %}">*</span> {{ field.label_tag }} {{ field }}
             {% else %}
                 <span style='color:red;' aria-label="{% trans 'Required Field' %}">*</span> {{ field.label_tag }}  {{ field }}
             {% endif %}
