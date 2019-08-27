@@ -141,7 +141,7 @@ class UploadELRCThread(threading.Thread):
         self.output = output
         self.queue = Queue()
         self.client = ELRCShareClient()
-        self.client.login(username=settings.ELRC_USERNAME, password=settings.ELRC_PASSWORD)
+        self.client.login(username=settings.ELRC_API_USERNAME, password=settings.ELRC_API_PASSWORD)
 
     def run(self):
         """ Consume resources of `self.queue` and upload each of them to ELRC-Share with the ELRC-Share client.
@@ -159,7 +159,7 @@ class UploadELRCThread(threading.Thread):
                     self.output.put(('error', resource.id))
             else:
                 LOGGER.error(_("Client can't connect to the ELRC-Share server. Try to reconnect now."))
-                self.client.login(username=settings.ELRC_USERNAME, password=settings.ELRC_PASSWORD)
+                self.client.login(username=settings.ELRC_API_USERNAME, password=settings.ELRC_API_PASSWORD)
                 time.sleep(10)
 
     def add_resource(self, resource):
@@ -1220,8 +1220,11 @@ class ResourceModelAdmin(SchemaModelAdmin):
     def publish_elrc_action(self, request, queryset):
         """ Each resource objects of queryset, update related XML file and archive file on ELRC website.
         """
+        messages.warning(request,_("This action is unavailable. It is still under development. Please upload the LR manually to ELRC-SHARE."))
+        return
+
         global ELRC_THREAD
-        if not hasattr(settings, 'ELRC_USERNAME') or not hasattr(settings, 'ELRC_PASSWORD'):
+        if not hasattr(settings, 'ELRC_API_USERNAME') or not hasattr(settings, 'ELRC_API_PASSWORD'):
             raise ImproperlyConfigured(
                 'Define ELRC_API_USERNAME and ELRC_API_PASSWORD into settings before uploading.'
             )
