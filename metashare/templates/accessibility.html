@@ -8,60 +8,68 @@
 
    <h1 id="main-content" style="text-align: justify; font-size: 15pt; line-height:150%; margin: '20px 0px 20px 0px'; font-weight: normal; color:#111; display:block; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start:0px; margin-inline-end:0px;">A AMA-Agência para a modernização Administrativa
 	compromete-se a disponibilizar o sítio Web
-	<a href="https://etraducao.gov.pt/pt-pt/" name="siteurl">eTradução</a>,
+	<a href="{% url 'frontpage' %}" title="Ir para a homepage do eTradução" name="siteurl">eTradução</a>,
 	em conformidade com o Decreto-lei n.º 83/2018, de 19 de outubro, que transpõe a
 	Diretiva (UE) 2016/2102 do Parlamento Europeu e do Conselho, relativa à
         acessibilidade dos sítios Web e das aplicações móveis.</h1>
 
 <h2>I. Estado de conformidade</h2>
 <p class="capFL">
-	<span name="target-type" class="capFL">O sítio Web</span>
-	<a href="https://etraducao.gov.pt/pt-pt/" name="siteurl"><span name="target-name">eTradução</span></a>
-	d<span data-printfilter="lowerfirst" class="lowFL">a</span>
-	<span>AMA-Agência para a modernização Administrativa</span>
-	está
-	<span class="mr mr-conformance-status"><span name="conformance-output">parcialmente conforme</span></span>
-	para com o Decreto-lei n.º 83/2018 de 19 de outubro.
+	O sítio Web <a href="{% url 'frontpage' %}" name="siteurl">eTradução</a>
+	da AMA-Agência para a modernização Administrativa está parcialmente conforme para com o Decreto-lei n.º 83/2018 de 19 de outubro.
 </p>
 <p>As não conformidades e/ou isenções são indicadas abaixo.</p>
+
 <h3>Não conformidades e/ou alvo de isenções</h3>
 <p>
-	A. Enumeração <strong>das secções / conteúdos / funções</strong> d<span name="target-type">o sítio Web</span> que não estão conformes e/ou alvo de isenção:
+	A. Enumeração <strong>das secções / conteúdos / funções</strong> do sítio Web que não estão conformes e/ou alvo de isenção:
 </p>
-<span class="mr mr-nonconf-sections">
+
 	<ul id="non-conformance-sections" data-printfilter="capitalize">
 	<li>Foram encontrados 24 erros de validação na linguagem de marcação</li>
 	<li>Foram localizados 2 links com o mesmo texto que apontam destinos diferentes</li>
-</ul>
-</span>
+    </ul>
+
 <p>B. <strong>Razões</strong> que estão na base da não conformidade dos
 	conteúdos indicados acima:
 </p>
-<span class="mr mr-nonconf-reasons">
+
 	<ul id="non-conformance-reasons">
 	<li>Os conteúdos são desenvolvidos e geridos por terceiros. Conteúdos não dependentes da AMA.</li>
 	<li>Os conteudos são desenvolvidos e geridos por terceiros. Conteúdos não dependentes da AMA.</li>
 </ul>
-</span>
+
 <h2>II. Elaboração da presente declaração de acessibilidade e usabilidade</h2>
 <p>
-	Esta declaração foi atualizada a
-	<span class="mr mr-date"><span>2019-08-23</span></span>.
+	Esta declaração foi atualizada a 2019-08-23.
 </p>
 <p>De acordo com o artigo 9º do DL n.º 83/2018, as entidades devem adotar os
 	procedimentos de monitorização a seguir apresentados. Os procedimentos A) e B) são
 	obrigatórios. O procedimento C) é recomendado.</p>
-<p><strong>A. Avaliações automáticas levadas a efeito pela <span>AMA-Agência para a modernização Administrativa</span></strong></p>
-<span class="mr mr-automatic-summary">
-	<span id="accstmnt_assessment_with_tools_summary"><ol><li>(2019-08-08). Relatório: <a href="http://www.acessibilidade.gov.pt/accessmonitor/wcag20/?sid=4136">http://www.acessibilidade.gov.pt/accessmonitor/wcag20/?sid=4136</a><ul><li>Ferramenta utilizada: Access Monitor</li><li>Amostra: 6 páginas.</li><li>Principais resultados (sumário): No total de 6 páginas foi obtido o score de 7.2 do AccessMonitor (1-10) tendo-se obtido os seguintes níveis de conformidade: 100% das páginas passam a bateria de testes para o nível A, 83% passam os testes para o AA e 33% os testes para AAA.</li></ul></li></ol></span>
-</span>
+<p><strong>A. Avaliações automáticas levadas a efeito pela AMA-Agência para a modernização Administrativa</strong></p>
+
+	<ol>
+		<li>(2019-08-08). Relatório: <a href="http://www.acessibilidade.gov.pt/accessmonitor/wcag20/?sid=4136">http://www.acessibilidade.gov.pt/accessmonitor/wcag20/?sid=4136</a>
+			<ul>
+				<li>Ferramenta utilizada: Access Monitor</li><li>Amostra: 6 páginas.</li>
+				<li>Principais resultados (sumário): No total de 6 páginas foi obtido o score de 7.2 do AccessMonitor (1-10) tendo-se obtido os seguintes níveis de conformidade: 100% das páginas passam a bateria de testes para o nível A, 83% passam os testes para o AA e 33% os testes para AAA.</li>
+			</ul>
+		</li>
+	</ol>
+
 <p><strong>B. Avaliação manual feita com base em lista de verificação:</strong></p>
-<span class="mr mr-manual-summary">
-	<span id="accstmnt_assessment_with_manual_summary"><ol><li>(2019-08-23). Relatório: <a href="https://etraducao.gov.pt/pt-pt/docs">https://etraducao.gov.pt/pt-pt/docs</a><ul><li>Amostra: 4 páginas.</li></ul></li></ol></span>
-</span>
+    <ol><!--"https://etraducao.gov.pt/pt-pt/docs"-->
+		<li>(2019-08-23). Relatório: <a href="{% url 'docs' %}" target="_blank" >https://etraducao.gov.pt/pt-pt/docs</a>
+			<ul><li>Amostra: 4 páginas.
+			</li>
+			</ul>
+		</li>
+	</ol>
+
 <p><strong>C. Testes de usabilidade com pessoas com deficiência:</strong></p>
 <p>O presente sítio Web ainda não foi alvo de testes com utilizadores com
 	deficiência.</p>
+
 <h2>III. Contacto e solicitação de informação relativa ao sítio Web</h2>
 <p>Para contactar, enviar sugestões, efetuar reclamações ou solicitar informação
 	adicional relativamente aos conteúdos e/ou funcionalidades presentes no sítio Web da
@@ -72,16 +80,14 @@
 </span>
 <h2>IV. Outras evidências / esforços para tornar os conteúdos mais acessíveis e mais
 	usáveis</h2>
-<span></span>
-<span>
+
 	<p>
-	<span>A</span>
-	<span>AMA-Agência para a modernização Administrativa</span>
+    A AMA-Agência para a modernização Administrativa
 	não apresentou, aquando do preenchimento da presente Declaração, outras
 	evidências ou esforços para tornar o seu sítio Web conforme para com os
 	requisitos de acessibilidade constantes do DL n.º 83/2018, de 19 de outubro.
-</p>
-</span>
+   </p>
+
 <h2>V. Denúncia de situações de discriminaçao derivadas do incumprimento dos requisitos
 	de acessibilidade constantes do DL n.º 83/2018</h2>
 <p>
