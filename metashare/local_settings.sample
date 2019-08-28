@@ -281,3 +281,9 @@ REST_API_KEY = ""
 ALLOWED_HOSTS = ("*",)
 DOC2TMX_URL = 'URL to tm2tmx process service'
 TM2TMX_URL = 'URL to tm2tmx process service'
+
+ELRC_API_USERNAME = environ.get('ELRC_API_USERNAME', None)
+ELRC_API_PASSWORD = environ.get('ELRC_API_PASSWORD', None)
+
+
+
