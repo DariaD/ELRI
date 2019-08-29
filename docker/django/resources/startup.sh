@@ -24,7 +24,7 @@ fi
 #make the migrations if needed
 python /elri/manage.py makemigrations accounts repository stats recommendations storage
 #copy the segond migration
-mv /elri/0002_resourceinfotype_model_elrcuploaded.py /elri/metashare/repository/django_migrations/0002_resourceinfotype_model_elrcuploaded.py
+#mv /elri/0002_resourceinfotype_model_elrcuploaded.py /elri/metashare/repository/django_migrations/0002_resourceinfotype_model_elrcuploaded.py
 python /elri/manage.py migrate
 python /elri/manage.py rebuild_index --noinput
 python /elri/manage.py collectstatic --noinput
