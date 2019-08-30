@@ -48,7 +48,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
              /elri/metashare/processed \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
     && pip install -r /elri/requirements.txt \
-    && pip install git+https://github.com/ELDAELRA/ELRI.git@VIC_ELDA_R3.4#subdirectory=elrc-share-client \
+    && pip install git+https://github.com/ELDAELRA/ELRI.git#subdirectory=elrc-share-client \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh
