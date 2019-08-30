@@ -11,6 +11,7 @@
 
 {% block content %}
 {% spaceless %}
+<!--<h2>{% blocktrans %}Create Account{% endblocktrans %}</h2>-->
 <h1 style="font-size: 20pt; line-height:150%; margin: '20px 0px 20px 0px'; font-weight: normal; color:#111; display:block; margin-block-start: 0.83em; margin-block-end: 0.83em; margin-inline-start:0px; margin-inline-end:0px;" id="main-content">{% trans 'Create Account' %}</h1>
 <div class="content_box">
   <form class="form_helper" method="post" action="{% url 'metashare.accounts.views.create' %}">
@@ -24,9 +25,14 @@
         {{ field }} <label for="{{ field.auto_id }}"> {% blocktrans %}I accept the <a target="_blank" href="{{ elri_tos }}">ELRI Terms of Service</a>.{% endblocktrans %}</label>
         <!--{% static "metashare/ELRI_ToS_template.pdf" as elri_tos %}-->
         <!--{{ field }} <label for="{{ field.auto_id }}">{% blocktrans %}I accept the <a target="_blank" href="{{ elri_tos }}">ELRI Terms of Service</a>.{% endblocktrans %}</label>-->
+
       {% else %}
             {% if field.html_name == "organization_address" or field.html_name == "organization_phone_number" or field.html_name == "position"  %}
                {{ field.label_tag }}  {{ field }}
+            {% elif field.html_name == "password" %}
+              <div><center>{% blocktrans %}The password must contain at least 10 characters and include at least one capital letter, one lowercase letter, one digit and one special character (e.g., punctuation mark). It should also differ from the username and not contain more that two identical characters in a row{% endblocktrans %}</center></div>
+              <br> <br>
+                 <span style='color:red;' aria-label="{% trans 'Required Field' %}">*</span> {{ field.label_tag }} {{ field }}
             {% else %}
                 <span style='color:red;' aria-label="{% trans 'Required Field' %}">*</span> {{ field.label_tag }}  {{ field }}
             {% endif %}
@@ -35,7 +41,10 @@
     {% endfor %}
     <input class="button middle_button" style="margin-left:auto;margin-right:auto;" type="submit" value="{% trans 'Create Account' %}" />
     <input type="hidden" name="next" value="{{ next }}" />
+    </br>
   </form>
+
 </div>
+
 {% endspaceless %}
 {% endblock %}

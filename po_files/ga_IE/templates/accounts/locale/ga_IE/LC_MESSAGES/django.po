@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 16:32+0200\n"
-"PO-Revision-Date: 2019-06-07 09:59+0200\n"
+"POT-Creation-Date: 2019-08-23 10:51+0200\n"
+"PO-Revision-Date: 2019-08-23 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -296,12 +296,13 @@ msgid "Please fill in all fields to create your account."
 msgstr "Earráid: Líon gach réimse chun do chuntas a chruthú."
 
 #: templates/accounts/create_account.html:14
-#: templates/accounts/create_account.html:36
+#: templates/accounts/create_account.html:15
+#: templates/accounts/create_account.html:41
 msgid "Create Account"
 msgstr "Cruthaigh cuntas"
 
-#: templates/accounts/create_account.html:24
-#: templates/accounts/create_account.html:26
+#: templates/accounts/create_account.html:25
+#: templates/accounts/create_account.html:27
 #, python-format
 msgid ""
 "I accept the <a target=\"_blank\" href=\"%(elri_tos)s\">ELRI Terms of "
@@ -310,7 +311,20 @@ msgstr ""
 "Glacaim leis na <a target=\"_blank\" href=\"%(elri_tos)s\">Téarmaí Seirbhíse "
 "ELRI </a>."
 
-#: templates/accounts/create_account.html:31
+#: templates/accounts/create_account.html:33
+msgid ""
+"The password must contain at least 10 characters and include at least one "
+"capital letter, one lowercase letter, one digit and one special character (e."
+"g., punctuation mark). It should also differ from the username and not "
+"contain more that two identical characters in a row"
+msgstr ""
+"Caithfidh 10 gcarachtar ar a laghad a bheith sa phasfhocal. Ní mór sampla "
+"amháin ar a laghad de charachtar i gcás uachtair, carachtar i gcás íochtair, "
+"uimhir agus saincharachtar (e.g. comhartha poncaíochta) a bheith ann. "
+"Caithfidh sé a bheith difriúil ón ainm úsáideora a roghnaigh tú agus ní "
+"féidir an carachtar céanna a úsáid níos mó ná dhá uair i ndiadh a chéile ann."
+
+#: templates/accounts/create_account.html:36
 msgid "Required Field"
 msgstr "Tá an réimse seo de dhíth."
 
@@ -844,6 +858,50 @@ msgstr ""
 #: templates/accounts/update_default_editor_group.html:25
 msgid "Update"
 msgstr "Uasdátaigh"
+
+#~ msgid "Password requirements:"
+#~ msgstr "Phasfhocal:"
+
+#~ msgid " It must contain at least 10 characters"
+#~ msgstr "Ní mór ar a laghad 10 carachtar a bheith i do phasfhocal."
+
+#~ msgid ""
+#~ " It can't be too similar to other personal information (username, "
+#~ "first_name, last_name, email, etc.)"
+#~ msgstr ""
+#~ "Ní féidir le do phasfhocal a bheith róchosúil le do shonraí pearsanta "
+#~ "eile."
+
+#~ msgid " It can't be a commonly used password"
+#~ msgstr "Ní féidir pasfhocal coitianta a bheith mar phasfhocal agat."
+
+#~ msgid " It can't be entirely numeric"
+#~ msgstr "Ní féidir pasfhocal iomlán uimhriúil a bheith agat."
+
+#~ msgid " It must contain at least one digit "
+#~ msgstr "Ní mór ar a laghad uimhir amháin a bheith i do phasfhocal."
+
+#~ msgid ""
+#~ " It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
+#~ "<=>?@[\\\\]^_`{|}~ "
+#~ msgstr ""
+#~ "Ní mór ar a laghad carachtar poncaíochta amháin a bheith i do "
+#~ "phasfhocal: !\"#$%%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~ "
+
+#~ msgid " It must contain at least one uppercase character"
+#~ msgstr ""
+#~ "Ní mór ar a laghad carachtar i gcás uachtair amháin a bheith i do "
+#~ "phasfhocal."
+
+#~ msgid " It must contain at least one lowercase character"
+#~ msgstr ""
+#~ "Ní mór ar a laghad carachtar i gcás íochtair amháin a bheith i do "
+#~ "phasfhocal."
+
+#~ msgid " It cannot contain a repeated character in a row"
+#~ msgstr ""
+#~ "Á an carachtar céanna úsáidte níos mó uaireanta i ndiaidh a chéile ná mar "
+#~ "atá ceadaithe chun pasfhocal ceart a chruthú (2)."
 
 #~ msgid "Dear organization manager,"
 #~ msgstr "A Bhainisteoir Eagraíochta. a chara,"

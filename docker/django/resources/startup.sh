@@ -9,7 +9,6 @@ NC='\033[0m' # No Color
 cp /elri/elri_resources/config/web_service.cfg /elri/elri_resources/config/_web_service.cfg
 cp /elri/web_service.cfg /elri/elri_resources/config/web_service.cfg
 cp -r /elri/toolchain_resources/* /elri/elri_resources/toolchain_resources/
-
 source /elri/env_secrets_expand.sh
 
 cmd="dockerize"
@@ -22,6 +21,7 @@ if [ "${SOLR_HOST}" != "" ]; then
     dockerize -wait tcp://${SOLR_HOST}:${SOLR_PORT}
 fi
 
+#make the migrations if needed
 python /elri/manage.py makemigrations accounts repository stats recommendations storage
 python /elri/manage.py migrate
 python /elri/manage.py rebuild_index --noinput

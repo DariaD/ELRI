@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 16:32+0200\n"
-"PO-Revision-Date: 2019-06-07 14:07+0200\n"
+"POT-Creation-Date: 2019-08-23 10:51+0200\n"
+"PO-Revision-Date: 2019-08-23 11:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ga_IE\n"
@@ -467,7 +467,18 @@ msgstr ""
 "cineálacha a leanas: <strong>.doc(x), .odt, .rtf, .pdf, .tmx, .sdltm, .xml, ."
 "tbx, .xls(x), nó .txt file</strong> suas go 100MB."
 
-#: templates/repository/editor/contributions/contribute.html:283
+#: templates/repository/editor/contributions/contribute.html:282
+msgid ""
+"Please note that PDF files are allowed but typically lead to resources of "
+"lower quality. It is highly recommended to upload documents in other formats "
+"(e.g., odt, doc(x), rtf), if possible."
+msgstr ""
+"Tabhair faoi deara le do thoil go nglactar le comhaid PDF, ach go ngineann "
+"siad acmhainní de chaighdeán íseal de ghnáth. Moltar go láidir cáipéisí a "
+"uaslódáil i \n"
+"bhformáidí eile (m.sh., odt, doc(x), rtf), más féidir."
+
+#: templates/repository/editor/contributions/contribute.html:284
 msgid ""
 "In case the data you wish to upload are larger than 100MB, please contact us "
 "to provide an SFTP link for direct download or consider uploading smaller "
@@ -477,11 +488,11 @@ msgstr ""
 "dteagmháil linn chun nasc SFTP a sholáthar d'íoslódáil dhíreach nó smaoinigh "
 "ar chomhaid níos lú a uasódáil"
 
-#: templates/repository/editor/contributions/contribute.html:288
+#: templates/repository/editor/contributions/contribute.html:289
 msgid "Group(s)"
 msgstr "Grúpa(í)"
 
-#: templates/repository/editor/contributions/contribute.html:297
+#: templates/repository/editor/contributions/contribute.html:298
 msgid ""
 "The group(s) the language resource can be shared with (hold down the CTRL "
 "key to select multiple groups)."
@@ -489,7 +500,26 @@ msgstr ""
 "An grúpa / na grúpaí ar féidir an acmhainne teanga a roinnt leis / leo "
 "(brúigh eochair CTRL chun grúpaí iolracha a roghnú)."
 
-#: templates/repository/editor/contributions/contribute.html:304
+#: templates/repository/editor/contributions/contribute.html:300
+msgid ""
+"Resources shared with the National Organisations group will be accessible to "
+"registered ELRI users (members of public institutions) in Country only. "
+"Those shared with the group National Organisations+European Commission will "
+"also be accessible to the European Commission, via the ELRC-SHARE platform, "
+"to help improve its public automated translation services. Resources shared "
+"with the Open Data group will be accessible to registered ELRI users and to "
+"users of the EU Open Data Portal."
+msgstr ""
+"Beidh acmhainní atá comhroinnte leis an ngrúpa Eagraíochtaí Náisiúnta ar "
+"fáil d'úsáideoirí cláraithe ELRI (baill d'institiúidí poiblí) in Éirinn "
+"amháin. Beidh acmhainní comhroinnte leis an ngrúpa Eagraíochtaí Náisiúnta 7 "
+"Coimisiún Eorpach ar fáil don Choimisiún Eorpach chomh maith, tríd an ardán "
+"ELRC-Share, lena seirbhísí\n"
+"poiblí aistriúcháin uathoibrithe a chur chun cinn. Beidh acmhainní atá "
+"comhroinnte leis an ngrúpa Sonraí Oscailte ar fáil d'úsáideoirí cláraithe "
+"ELRI agus d'úsáideoirí de Thairseach Sonraí Oscailte an AE."
+
+#: templates/repository/editor/contributions/contribute.html:308
 #, python-format
 msgid ""
 "I agree with the <a target=\"_blank\" href=\"%(legal_url)s#Sharing"
@@ -498,11 +528,11 @@ msgstr ""
 "Glacaim leis na <a target=\"_blank\" href=\"%(legal_url)s#Sharing\">Language "
 "Resource upload Terms of Service for Data Holders</a> "
 
-#: templates/repository/editor/contributions/contribute.html:316
+#: templates/repository/editor/contributions/contribute.html:320
 msgid "Submit"
 msgstr "Cuir isteach"
 
-#: templates/repository/editor/contributions/contribute.html:317
+#: templates/repository/editor/contributions/contribute.html:321
 msgid "Reset"
 msgstr "Athshocraigh"
 

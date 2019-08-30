@@ -8,7 +8,7 @@ FROM python:2.7.15-stretch
 #ARG RELEASE="trunk"
 #ARG RELEASE="tags/R3.1"
 #ARG RELEASE="branches/tempmasterR31"
-ARG RELEASE="branches/DCU"
+ARG RELEASE="branches/DCU_VIC_ELDA_R3.4"
 
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
@@ -26,6 +26,8 @@ ENV DB_HOST="postgres-server" \
     ELRI_ALERT_MAILS="noreply@elri.com" \
     GIT_URL="https://github.com/ELDAELRA/ELRI/${RELEASE}"\
     ELRI_EMAIL_ADDRESSES="elri-nrs-support:elri-nrs-support@vicomtech.org,elri-no-reply:no-reply-elri@email.com,elri-ilsp:elri-ilsp@email.com,elri-edelivery:elri-edelivery@email.com"\
+    ELRC_API_USERNAME=\
+    ELRC_API_PASSWORD=\
     ELRI_WORKERS=2 \
     ELRI_THREADS=4
 
@@ -34,8 +36,8 @@ COPY --from=base /tmp/dockerize /usr/local/bin/
 COPY resources/env_secrets_expand.sh \
      resources/startup.sh \
      resources/create_super_user.sh \
-     resources/gettext.patch \ 
-     resources/middleware.patch \ 
+     resources/gettext.patch \
+     resources/middleware.patch \
      resources/manage.py /elri/
 
 RUN svn export ${GIT_URL}/metashare /elri/metashare \
@@ -49,6 +51,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
     && pip install -r /elri/requirements.txt \
     && patch /usr/local/lib/python2.7/site-packages/django/middleware/locale.py < /elri/middleware.patch \
+    && pip install git+https://github.com/ELDAELRA/ELRI.git@DCU_VIC_ELDA_R3.4#subdirectory=elrc-share-client \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh

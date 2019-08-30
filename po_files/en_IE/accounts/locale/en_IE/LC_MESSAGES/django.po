@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 17:14+0200\n"
-"PO-Revision-Date: 2019-06-07 09:38+0200\n"
+"POT-Creation-Date: 2019-08-23 10:51+0200\n"
+"PO-Revision-Date: 2019-08-23 10:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -506,16 +506,16 @@ msgstr ""
 msgid "Password confirmation"
 msgstr ""
 
-#: accounts/forms.py:138
+#: accounts/forms.py:139
 msgid "User account name already exists, please choose another one."
 msgstr "Error: User account name already exists, please choose another one."
 
-#: accounts/forms.py:152 accounts/forms.py:155
+#: accounts/forms.py:153 accounts/forms.py:156
 msgid "There is already an account registered with this e-mail address."
 msgstr ""
 "Error: There is already an account registered with this e-mail address."
 
-#: accounts/forms.py:166
+#: accounts/forms.py:167
 msgid "The two password fields did not match."
 msgstr "Error: The two password fields did not match."
 
