@@ -35,7 +35,6 @@ COPY resources/env_secrets_expand.sh \
      resources/startup.sh \
      resources/create_super_user.sh \
      resources/gettext.patch \ 
-     resources/0002_resourceinfotype_model_elrcuploaded.py \
      resources/manage.py /elri/
 
 RUN svn export ${GIT_URL}/metashare /elri/metashare \
