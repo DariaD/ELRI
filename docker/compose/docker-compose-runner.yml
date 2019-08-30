@@ -3,7 +3,7 @@ services:
   # Django app
   elri-node1:
     container_name: elri_app
-    image: elrinrs/nationalrelaystation:R3.3.9
+    image: elrinrs/nationalrelaystation:VIC_ELDA_R3.4
     secrets:
       - db.secret
       - app.secret
@@ -33,6 +33,8 @@ services:
       - ELRI_EMAIL_ADDRESSES={{DOCKER-SECRET:app.secret}}
       - ELRI_WORKERS={{DOCKER-SECRET:app.secret}}
       - ELRI_THREADS={{DOCKER-SECRET:app.secret}}
+      - ELRC_API_USERNAME={{DOCKER-SECRET:app.secret}}
+      - ELRC_API_PASSWORD={{DOCKER-SECRET:app.secret}}
 
     depends_on:
       - solr
@@ -79,7 +81,7 @@ services:
   # Toolchain image
   toolchain:
     container_name: elri_toolchain
-    image: elrinrs/toolchain:R3.7
+    image: elrinrs/toolchain:R3.8
     volumes:   
       - elri-shared-resources:/elri/elri_resources:rw
     environment:

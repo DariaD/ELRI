@@ -278,3 +278,6 @@ ALLOWED_HOSTS = ['elri-node1', 'localhost']
 
 DOC2TMX_URL = "http://toolchain:8080/ELRI_WebService/tc_doc2tmx/process"
 TM2TMX_URL = "http://toolchain:8080/ELRI_WebService/tc_tm2tmx/process"
+
+ELRC_API_USERNAME = environ.get('ELRC_API_USERNAME', None)
+ELRC_API_PASSWORD = environ.get('ELRC_API_PASSWORD', None)

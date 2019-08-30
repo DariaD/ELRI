@@ -5,9 +5,10 @@ RUN tar xvfz /tmp/dockerize-alpine-linux-amd64-v0.5.0.tar.gz -C /tmp/
 
 FROM python:2.7.15-stretch
 
-#ARG RELEASE="trunk"
-ARG RELEASE="tags/R3.3.9"
-#ARG RELEASE="branches/VIC"
+ARG RELEASE="trunk"
+#ARG RELEASE="tags/R3.3.9"
+#ARG RELEASE="branches/VIC_ELDA_R3.4"
+#ARG RELEASE="tags/R3.4"
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
     SOLR_HOST="solr" \
@@ -24,8 +25,10 @@ ENV DB_HOST="postgres-server" \
     ELRI_ALERT_MAILS="noreply@elri.com" \
     GIT_URL="https://github.com/ELDAELRA/ELRI/${RELEASE}"\
     ELRI_EMAIL_ADDRESSES="elri-nrs-support:elri-nrs-support@vicomtech.org,elri-no-reply:no-reply-elri@email.com,elri-ilsp:elri-ilsp@email.com,elri-edelivery:elri-edelivery@email.com"\
+    ELRC_API_USERNAME=\
+    ELRC_API_PASSWOD=\
     ELRI_WORKERS=2 \
-    ELRI_THREADS=4
+    ELRI_THREADS=4 
 
 
 COPY --from=base /tmp/dockerize /usr/local/bin/
@@ -45,6 +48,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
              /elri/metashare/processed \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
     && pip install -r /elri/requirements.txt \
+    && pip install git+https://github.com/ELDAELRA/ELRI.git@VIC_ELDA_R3.4#subdirectory=elrc-share-client \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh

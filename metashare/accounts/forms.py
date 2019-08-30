@@ -89,8 +89,7 @@ class RegistrationRequestForm(Form):
                                    label=mark_safe(u"%s<span style='color:red' aria-label='%s'>*</span>" % (_("Organization name"), _("Required Field"))))
     organization_address = forms.CharField(
             UserProfile._meta.get_field('affiliation_address').max_length,
-            label=mark_safe(u"%s<span style='color:red' aria-label='%s'>*</span>"
-                            % (_("Organization address"), _("Required Field")) ))
+            label=mark_safe(_("Organization address")), required=False)
     organization_phone_number = forms.CharField(
             UserProfile._meta.get_field('affiliation_phone_number').max_length,
             label=mark_safe( _("Organization phone number")),required=False)
