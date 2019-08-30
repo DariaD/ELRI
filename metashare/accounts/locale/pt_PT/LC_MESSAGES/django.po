@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-21 13:24+0200\n"
-"PO-Revision-Date: 2019-08-20 12:23+0200\n"
+"PO-Revision-Date: 2019-08-30 12:46+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -391,10 +391,10 @@ msgid_plural ""
 "characters."
 msgstr[0] ""
 "Erro: Esta palavra-passe é demasiado curta. Deve conter pelo menos "
-"%(min_length)d carácter."
+"%(min_length)d caractere."
 msgstr[1] ""
 "Erro: Esta palavra-passe é demasiado curta. Deve conter pelo menos "
-"%(min_length)d caracteres."
+"%(min_length)d caracteres"
 
 #: accounts/django_password_validators.py:150
 #, python-format
@@ -408,7 +408,7 @@ msgstr[1] ""
 #: accounts/django_password_validators.py:186
 #, python-format
 msgid "The password is too similar to the %(verbose_name)s."
-msgstr "Erro: A palavra-passe é demasiado parecida com %(verbose_name)s."
+msgstr "Erro: Esta palavra-passe é demasiado parecida com %(verbose_name)s."
 
 #: accounts/django_password_validators.py:192
 msgid "Your password can't be too similar to your other personal information."
@@ -417,7 +417,7 @@ msgstr ""
 
 #: accounts/django_password_validators.py:218
 msgid "This password is too common."
-msgstr "Erro: A palavra-passe é demasiado comum."
+msgstr "Erro: Esta palavra-passe é demasiado comum."
 
 #: accounts/django_password_validators.py:223
 msgid "Your password can't be a commonly used password."
@@ -425,7 +425,7 @@ msgstr "A sua palavra-passe não pode ser uma palavra-passe usada vulgarmente."
 
 #: accounts/django_password_validators.py:233
 msgid "This password is entirely numeric."
-msgstr "Erro: A palavra-passe é inteiramente numérica."
+msgstr " Erro: Esta palavra-passe é inteiramente numérica."
 
 #: accounts/django_password_validators.py:238
 msgid "Your password can't be entirely numeric."
@@ -433,7 +433,7 @@ msgstr "A sua palavra-passe não pode ser inteiramente numérica."
 
 #: accounts/django_password_validators.py:248
 msgid "This password does not contain a digit."
-msgstr "Erro: A palavra-passe não contém qualquer digito."
+msgstr "Erro: Esta palavra-passe não contém nenhum digito."
 
 #: accounts/django_password_validators.py:253
 msgid "Your password must contain at least one digit."
@@ -441,7 +441,7 @@ msgstr "A sua palavra-passe deverá conter pelo menos um dígito."
 
 #: accounts/django_password_validators.py:263
 msgid "This password does not contain a punctuation character."
-msgstr "Erro: A palavra-passe não contém pelo menos um carácter de pontuação."
+msgstr "Erro: Esta palavra-passe não contém nenhum caractere de pontuação."
 
 #: accounts/django_password_validators.py:268
 msgid "Your password must contain at least one punctuation character."
@@ -449,7 +449,7 @@ msgstr "A sua palavra-passe deverá conter pelo menos um caracter de pontuação
 
 #: accounts/django_password_validators.py:278
 msgid "This password does not contain an uppercase character."
-msgstr "Erro: A palavra-passe não contém pelo menos uma letra maiúscula."
+msgstr "Erro: Esta palavra-passe não contém nenhuma letra maiúscula."
 
 #: accounts/django_password_validators.py:283
 msgid "Your password must contain at least one uppercase character."
@@ -457,7 +457,7 @@ msgstr "A sua palavra-passe deverá conter pelo menos uma letra maiúscula."
 
 #: accounts/django_password_validators.py:293
 msgid "This password does not contain a lowercase character."
-msgstr "Erro: A palavra-passe não contém pelo menos uma letra minúscula. "
+msgstr "Erro: Esta palavra-passe não contém nenhuma letra minúscula. "
 
 #: accounts/django_password_validators.py:298
 msgid "Your password must contain at least one lowercase character."
@@ -468,7 +468,7 @@ msgstr "A sua palavra-passe deverá conter pelo menos uma letra minúscula."
 msgid ""
 "This password contains a character repeated more than %d times in a row."
 msgstr ""
-"Erro: A palavra-passe contém um carácter repetido mais do que %d vez(es) "
+"Erro: Esta palavra-passe contém um caractere repetido mais do que %d vez(es) "
 "seguida(s)."
 
 #: accounts/django_password_validators.py:318
@@ -482,7 +482,8 @@ msgstr ""
 #: accounts/forms.py:74
 msgid "This value may contain only letters, numbers and @/./+/-/_ characters."
 msgstr ""
-"Erro: Este campo apenas pode conter letras, números e caracteres @/./+/-/_"
+"Erro: Este campo não pode ter espaços e apenas pode conter letras, números e "
+"caracteres @/./+/-/_ "
 
 #: accounts/forms.py:76
 msgid "Desired account name"
@@ -541,7 +542,7 @@ msgstr "Erro: Já existe uma conta registada com o mesmo e-mail."
 
 #: accounts/forms.py:165
 msgid "The two password fields did not match."
-msgstr " Erro: Os dois campos de palavra-passe não correspondem."
+msgstr "Erro: Os dois campos de palavra-passe não correspondem."
 
 #: accounts/forms.py:207
 msgid "Subject"
@@ -712,7 +713,7 @@ msgid ""
 "Please contact them directly."
 msgstr ""
 "Erro: Ocorreu um erro no envio do e-mail de notificação aos administradores. "
-"Por favor contacte-nos diretamente pelo e-mail etraducao@ama.pt. "
+"Por favor contacte-os diretamente."
 
 #: accounts/views.py:191
 msgid ""
@@ -757,7 +758,9 @@ msgstr "Pedido de adesão de novo editor"
 msgid ""
 "There was an error sending out the request email for your editor group "
 "application."
-msgstr "Erro: Ocorreu um erro ao enviar o e-mail para o seu grupo de edição."
+msgstr ""
+"Erro: Ocorreu um erro no envio do pedido por e-mail para o seu grupo de "
+"edição."
 
 #: accounts/views.py:342
 #, python-format
@@ -809,7 +812,8 @@ msgid ""
 "There was an error sending out the request email for your organization "
 "application."
 msgstr ""
-"Erro: ﻿Ocorreu um erro ao enviar o e-mail de associação à sua organização."
+"Erro: Ocorreu um erro no envio do pedido por e-mail da sua candidatura à sua "
+"organização."
 
 #: accounts/views.py:496
 #, python-format
@@ -855,8 +859,8 @@ msgid ""
 "There was an error sending out the activation email for your user account. "
 "Please contact the administrator at %s."
 msgstr ""
-"Erro: Ocorreu um erro ao enviar o e-mail de ativação da sua conta de "
-"utilizador. Por favor contacte o administrador através do e-mail %s"
+"Erro: Ocorreu um erro no envio do e-mail de ativação da sua conta de "
+"utilizador. Por favor contacte o administrador em %s."
 
 #: accounts/views.py:612
 msgid ""

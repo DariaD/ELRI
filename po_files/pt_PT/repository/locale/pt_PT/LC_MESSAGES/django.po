@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-08-21 13:24+0200\n"
-"PO-Revision-Date: 2019-08-20 12:26+0200\n"
+"PO-Revision-Date: 2019-08-30 12:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -1624,9 +1624,9 @@ msgid ""
 "Enter a valid year value which conforms to the XML Schema \"gYear\" type "
 "(see http://www.w3.org/TR/xmlschema-2/#gYear). \"{}\" is not valid."
 msgstr ""
-"Erro: Introduza um ano válido que esteja de acordo com a máscara \"gYear\" "
-"do Esquema XML (consulte http://www.w3.org/TR/xmlschema-2/#gYear). \"{}\" "
-"não é válido."
+"Erro: Introduza um valor de ano válido que esteja de acordo com o tipo "
+"\"gYear\" do Esquema XML (consulte http://www.w3.org/TR/xmlschema-2/#gYear). "
+"\"{}\" não é válido."
 
 #: repository/validators.py:56
 #, python-brace-format
@@ -1636,17 +1636,17 @@ msgid ""
 "production from XML 1.0 (Second Edition), cf. http://www.w3.org/TR/2000/WD-"
 "xml-2e-20000814#NT-Char."
 msgstr ""
-"Erro: O carácter na posição {char_pos} (&#x{char_code:0>4x};) não pode ser "
-"usado. Introduza uma sequência que consista em carácter que correspondam "
-"apenas às especificações Char do XML 1.0 (Segunda Edição), cf. http://www.w3."
+"Erro: O caractere na posição  {char_pos} (&#x{char_code:0>4x};) não deve ser "
+"usado. Introduza uma sequência que consista em caracteres que apenas "
+"correspondam à produção Char do XML 1.0 (Segunda Edição), cf. http://www.w3."
 "org/TR/2000/WD-xml-2e-20000814#NT-Char."
 
 #: repository/validators.py:72
 msgid ""
 "Enter a valid language code as the key for each pair. \"{}\" is not valid."
 msgstr ""
-"﻿Erro: Introduza um código de língua válido como chave para cada par. «{}» "
-"não é válido."
+"﻿﻿Erro: Introduza um código linguístico válido como chave para cada par. "
+"\"{}\" não é válido."
 
 #: repository/validators.py:86
 msgid "This field is required."
@@ -1654,7 +1654,7 @@ msgstr "Erro: Este campo é obrigatório. "
 
 #: repository/validators.py:92
 msgid "This field accepts only number values (without commas)"
-msgstr "Erro: Este campo só aceita valores numéricos (sem vírgulas)"
+msgstr "﻿Erro: Este campo só aceita valores numéricos (sem vírgulas)"
 
 #: repository/validators.py:97
 msgid "Please edit the attribution text template"
@@ -1662,7 +1662,7 @@ msgstr "﻿Erro: Por favor altere o modelo de texto de atribuição"
 
 #: repository/validators.py:101
 msgid "Enter a valid email address."
-msgstr "Erro: Introduza um endereço de e-mail válido"
+msgstr "Erro: Introduza um e-mail válido."
 
 #: repository/views.py:351
 msgid "Request for information regarding a resource"
