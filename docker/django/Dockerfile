@@ -8,7 +8,7 @@ FROM python:2.7.15-stretch
 #ARG RELEASE="trunk"
 #ARG RELEASE="tags/R3.1"
 #ARG RELEASE="branches/tempmasterR31"
-ARG RELEASE="branches/DCU_VIC_ELDA_R3.4"
+ARG RELEASE="branches/DCU"
 
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
@@ -51,7 +51,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
     && pip install -r /elri/requirements.txt \
     && patch /usr/local/lib/python2.7/site-packages/django/middleware/locale.py < /elri/middleware.patch \
-    && pip install git+https://github.com/ELDAELRA/ELRI.git@DCU_VIC_ELDA_R3.4#subdirectory=elrc-share-client \
+    && pip install git+https://github.com/ELDAELRA/ELRI.git@DCU#subdirectory=elrc-share-client \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh
