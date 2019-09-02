@@ -3,6 +3,9 @@ import logging
 import uuid
 import urllib
 from metashare.settings import DJANGO_URL, STATS_SERVER_URL, METASHARE_VERSION, STORAGE_PATH
+
+from metashare.repository.models import resourceInfoType_model
+
 from metashare.repository.models import (
     sizeInfoType_model,
     metadataInfoType_model,
@@ -465,6 +468,82 @@ def getstats(request):
         data["lrstats"] = lrstats
 
     return HttpResponse("[" + json.dumps(data) + "]", content_type="application/json")
+
+def chart_statistics_allowed_user(user):
+    return user.groups.filter(name='reviewers').exists() or user.is_superuser
+
+
+@user_passes_test(chart_statistics_allowed_user)
+def chartstats(request):
+    return render(request, 'stats/chartstats.html', {
+        'countries': iana.get_eu_regions(),
+        'myres': isOwner(request.user.username)})
+
+
+@user_passes_test(chart_statistics_allowed_user)
+def tustats(request):
+    """ Return resources size unit and size value.
+    """
+    if request.is_ajax():
+        tu_count = Counter()
+        for res in resourceInfoType_model.objects.all():
+            for size_unit, size in res.storage_object.sizes_infos:
+                if size_unit.text in ['words', 'translationUnits', 'entries']:
+                    tu_count[size_unit.text] += int(size.text)
+        return JsonResponse(tu_count, safe=False)
+    return HttpResponseNotFound()
+
+
+@user_passes_test(chart_statistics_allowed_user)
+def groupsstats(request):
+    """ Return resources count per groups.
+    """
+    if request.is_ajax():
+        groups_count = Counter()
+        for res in resourceInfoType_model.objects.all():
+            for group in res.groups.all():
+                groups_count[group.name] += 1
+        return JsonResponse(groups_count, safe=False)
+    return HttpResponseNotFound()
+
+
+@user_passes_test(chart_statistics_allowed_user)
+def domainsstats(request):
+    """ Return resources count per domains.
+    """
+    if request.is_ajax():
+        domains_count = Counter()
+        for d in domainInfoType_model.objects.all():
+            domains_count[d.domain] += 1
+        return JsonResponse(domains_count, safe=False)
+    return HttpResponseNotFound()
+
+
+@user_passes_test(chart_statistics_allowed_user)
+def creationstats(request):
+    """ Return resources count per creation date.
+    """
+    if request.is_ajax():
+        creation_data_count = OrderedDict()
+        if 'start-date' in request.GET and 'end-date' in request.GET:
+            start_date = datetime.strptime(request.GET.get('start-date'), "%d-%m-%Y")
+            end_date = datetime.strptime(request.GET.get('end-date'), "%d-%m-%Y")
+            if start_date < end_date:
+                resources = metadataInfoType_model.objects.filter(
+                    Q(metadataCreationDate__gte=start_date) &
+                    Q(metadataCreationDate__lte=end_date)
+                )
+            else:
+                return JsonResponse({'errors': _('The start date must be before the end date.')})
+        else:
+            resources = metadataInfoType_model.objects.all()
+        for resource in resources.order_by("metadataCreationDate"):
+            creation_date = str(resource.metadataCreationDate)
+            if creation_date not in creation_data_count:
+                creation_data_count[creation_date] = 0
+            creation_data_count[creation_date] += 1
+        return JsonResponse(creation_data_count, safe=False)
+    return HttpResponseNotFound()
 
 
 def chart_statistics_allowed_user(user):

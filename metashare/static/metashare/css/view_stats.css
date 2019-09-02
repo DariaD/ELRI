@@ -34,15 +34,15 @@
 }
 
 .tab a.active { font-weight: bold;
-    color: #fff
+
+    color: #fff 
 }
 
-.tab.tab-nobr {
-    background: #fff;
-    font-weight: 600;
-    font-family: Tahoma, Arial;
-    color: #000 !important;
-    font-size: 12px;
+.tab.tab-nobr { background: #fff;
+    font-weight: 600; 
+    font-family: Tahoma,Arial;
+  	color: #000 !important;
+	font-size: 12px; 
     line-height: 2em;
     padding: 0 10px;
     outline: none;

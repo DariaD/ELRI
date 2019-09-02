@@ -3,7 +3,7 @@ services:
   # Django app
   elri-node1:
     container_name: elri_app
-    image: elrinrs/nationalrelaystation:R3.3.9
+    image: elrinrs/nationalrelaystation:R3.4
     secrets:
       - db.secret
       - app.secret
@@ -35,6 +35,7 @@ services:
       - ELRI_THREADS={{DOCKER-SECRET:app.secret}}
       - ELRC_API_USERNAME={{DOCKER-SECRET:app.secret}}
       - ELRC_API_PASSWORD={{DOCKER-SECRET:app.secret}}
+      
     depends_on:
       - solr
       - postgres-server
@@ -80,9 +81,8 @@ services:
   # Toolchain image
   toolchain:
     container_name: elri_toolchain
-    image: elrinrs/toolchain:R3.7
-    volumes:
-
+    image: elrinrs/toolchain:R3.8
+    volumes:   
       - elri-shared-resources:/elri/elri_resources:rw
     environment:
       - SHARED_FOLDER=/elri/elri_resources

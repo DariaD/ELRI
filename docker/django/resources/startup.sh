@@ -21,6 +21,7 @@ if [ "${SOLR_HOST}" != "" ]; then
     dockerize -wait tcp://${SOLR_HOST}:${SOLR_PORT}
 fi
 
+#make the migrations if needed
 python /elri/manage.py makemigrations accounts repository stats recommendations storage
 python /elri/manage.py migrate
 python /elri/manage.py rebuild_index --noinput

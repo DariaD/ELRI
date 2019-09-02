@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:07+0200\n"
-"PO-Revision-Date: 2019-06-06 18:19+0200\n"
+"POT-Creation-Date: 2019-08-21 13:24+0200\n"
+"PO-Revision-Date: 2019-08-21 13:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -263,7 +263,7 @@ msgstr "Merci de remplir tous les champs pour créer un compte."
 
 #: templates/accounts/create_account.html:14
 #: templates/accounts/create_account.html:15
-#: templates/accounts/create_account.html:35
+#: templates/accounts/create_account.html:43
 msgid "Create Account"
 msgstr "Créer un compte"
 
@@ -276,6 +276,19 @@ msgid ""
 msgstr ""
 "J'accepte <a target=\"_blank\" href=\"%(elri_tos)s\">les Conditions "
 "d'utilisation d'ELRI</a>."
+
+#: templates/accounts/create_account.html:32
+msgid ""
+"The password must contain at least 10 characters and include at least one "
+"capital letter, one lowercase letter, one digit and one special character (e."
+"g., punctuation mark). It should also differ from the username and not "
+"contain more that two identical characters in a row"
+msgstr ""
+"Le mot de passe doit contenir au moins 10 caractères et inclure au moins une "
+"lettre en majuscule, une lettre en minuscule, un chiffre et un caractère "
+"spécial (p. ex., signe de ponctuation). Il doit également différer du nom "
+"d'utilisateur et ne pas contenir plus de deux caractères identiques à la "
+"suite."
 
 #: templates/accounts/delete_editor_group_application_selected_confirmation.html:6
 #: templates/accounts/delete_organization_application_selected_confirmation.html:6
@@ -679,6 +692,48 @@ msgstr "Merci d'utiliser ELRI !  "
 #: templates/accounts/update_default_editor_group.html:25
 msgid "Update"
 msgstr "Mise à jour"
+
+#~ msgid "Password requirements:"
+#~ msgstr "Mot de passe:"
+
+#~ msgid " It must contain at least 10 characters"
+#~ msgstr "Votre mot de passe  doit contenir au moins 10 caractère."
+
+#~ msgid ""
+#~ " It can't be too similar to other personal information (username, "
+#~ "first_name, last_name, email, etc.)"
+#~ msgstr ""
+#~ "Votre mot de passe ne doit pas être trop similaire aux autres champs "
+#~ "d'information personnelle."
+
+#~ msgid " It can't be a commonly used password"
+#~ msgstr "Votre mot de passe ne doit pas être trop commun."
+
+#~ msgid " It can't be entirely numeric"
+#~ msgstr "Votre mot de passe ne doit pas être entièrement numérique."
+
+#~ msgid " It must contain at least one digit "
+#~ msgstr "Votre mot de passe doit contenir au moins un chiffre."
+
+#~ msgid ""
+#~ " It must contain at least one punctuation character: !\"#$%%&\\'()*+,-./:;"
+#~ "<=>?@[\\\\]^_`{|}~ "
+#~ msgstr ""
+#~ "Votre mot de passe doit contenir au moins un signe de ponctuation: !\"#$%"
+#~ "%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~ "
+
+#~ msgid " It must contain at least one uppercase character"
+#~ msgstr ""
+#~ "Votre mot de passe doit contenir au moins un caractère en majuscule."
+
+#~ msgid " It must contain at least one lowercase character"
+#~ msgstr ""
+#~ "Votre mot de passe doit contenir au moins un caractère en minuscule."
+
+#~ msgid " It cannot contain a repeated character in a row"
+#~ msgstr ""
+#~ "Votre mot de passe ne doit pas contenir plus de 2 caracteres répétés à la "
+#~ "suite."
 
 #~ msgid ""
 #~ "With this form you can send messages to the node maintainers, for "

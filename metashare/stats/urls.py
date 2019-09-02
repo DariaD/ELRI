@@ -1,5 +1,17 @@
 from django.conf.urls import url, patterns
 
+#urlpatterns = patterns('metashare.stats.views',
+#  (r'top/$',
+#    'topstats'),
+#  (r'mystats/$',
+#    'mystats'),
+#  (r'usage/$',
+#    'usagestats'),
+#  (r'days',
+#    'statdays'),
+#  (r'get.*',
+#    'getstats'),
+#)
 urlpatterns = patterns('metashare.stats.views',
   url(r'top/$', 'topstats', name='topstats'),
   url(r'mystats/$', 'mystats', name='mystats'),
@@ -11,5 +23,5 @@ urlpatterns = patterns('metashare.stats.views',
   url(r'charts/creation-date/$', 'creationstats', name='creation-dates'),
   url(r'days', 'statdays'),
   url(r'get.*', 'getstats'),
-)
 
+)
