@@ -6,8 +6,9 @@ RUN tar xvfz /tmp/dockerize-alpine-linux-amd64-v0.5.0.tar.gz -C /tmp/
 FROM python:2.7.15-stretch
 
 #ARG RELEASE="trunk"
-#ARG RELEASE="tags/R3.3.9"
-ARG RELEASE="branches/VIC_ELDA_R3.4"
+ARG RELEASE="tags/R3.4"
+#ARG RELEASE="branches/VIC_ELDA_R3.4"
+
 ENV DB_HOST="postgres-server" \
     DB_PORT="5432" \
     SOLR_HOST="solr" \
@@ -35,7 +36,6 @@ COPY resources/env_secrets_expand.sh \
      resources/startup.sh \
      resources/create_super_user.sh \
      resources/gettext.patch \ 
-     resources/0002_resourceinfotype_model_elrcuploaded.py \
      resources/manage.py /elri/
 
 RUN svn export ${GIT_URL}/metashare /elri/metashare \
@@ -48,7 +48,7 @@ RUN svn export ${GIT_URL}/metashare /elri/metashare \
              /elri/metashare/processed \
     && patch /usr/local/lib/python2.7/gettext.py < /elri/gettext.patch \
     && pip install -r /elri/requirements.txt \
-    && pip install git+https://github.com/ELDAELRA/ELRI.git@VIC_ELDA_R3.4#subdirectory=elrc-share-client \
+    && pip install git+https://github.com/ELDAELRA/ELRI.git#subdirectory=elrc-share-client \
     && chmod +x /elri/startup.sh \
                 /elri/env_secrets_expand.sh \
                 /elri/create_super_user.sh
