@@ -15,6 +15,8 @@ urlpatterns = i18n_patterns('',
   url(r'^{0}info/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='elri-info.html'), name='info'),
   url(r'^{0}help/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='help.html'), name='help'),
   url(r'^{0}privacy/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='privacy.html'), name='privacy'),
+  url(r'^{0}acessibilidade/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='accessibility.html'), name='acessibilidade'),
+  url(r'^{0}docs/$'.format(DJANGO_BASE), 'metashare.views.pt_pdf_view', name='docs'),
   url(r'^{0}legal/$'.format(DJANGO_BASE), TemplateView.as_view(template_name='legal.html'), name='legal'),
   url(r'^{0}login/$'.format(DJANGO_BASE),
     'metashare.views.login', {'template_name': 'login.html'}, name='login'),
@@ -38,7 +40,7 @@ urlpatterns += i18n_patterns('metashare.accounts.views',
 )
 
 urlpatterns += i18n_patterns('metashare.stats.views',
-  (r'^{0}stats/'.format(DJANGO_BASE), include('metashare.stats.urls')),
+  (r'^{0}stats/'.format(DJANGO_BASE), include('metashare.stats.urls', namespace="statistics")),
 )
 
 urlpatterns += i18n_patterns('metashare.repository.views',
