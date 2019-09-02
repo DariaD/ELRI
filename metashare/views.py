@@ -56,3 +56,19 @@ def logout(request):
       request.user.username or "Anonymous"))
 
     return auth_views.logout(request, 'frontpage')
+
+from django.http import HttpResponse, FileResponse, Http404
+from metashare.settings import STATIC_ROOT
+
+def pt_pdf_view(request):
+    pt_path=STATIC_ROOT+'/metashare/aspetosfuncionais_pt-pt.pdf'
+    print(pt_path)
+    #try:
+    #    return FileResponse(open(pt_path,'rb'),content_type='application/pdf')
+    #except:
+    #    raise Http404()
+    with open(pt_path, 'r') as pdf:
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
+        #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+        return response
+    ##pdf.closed

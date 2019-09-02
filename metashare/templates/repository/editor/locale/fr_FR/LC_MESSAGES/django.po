@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:07+0200\n"
-"PO-Revision-Date: 2019-06-06 18:20+0200\n"
+"POT-Creation-Date: 2019-08-21 13:24+0200\n"
+"PO-Revision-Date: 2019-08-20 11:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -467,7 +467,18 @@ msgstr ""
 "fichiers <strong>.doc(x), .odt, .rtf, .pdf, .tmx, .sdltm, .xml, .tbx, ."
 "xls(x), ou .txt</strong> que vous le souhaitez jusqu'à 100Mo."
 
-#: templates/repository/editor/contributions/contribute.html:291
+#: templates/repository/editor/contributions/contribute.html:290
+msgid ""
+"Please note that PDF files are allowed but typically lead to resources of "
+"lower quality. It is highly recommended to upload documents in other formats "
+"(e.g., odt, doc(x), rtf), if possible."
+msgstr ""
+"Veuillez noter que les fichiers PDF sont autorisés mais génèrent "
+"généralement des ressources de qualité inférieure. Il est fortement "
+"recommandé de charger des documents dans d'autres formats (par exemple, odt, "
+"doc(x), rtf), si possible."
+
+#: templates/repository/editor/contributions/contribute.html:292
 msgid ""
 "In case the data you wish to upload are larger than 100MB, please contact us "
 "to provide an SFTP link for direct download or consider uploading smaller "
@@ -477,11 +488,11 @@ msgstr ""
 "contacter pour vous fournir un lien de téléchargement direct SFTP ou pensez "
 "à transférer des fichiers plus petits."
 
-#: templates/repository/editor/contributions/contribute.html:296
+#: templates/repository/editor/contributions/contribute.html:297
 msgid "Group(s)"
 msgstr "Groupe(s)"
 
-#: templates/repository/editor/contributions/contribute.html:305
+#: templates/repository/editor/contributions/contribute.html:306
 msgid ""
 "The group(s) the language resource can be shared with (hold down the CTRL "
 "key to select multiple groups)."
@@ -489,7 +500,27 @@ msgstr ""
 "Le(s) groupe(s) avec qui la ressource peut être partagée (maintenez la "
 "touche CTRL appuyée pour sélectionner plusieurs groupes)."
 
-#: templates/repository/editor/contributions/contribute.html:312
+#: templates/repository/editor/contributions/contribute.html:308
+msgid ""
+"Resources shared with the National Organisations group will be accessible to "
+"registered ELRI users (members of public institutions) in Country only. "
+"Those shared with the group National Organisations+European Commission will "
+"also be accessible to the European Commission, via the ELRC-SHARE platform, "
+"to help improve its public automated translation services. Resources shared "
+"with the Open Data group will be accessible to registered ELRI users and to "
+"users of the EU Open Data Portal."
+msgstr ""
+"Les ressources partagées avec le groupe Organisations Nationales seront "
+"accessibles aux utilisateurs enregistrés d'ELRI en France uniquement "
+"(membres d'institutions publiques françaises). Celles partagées avec le "
+"groupe Organisations Nationales + Commission Européenne seront également "
+"accessibles à la Commission Européenne, via la plateforme ELRC-SHARE, pour "
+"aider à améliorer ses services publics de traduction automatique. Les "
+"ressources partagées avec le groupe Données Ouvertes seront accessibles aux "
+"utilisateurs enregistrés d'ELRI et aux utilisateurs du portail de données "
+"ouvertes de l'UE."
+
+#: templates/repository/editor/contributions/contribute.html:316
 #, python-format
 msgid ""
 "I agree with the <a target=\"_blank\" href=\"%(legal_url)s#Sharing"
@@ -499,11 +530,11 @@ msgstr ""
 "Conditions d'utilisation pour le chargement de ressources linguistiques pour "
 "les détenteurs de données.</a> "
 
-#: templates/repository/editor/contributions/contribute.html:324
+#: templates/repository/editor/contributions/contribute.html:328
 msgid "Submit"
 msgstr "Soumettre"
 
-#: templates/repository/editor/contributions/contribute.html:325
+#: templates/repository/editor/contributions/contribute.html:329
 msgid "Reset"
 msgstr "Réinitialiser"
 

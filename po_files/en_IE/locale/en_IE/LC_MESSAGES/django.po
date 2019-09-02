@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 17:14+0200\n"
-"PO-Revision-Date: 2019-06-07 09:39+0200\n"
+"POT-Creation-Date: 2019-08-23 10:51+0200\n"
+"PO-Revision-Date: 2019-08-23 10:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -35,8 +35,16 @@ msgstr ""
 "Error: An error occurred while trying to send a notification email to the "
 "reviewers."
 
-#: local_settings.py:46
-msgid "Spanish"
+#: local_settings.py:45
+msgid "Gaelic"
+msgstr ""
+
+#: local_settings.py:47
+msgid "English"
+msgstr ""
+
+#: stats/views.py:537
+msgid "Start date is greater than end date."
 msgstr ""
 
 #: storage/models.py:113

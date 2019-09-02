@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-17 17:09+0200\n"
-"PO-Revision-Date: 2019-06-10 17:07+0200\n"
+"POT-Creation-Date: 2019-08-21 13:24+0200\n"
+"PO-Revision-Date: 2019-08-30 12:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -64,8 +64,8 @@ msgid ""
 "ELRI National Relay Station: a repository to store, search and retrieve "
 "Language Resources."
 msgstr ""
-"eTradução/ELRI: Repositório Nacional de Recursos de Tradução, onde os "
-"recursos linguísticos podem ser recolhidos, preparados e partilhados."
+"ETradução: um repositório para armazenar, pesquisar e recuperar recursos de "
+"idioma."
 
 #: templates/base.html:16
 msgid ""
@@ -183,10 +183,10 @@ msgid ""
 "search (via the Browse Resources menu) or contribute ((via the Contribute "
 "Resources menu) language resources."
 msgstr ""
-"Os novos utilizadores devem começar por se  <a href=\"../accounts/create/"
-"\">registar</a>. Após a validação da sua conta, pode iniciar sessão e "
+"﻿Os novos utilizadores devem começar por se  <a href=\"../accounts/create/"
+"\">registar</a>. Uma vez validada a sua conta, pode iniciar a sessão e "
 "procurar (através do menu Procurar) ou contribuir (através do menu Contribua "
-"com recursos) com recursos de tradução."
+"com recursos) recursos linguísticos."
 
 #: templates/elri-info.html:25
 msgid ""
@@ -195,10 +195,10 @@ msgid ""
 "resource, and the associated licensing conditions (see <a href="
 "\"#Licensing_LRs\" title=\"licensing contitions\">below</a>)."
 msgstr ""
-"Para cada recurso linguístico, será pedido que forneça as línguas do seu "
-"conteúdo, um título curto, o grupo com o qual pretende partilhar, o recurso "
-"e as <a href=\"#Licensing_LRs\" title=\"ver condições de licenciamento "
-"associadas\">condições de licenciamento associadas</a>."
+"﻿Para cada recurso linguístico, será pedido que forneça as línguas do seu "
+"conteúdo, um título curto, o grupo com o qual pretende partilhar o recurso e "
+"as condições de licenciamento associadas (ver <a href=\"#Licensing_LRs\" "
+"title=\"licensing contitions\">infra</a>)."
 
 #: templates/elri-info.html:27
 msgid ""
@@ -320,7 +320,7 @@ msgstr "Licenças de dados específicas"
 
 #: templates/footer.html:9 templates/header.html:12
 msgid "Go to the ELRI project homepage"
-msgstr "Visitar a página do projeto ELR"
+msgstr "Visitar a página do projeto ELRI"
 
 #: templates/footer.html:11 templates/footer.html.py:22
 msgid "ELRI National Relay Station "
@@ -341,7 +341,7 @@ msgid ""
 "Go to the Creative Commons Attribution Non-Commercial Share Alike 4.0 "
 "International license information page."
 msgstr ""
-"Visitar a página de informação relativa à licença internacional Creative "
+"Ir para a página de informação relativa à licença internacional Creative "
 "Commons Attribution Non-Commercial Share Alike 4.0"
 
 #: templates/footer.html:16 templates/footer.html.py:29
@@ -2136,7 +2136,7 @@ msgid "Contact Resource Maintainer"
 msgstr "Contacte o Gestor de Recursos"
 
 #: templates/repository/download_contact_form.html:13
-#: templates/stats/mystats.html:29
+#: templates/stats/mystats.html:18
 msgid "Resource name"
 msgstr "Nome do recurso"
 
@@ -2476,10 +2476,12 @@ msgid "Annotation Tools"
 msgstr "Ferramentas de anotação"
 
 #: templates/repository/resource_view/annotation.html:82
+#: templates/stats/templates.html:4
 msgid "Start date"
 msgstr "Data de início"
 
 #: templates/repository/resource_view/annotation.html:90
+#: templates/stats/templates.html:5
 msgid "End date"
 msgstr "Data final"
 
@@ -2689,7 +2691,7 @@ msgid "Personal Data"
 msgstr "Dados Pessoais"
 
 #: templates/repository/resource_view/distribution.html:115
-#: templates/stats/mystats.html:45
+#: templates/stats/mystats.html:33
 msgid "YES"
 msgstr "SIM"
 
@@ -3271,8 +3273,8 @@ msgstr "Procurar Recursos Linguísticos"
 msgid "Search"
 msgstr "Pesquisar"
 
-#: templates/repository/search.html:88 templates/stats/topstats.html:174
-#: templates/stats/usagestats.html:142
+#: templates/repository/search.html:88 templates/stats/topstats.html:158
+#: templates/stats/usagestats.html:127
 msgid "Filter by:"
 msgstr "Filtrar por:"
 
@@ -3309,12 +3311,12 @@ msgid "(Page %(pgnum)s of %(numpgs)s)"
 msgstr "(Page %(pgnum)s de %(numpgs)s)"
 
 #: templates/repository/search.html:130 templates/repository/search.html:158
-#: templates/stats/topstats.html:241 templates/stats/topstats.html.py:243
+#: templates/stats/topstats.html:224 templates/stats/topstats.html.py:226
 msgid "Previous"
 msgstr "Anterior"
 
 #: templates/repository/search.html:131 templates/repository/search.html:159
-#: templates/stats/topstats.html:247 templates/stats/topstats.html.py:249
+#: templates/stats/topstats.html:230 templates/stats/topstats.html.py:232
 msgid "Next"
 msgstr "Próximo"
 
@@ -3376,62 +3378,107 @@ msgstr ""
 msgid "No results were found for search query &ldquo;%(query)s&rdquo;."
 msgstr "Sem resultados encontrados para a pesquisa &ldquo;%(query)s&rdquo;."
 
-#: templates/stats/mystats.html:14 templates/stats/topstats.html:113
-#: templates/stats/usagestats.html:125
-msgid "ELRI visits statistics"
-msgstr "Estatísticas de visitas"
-
-#: templates/stats/mystats.html:15 templates/stats/topstats.html:114
-#: templates/stats/usagestats.html:124
+#: templates/stats/base.html:22
 msgid "ELRC-SHARE visits statistics"
 msgstr "Estatísticas de visitas do ELRC-SHARE"
 
-#: templates/stats/mystats.html:16 templates/stats/topstats.html:115
-#: templates/stats/usagestats.html:126
+#: templates/stats/base.html:23
 msgid "Statistics on resource metadata"
 msgstr "Estatísticas sobre meta-dados dos recursos"
 
-#: templates/stats/mystats.html:17 templates/stats/topstats.html:117
-#: templates/stats/usagestats.html:128
+#: templates/stats/base.html:25
 msgid "My resources"
 msgstr "Os meus recursos"
 
-#: templates/stats/mystats.html:24 templates/stats/topstats.html:169
-#: templates/stats/usagestats.html:317
+#: templates/stats/base.html:27
+msgid "Charts"
+msgstr ""
+
+#: templates/stats/base.html:46 templates/stats/usagestats.html:200
+msgid "Close"
+msgstr "Fechar"
+
+#: templates/stats/base.html:46 templates/stats/usagestats.html:200
+#, python-format
+msgid " used values for <h4>%(selected_class)s/%(selected_field)s</h4>"
+msgstr " usar valores para <h4>%(selected_class)s/%(selected_field)s</h4>"
+
+#: templates/stats/base.html:47 templates/stats/usagestats.html:201
+msgid "value counter"
+msgstr "contador de valor"
+
+#: templates/stats/base.html:48 templates/stats/usagestats.html:202
+msgid "resources counter"
+msgstr "contador de recursos"
+
+#: templates/stats/base.html:110 templates/stats/usagestats.html:263
+msgid "never used"
+msgstr "nunca usado"
+
+#: templates/stats/chartstats.html:25
+msgid "Statistics choice"
+msgstr ""
+
+#: templates/stats/chartstats.html:27
+msgid "Data sizes"
+msgstr ""
+
+#: templates/stats/chartstats.html:28
+msgid "Data per groups"
+msgstr ""
+
+#: templates/stats/chartstats.html:29
+msgid "Data per domains"
+msgstr ""
+
+#: templates/stats/chartstats.html:30
+msgid "Data per dates"
+msgstr ""
+
+#: templates/stats/mystats.html:13 templates/stats/topstats.html:153
+#: templates/stats/usagestats.html:294
 msgid "No data found"
 msgstr "Nenhum dado encontrado"
 
-#: templates/stats/mystats.html:30
+#: templates/stats/mystats.html:19
 msgid "Published"
 msgstr "Publicado"
 
-#: templates/stats/mystats.html:31
+#: templates/stats/mystats.html:20
 msgid "Actions"
 msgstr "Ações"
 
-#: templates/stats/mystats.html:32
+#: templates/stats/mystats.html:21
 msgid "Seen by users"
 msgstr "Visto pelos utilizadores"
 
-#: templates/stats/mystats.html:33
+#: templates/stats/mystats.html:22
 msgid "Last access"
 msgstr "Último acesso"
 
-#: templates/stats/mystats.html:47
+#: templates/stats/mystats.html:35
 msgid "NO"
 msgstr "NÃO"
 
-#: templates/stats/topstats.html:5
+#: templates/stats/templates.html:6
+msgid "Apply filters"
+msgstr ""
+
+#: templates/stats/templates.html:7
+msgid "Reset"
+msgstr ""
+
+#: templates/stats/topstats.html:4
 msgid ""
 "It seems JavaScript is either disabled or not supported by your browser."
 msgstr ""
 "Parece que o JavaScript está desativado ou não é suportado pelo seu "
 "navegador."
 
-#: templates/stats/topstats.html:6
+#: templates/stats/topstats.html:5
 msgid ""
 "JavaScript should be enabled in order to support all functionalities.\n"
-"        Enable JavaScript by changing your browser options, and then try "
+"            Enable JavaScript by changing your browser options, and then try "
 "again."
 msgstr ""
 "JavaScript tem que ser habilitado a fim de suportar todas as "
@@ -3439,39 +3486,39 @@ msgstr ""
 "        Active o JavaScript alterando as opções do seu navegador e tente "
 "novamente."
 
-#: templates/stats/topstats.html:125
+#: templates/stats/topstats.html:109
 msgid "Show the"
 msgstr "Mostrar o"
 
-#: templates/stats/topstats.html:129
+#: templates/stats/topstats.html:113
 msgid "Most Viewed Resources"
 msgstr "Recursos mais vistos"
 
-#: templates/stats/topstats.html:137
+#: templates/stats/topstats.html:121
 msgid "Top Queries"
 msgstr "Principais Pesquisas"
 
-#: templates/stats/topstats.html:145
+#: templates/stats/topstats.html:129
 msgid "Latest Queries"
 msgstr "Últimas Pesquisas"
 
-#: templates/stats/topstats.html:153
+#: templates/stats/topstats.html:137
 msgid "Top Downloaded Resources"
 msgstr "Recursos mais descarregados"
 
-#: templates/stats/topstats.html:161
+#: templates/stats/topstats.html:145
 msgid "Latest Updated Resources"
 msgstr "Recursos atualizados recentemente"
 
-#: templates/stats/topstats.html:177
+#: templates/stats/topstats.html:161
 msgid "Date"
 msgstr "Data"
 
-#: templates/stats/topstats.html:198
+#: templates/stats/topstats.html:183
 msgid "Provenance"
 msgstr "Proveniência"
 
-#: templates/stats/topstats.html:221
+#: templates/stats/topstats.html:205
 msgid ""
 "* This product includes GeoLite data\n"
 "                                        created by MaxMind, available from "
@@ -3481,29 +3528,29 @@ msgstr ""
 "                                        criado por MaxMind, disponível em "
 "http://MaxMind.com/e um gráfico do Google Maps."
 
-#: templates/stats/topstats.html:232
+#: templates/stats/topstats.html:216
 msgid "No data matched"
 msgstr "Nenhum dado corresponde"
 
-#: templates/stats/topstats.html:280
+#: templates/stats/topstats.html:262
 #, python-format
 msgid "result%(object.3|pluralize)s"
 msgstr "result%(object.3|pluralize)s"
 
-#: templates/stats/topstats.html:283
+#: templates/stats/topstats.html:265
 #, python-format
 msgid "time%(object.3|pluralize)s"
 msgstr "time%(object.3|pluralize)s"
 
-#: templates/stats/topstats.html:303 templates/stats/topstats.html.py:304
+#: templates/stats/topstats.html:284 templates/stats/topstats.html.py:285
 msgid "Number of downloads"
 msgstr "Número de downloads"
 
-#: templates/stats/topstats.html:305 templates/stats/topstats.html.py:306
+#: templates/stats/topstats.html:286 templates/stats/topstats.html.py:287
 msgid "Number of views"
 msgstr "Número de visualizações"
 
-#: templates/stats/usagestats.html:145
+#: templates/stats/usagestats.html:130
 msgid ""
 "This panel shows which metadata have been used to describe the ELRI "
 "linguistic resources.\n"
@@ -3511,12 +3558,12 @@ msgid ""
 "org/knowledgebase/DetailedPresentationOfTheModel\" target=\"metamodel\">ELRI "
 "model</a> can be either \"required\", \"recommended\" or \"optional\".\n"
 "                The metadata usage statistics reports two counters. The "
-"first counter says how many times a metadata has been \n"
+"first counter says how many times a metadata has been\n"
 "                filled in with a certain value, while the second counter "
 "says the number of resources for which the metadata has been used.\n"
 "                For instance <div class=\"coverage required\"> 28/12 </div> "
 "means that the corresponding required metadata has been filled in 28 times "
-"(possibly with \n"
+"(possibly with\n"
 "                redundant values), and that 12 different resources have been "
 "described with that metadata.\n"
 "                You can click on a metadata name to see a table with all the "
@@ -3538,7 +3585,7 @@ msgstr ""
 "                Pode clicar em um nome de metadados para ver uma tabela com "
 "todos os valores reais usados para preencher esses metadados."
 
-#: templates/stats/usagestats.html:153
+#: templates/stats/usagestats.html:138
 msgid ""
 "This panel shows which metadata have been used to describe the ELRC-SHARE "
 "linguistic resources.\n"
@@ -3547,12 +3594,12 @@ msgid ""
 "SHARE model</a> can be either \"required\", \"recommended\" or \"optional"
 "\".\n"
 "                The metadata usage statistics reports two counters. The "
-"first counter says how many times a metadata has been \n"
+"first counter says how many times a metadata has been\n"
 "                filled in with a certain value, while the second counter "
 "says the number of resources for which the metadata has been used.\n"
 "                For instance <div class=\"coverage required\"> 28/12 </div> "
 "means that the corresponding required metadata has been filled in 28 times "
-"(possibly with \n"
+"(possibly with\n"
 "                redundant values), and that 12 different resources have been "
 "described with that metadata.\n"
 "                You can click on a metadata name to see a table with all the "
@@ -3575,21 +3622,21 @@ msgstr ""
 "                Pode clicar em um nome de metadados para ver uma tabela com "
 "todos os valores reais usados para preencher esses metadados."
 
-#: templates/stats/usagestats.html:162
+#: templates/stats/usagestats.html:147
 msgid "Metadata status"
 msgstr "Estado dos metadados"
 
-#: templates/stats/usagestats.html:173
+#: templates/stats/usagestats.html:158
 #, python-format
 msgid "Metadata usage in %(lr_count)s resource%(lr_count|pluralize)s"
 msgstr "Utilização de metadados no %(lr_count)s recurso%(lr_count|pluralize)s"
 
-#: templates/stats/usagestats.html:192
+#: templates/stats/usagestats.html:176
 #, python-format
 msgid "Found %(fields_count)s metadata"
 msgstr "Encontrados %(fields_count)s metadados"
 
-#: templates/stats/usagestats.html:199
+#: templates/stats/usagestats.html:183
 msgid ""
 "(the following lines are the metadata components and elements included in "
 "the <a href=\"http://www.meta-share.org/portal/knowledgebase\n"
@@ -3601,7 +3648,7 @@ msgstr ""
 "DetailedPresentationOfTheModel\" target=\"metamodel\">no modelo ELRI </a> "
 "agrupados por diferentes funções e ordenados alfabeticamente)"
 
-#: templates/stats/usagestats.html:201
+#: templates/stats/usagestats.html:185
 msgid ""
 "(the following lines are the metadata components and elements included in "
 "the <a href=\"http://www.meta-share.org/portal/knowledgebase/"
@@ -3613,34 +3660,16 @@ msgstr ""
 "DetailedPresentationOfTheModel\"target=\"metamodel\">no modelo ELRI </a> "
 "agrupados por diferentes funções e ordenados alfabeticamente)"
 
-#: templates/stats/usagestats.html:202
+#: templates/stats/usagestats.html:186
 msgid "Expand all"
 msgstr "Expandir todos"
 
-#: templates/stats/usagestats.html:203
+#: templates/stats/usagestats.html:187
 msgid "Collapse all"
 msgstr "Recolher todos"
 
-#: templates/stats/usagestats.html:217
-msgid "Close"
-msgstr "Fechar"
-
-#: templates/stats/usagestats.html:217
-#, python-format
-msgid " used values for <h4>%(selected_class)s/%(selected_field)s</h4>"
-msgstr " usar valores para <h4>%(selected_class)s/%(selected_field)s</h4>"
-
-#: templates/stats/usagestats.html:218
-msgid "value counter"
-msgstr "contador de valor"
-
-#: templates/stats/usagestats.html:219
-msgid "resources counter"
-msgstr "contador de recursos"
-
-#: templates/stats/usagestats.html:283
-msgid "never used"
-msgstr "nunca usado"
+#~ msgid "ELRI visits statistics"
+#~ msgstr "Estatísticas de visitas"
 
 #~ msgid "\"OK, I aggree \""
 #~ msgstr "\"Ok, concordo\""

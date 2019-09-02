@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-10 17:14+0200\n"
-"PO-Revision-Date: 2019-06-07 09:49+0200\n"
+"POT-Creation-Date: 2019-08-23 10:51+0200\n"
+"PO-Revision-Date: 2019-08-23 10:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_IE\n"
@@ -285,19 +285,28 @@ msgid "Please fill in all fields to create your account."
 msgstr "Error: Please fill in all fields to create your account."
 
 #: templates/accounts/create_account.html:14
-#: templates/accounts/create_account.html:36
+#: templates/accounts/create_account.html:15
+#: templates/accounts/create_account.html:41
 msgid "Create Account"
 msgstr ""
 
-#: templates/accounts/create_account.html:24
-#: templates/accounts/create_account.html:26
+#: templates/accounts/create_account.html:25
+#: templates/accounts/create_account.html:27
 #, python-format
 msgid ""
 "I accept the <a target=\"_blank\" href=\"%(elri_tos)s\">ELRI Terms of "
 "Service</a>."
 msgstr ""
 
-#: templates/accounts/create_account.html:31
+#: templates/accounts/create_account.html:33
+msgid ""
+"The password must contain at least 10 characters and include at least one "
+"capital letter, one lowercase letter, one digit and one special character (e."
+"g., punctuation mark). It should also differ from the username and not "
+"contain more that two identical characters in a row"
+msgstr ""
+
+#: templates/accounts/create_account.html:36
 msgid "Required Field"
 msgstr ""
 

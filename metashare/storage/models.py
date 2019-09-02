@@ -234,6 +234,24 @@ class StorageObject(models.Model):
         """
         return '{0}/{1}'.format(settings.STORAGE_PATH, self.identifier)
 
+    def get_storage_archive_path(self):
+        path = self._storage_folder()
+        if os.path.isfile(path):
+            return path
+        return None
+
+    def get_storage_xml_path(self):
+        """ Return the last metadata XML file.
+        """
+        base_path = self._storage_folder()
+
+        metadata_file_name = 'metadata-{:0>4d}.xml'.format(self.revision)
+        metadata_file_path = os.path.join(base_path, metadata_file_name)
+
+        if os.path.isfile(metadata_file_path):
+            return metadata_file_path
+        return None
+
     def compute_checksum(self):
         """
         Computes the MD5 hash checksum for the binary archive which may be
@@ -260,6 +278,28 @@ class StorageObject(models.Model):
                 return _binary_data
 
         return None
+
+    def get_metadata_from_path(self, path):
+        """ Return metadata from given path.
+        """
+        root = etree.fromstring(self.metadata)
+        element = root.findall(path, {'elri': 'http://www.elrc-share.eu/ELRC-SHARE_SCHEMA/v2.0/'})
+        if element is not None:
+            return element
+        return None
+
+    @property
+    def sizes_infos(self):
+        """ Return list of tuples with the size unit and corresponding value number size.
+        """
+        sizes_units = self.get_metadata_from_path(
+            'elri:resourceComponentType/elri:corpusInfo/elri:corpusMediaType/elri:corpusTextInfo/elri:sizeInfo/elri:sizeUnit'
+        )
+        sizes = self.get_metadata_from_path(
+            'elri:resourceComponentType/elri:corpusInfo/elri:corpusMediaType/elri:corpusTextInfo/elri:sizeInfo/elri:size'
+        )
+
+        return zip(sizes_units, sizes)
 
     ## VALIDATION REPORT
     def get_validation(self):
