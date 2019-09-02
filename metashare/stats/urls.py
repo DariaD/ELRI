@@ -23,4 +23,5 @@ urlpatterns = patterns('metashare.stats.views',
   url(r'charts/creation-date/$', 'creationstats', name='creation-dates'),
   url(r'days', 'statdays'),
   url(r'get.*', 'getstats'),
+
 )
