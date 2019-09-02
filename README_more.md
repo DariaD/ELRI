@@ -60,3 +60,22 @@ Recall that you will need to be logged-in docker by a user with permission to do
 Manage po files
 ------------
 Each release should need an update of the .po files.
+A general guide for managing the .po files can be found [here](https://github.com/ELDAELRA/ELRI/blob/master/internationalization.md). But, there are some extra tips:
+
+- First of all, we recommend to make a backup of the actual status of the .po files by following the step 2 from the [internationalisation guide](https://github.com/ELDAELRA/ELRI/blob/master/internationalization.md) 
+- You need to activate the python `virtualenv`  to create/update the .po files
+- You can create the .po for only one language by using the option: `makemessages -l es_ES' 
+- If there is any problem when generating the .po files, it is usually due to some import errors. Just comment the problematic line, regenerate the .po files and then de-comment the import line (i.e. this [line](https://github.com/ELDAELRA/ELRI/blob/b8081a19712e43bfdbc40415579729f801f48a49/metashare/repository/editor/resource_editor.py#L17))
+- In order to generate correctly the .po files for the `ga_IE` language, in the [`accounts/forms.py`](metashare/accounts/forms.py) file, you should replace `_(mark_safe(` by `marksafe(_(` in order to let django recognize the strings to localise
+- Editing .po files 
+  - We recomend using the poedit to edit the .po files 
+  - Just open the file, complete the translation and save it to create the new .mo file 
+  - Be carefull with the `Fuzzy` translations: they will appear when there are several translations for the same source string or when the source string has changed a lot. 
+  - Notice that at the end of the .po file there is a history of some previous translations, it is maybe easier to look at them using a regular text editor
+  
+- After generating the new localised content, you must copy the generated .mo and .po files to their original path inside the `metashare` directory tree
+
+- Finally, maintain the backup copy of the .po files into the `ELRI/po_files` folder in this repository
+
+
+
